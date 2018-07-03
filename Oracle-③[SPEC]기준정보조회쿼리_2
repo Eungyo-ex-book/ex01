@@ -1,0 +1,129 @@
+-- 1. SDC 스펙 그룹 기본 정보
+
+-- SECTION_CODE : P( PRODUCT - GLS or PNL ) / LOT
+
+SELECT *
+
+  FROM TB_EDC_SDC2_SPEC_gR T
+
+WHERE T.FACILITY_CODE = 'P9T'
+
+   AND T.SPECIFICATION_GROUP_ID = 'TFT_PTN_DPU_검사'
+
+   AND T.SECTION_CODE = 'P'
+
+   AND T.SECTION_LENGTH > 1
+
+;
+
+-- 2. SDC 스펙 그룹의 분자로 추출할 불량코드 정보
+
+SELECT *
+
+  FROM TB_EDC_SDC2_DEF_COND T
+
+WHERE T.FACILITY_CODE = 'P9T'
+
+   AND T.SPECIFICATION_GROUP_ID = 'TFT_PTN_DPU_검사'
+
+;
+
+-- 3. SDC 스펙 그룹의 분자/분모로 추출할 판정값 정보
+
+-- NUMERATOR_FLAG : Y (분자),  N ( 분모 )
+
+SELECT *
+
+  FROM TB_EDC_SDC2_JUDGE_COND T
+
+WHERE T.FACILITY_CODE = 'P9T'
+
+  AND T.SPECIFICATION_GROUP_ID = 'TFT_PTN_DPU_검사'
+
+;
+
+-- 4. SDC 스펙 그룹의 분자로 추출할 검사데이터 정보 ( SDC2_SPEC_GR의 분자값이 F 인 경우에만 설정 )
+
+SELECT *
+
+  FROM TB_EDC_SDC2_INSP_DATA T
+
+WHERE T.FACILITY_CODE = 'P9T'
+
+   AND T.SPECIFICATION_GROUP_ID = 'TFT_PTN_DPU_검사'
+
+;
+
+-- 5. SDC 스펙 그룹 P/N별 임계치 설정
+
+SELECT *
+
+  FROM Tb_Edc_Sdc2_Spec T
+
+WHERE T.FACILITY_CODE = 'P9T'
+
+   AND T.SPECIFICATION_GROUP_ID = 'TFT_PTN_DPU_검사'
+
+   AND T.Spec_Seq_No = '201506242236100'
+
+   AND T.APPLY_FLAG = 'Y'
+
+;
+
+-- 6. SDC Rule 체크를 하기 위한 포인트 정보
+
+SELECT *
+
+  FROM TB_EDC_SDC2_POINT T
+
+WHERE T.FACILITY_CODE = 'P9T'
+
+   AND T.SPECIFICATION_GROUP_ID IN (SELECT T.SPECIFICATION_GROUP_ID
+
+                                      FROM TB_EDC_SDC2_SPEC_gR T
+
+                                     WHERE T.SPECIFICATION_GROUP_ID = 'TFT_PTN_DPU_검사'
+
+                                       AND T.Spec_Seq_No = '201506242236100'
+
+                                    )
+
+   AND T.CHECK_RANK_VALUE >= '201805'
+
+;
+
+-- 7. SDC 포인트를 구성하는 상세 데이터 정보
+
+SELECT D.*
+
+  FROM TB_EDC_SDC2_POINT T
+
+     , TB_EDC_sDC2_POINT_dATA D
+
+WHERE T.FACILITY_CODE = 'P9T'
+
+   AND T.SPECIFICATION_GROUP_ID IN (SELECT T.SPECIFICATION_GROUP_ID
+
+                                      FROM TB_EDC_SDC2_SPEC_gR T
+
+                                     WHERE T.SPECIFICATION_GROUP_ID = 'TFT_PTN_DPU_검사'
+
+                                       AND T.Spec_Seq_No = '201506242236100'
+
+                                    )
+
+   AND T.CHECK_RANK_VALUE >= '201805'
+
+   --
+
+   AND D.FACILITY_CODE = T.FACILITY_CODE 
+
+   AND D.SPECIFICATION_GROUP_ID = T.SPECIFICATION_GROUP_ID
+
+   AND D.Spec_Seq_No = T.Spec_Seq_No
+
+   AND D.CAUSE_EQUIPMENT_ID = T.CAUSE_EQUIPMENT_ID
+
+   AND D.CHECK_RANK_VALUE = T.CHECK_RANK_VALUE
+
+   AND D.FIRST_CHECK_YMDHMS = T.FIRST_CHECK_YMDHMS

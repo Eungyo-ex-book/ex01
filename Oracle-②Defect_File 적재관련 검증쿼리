@@ -31,3 +31,17 @@ select dg.glass_inspection_end_ymdhms, dg.glass_seq_no, dg.glass_id, dg.process_
    and dg.last_flag = 'Y'
 ;
 
+
+
+
+/* SDC_POINT_DATA 테이블의 VALUE값 일치여부 확인 쿼리 */
+select *
+  from tb_edc_sdc2_point t
+     , TB_EDC_SDC2_POINT_dATA D
+ where t.facility_code = 'P9T'
+   and T.Specification_Group_Id = 'ACT_DE_발생개수(챔버)_ALL'
+   --
+   AND D.FACILITY_CODE = T.FACILITY_CODE
+   AND D.SPECIFICATION_GROUP_ID = T.SPECIFICATION_GROUP_ID
+   AND D.PRODUCT_ID = 'P9AD86000818' --조회하고자 하는 GLASS_ID 입력
+;

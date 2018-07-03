@@ -1,0 +1,33 @@
+select *
+  from tb_edc_def_tft_gls dg
+ where dg.update_date > sysdate-1
+   and dg.glass_id like 'P9AD%';
+
+select *
+  from tb_edc_def_tft_pnl dp
+ where (dp.glass_inspection_end_ymdhms, dp.glass_seq_no )
+    in (
+ 
+         /* 1개의 Defect File 조회*/
+         select dg.glass_inspection_end_ymdhms, dg.glass_seq_no
+           from tb_edc_def_tft_gls dg
+          where dg.glass_id = 'P9AD86000724'
+            and dg.process_code = '2810'
+            and dg.last_flag = 'Y'
+       )
+;
+
+/* 1개 Defect File 조회 */
+select dg.*
+  from tb_edc_def_tft_gls dg
+ where dg.glass_id = 'P9AD86000101'
+   and dg.process_code = '5860'
+   and dg.last_flag = 'Y'
+;
+select dg.glass_inspection_end_ymdhms, dg.glass_seq_no, dg.glass_id, dg.process_code, dg.last_flag
+  from tb_edc_def_tft_gls dg
+ where dg.glass_id = 'P9AD86000101'
+   and dg.process_code = '5860'
+   and dg.last_flag = 'Y'
+;
+

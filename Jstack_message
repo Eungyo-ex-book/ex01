@@ -1,0 +1,1975 @@
+Full thread dump Java HotSpot(TM) 64-Bit Server VM(1.8.0_92-b14 mixed mode)
+
+Operating System
+------------------
+Windows 7 (version=6.1, arch=amd64)
+
+Environment Variables
+-----------------------
+araqne.log.keepdays=7
+java.runtime.name=Java(TM) SE Runtime Environment
+sun.boot.library.path=d:\Logpresso\jre\bin
+java.vm.version=25.92-b14
+java.vm.vendor=Oracle Corporation
+java.vendor.url=http://java.oracle.com/
+path.separator=;
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+file.encoding.pkg=sun.io
+user.country=KR
+user.script=
+sun.os.patch.level=Service Pack 1
+araqne.data.dir=d:\Logpresso\data
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=d:\Logpresso
+java.runtime.version=1.8.0_92-b14
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+java.endorsed.dirs=d:\Logpresso\jre\lib\endorsed
+os.arch=amd64
+java.io.tmpdir=C:\Windows\TEMP\
+line.separator=
+
+java.vm.specification.vendor=Oracle Corporation
+araqne.download.dir=D:\Logpresso\download
+user.variant=
+os.name=Windows 7
+araqne.ssh.timeout=0
+sun.jnu.encoding=MS949
+java.library.path=d:\Logpresso\procrun;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;c:\Oracle\eas\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;;.
+sun.nio.ch.bugLevel=
+java.specification.name=Java Platform API Specification
+java.class.version=52.0
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+os.version=6.1
+araqne.dir=D:\Logpresso
+user.home=C:\Windows\system32\config\systemprofile
+user.timezone=Asia/Seoul
+ipojo.proxy=disabled
+java.awt.printerjob=sun.awt.windows.WPrinterJob
+file.encoding=MS949
+java.specification.version=1.8
+java.class.path=d:\Logpresso\araqne-core-3.4.0-package.jar
+user.name=KRN051635$
+araqne.cache.dir=D:\Logpresso\cache
+java.vm.specification.version=1.8
+java.home=d:\Logpresso\jre
+sun.arch.data.model=64
+user.language=ko
+java.specification.vendor=Oracle Corporation
+araqne.diag.dir=D:\Logpresso\diag
+awt.toolkit=sun.awt.windows.WToolkit
+java.vm.info=mixed mode
+java.version=1.8.0_92
+java.ext.dirs=d:\Logpresso\jre\lib\ext;C:\Windows\Sun\Java\lib\ext
+sun.boot.class.path=d:\Logpresso\jre\lib\resources.jar;d:\Logpresso\jre\lib\rt.jar;d:\Logpresso\jre\lib\sunrsasign.jar;d:\Logpresso\jre\lib\jsse.jar;d:\Logpresso\jre\lib\jce.jar;d:\Logpresso\jre\lib\charsets.jar;d:\Logpresso\jre\lib\jfr.jar;d:\Logpresso\jre\classes
+araqne.home.dir=D:\Logpresso\home
+java.vendor=Oracle Corporation
+sun.stderr.encoding=cp0
+file.separator=\
+java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+araqne.cert.dir=D:\Logpresso\cert
+sun.io.unicode.encoding=UnicodeLittle
+sun.cpu.endian=little
+sun.stdout.encoding=cp0
+araqne.log.dir=D:\Logpresso\log
+araqne.plugin.dir=D:\Logpresso\plugin
+sun.desktop=windows
+sun.cpu.isalist=amd64
+
+Thread dump (total=130)
+------------------------------------------
+"Araqne Script Runner [jstack]" tid=31974: (state = RUNNABLE)
+  at sun.management.ThreadImpl.dumpThreads0
+  at sun.management.ThreadImpl.getThreadInfo
+  at org.araqne.script.JstackHelper.dump (JstackHelper.java:52)
+  at org.araqne.script.CoreScript.jstack (CoreScript.java:106)
+  at sun.reflect.NativeMethodAccessorImpl.invoke0
+  at sun.reflect.NativeMethodAccessorImpl.invoke
+  at sun.reflect.DelegatingMethodAccessorImpl.invoke
+  at java.lang.reflect.Method.invoke
+  at org.araqne.console.ScriptRunner.invokeScript (ScriptRunner.java:222)
+  at org.araqne.console.ScriptRunner.run (ScriptRunner.java:203)
+  at java.lang.Thread.run
+
+"HTTP Worker#6135" tid=31973: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000003b63fa49> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  at java.util.concurrent.LinkedBlockingQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"SshShell" tid=31972: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000000e794d95> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at org.apache.sshd.common.channel.ChannelPipedInputStream.read (ChannelPipedInputStream.java:117)
+  at org.apache.sshd.common.channel.ChannelPipedInputStream.read (ChannelPipedInputStream.java:85)
+  - locked <0x000000005d36e091> ([B)
+  at org.araqne.ssh.SshShell.run (SshShell.java:162)
+  at java.lang.Thread.run
+
+"HTTP Worker#6134" tid=31971: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000003b63fa49> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  at java.util.concurrent.LinkedBlockingQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"sshd-SshServer[3e765dad]-nio2-thread-9" tid=31970: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000004fe33791> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"sshd-SshServer[3e765dad]-nio2-thread-8" tid=31969: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000004fe33791> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"sshd-SshServer[3e765dad]-nio2-thread-7" tid=31968: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000004fe33791> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"sshd-SshServer[3e765dad]-nio2-thread-6" tid=31967: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000004fe33791> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"sshd-SshServer[3e765dad]-nio2-thread-5" tid=31966: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000004fe33791> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"sshd-SshServer[3e765dad]-nio2-thread-4" tid=31965: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000004fe33791> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"sshd-SshServer[3e765dad]-nio2-thread-3" tid=31964: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000004fe33791> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"sshd-SshServer[3e765dad]-nio2-thread-2" tid=31963: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000004fe33791> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"sshd-SshServer[3e765dad]-nio2-thread-1" tid=31962: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000004fe33791> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"HTTP Worker#6133" tid=31961: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000003b63fa49> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  at java.util.concurrent.LinkedBlockingQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"HTTP Worker#6132" tid=31960: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000003b63fa49> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  at java.util.concurrent.LinkedBlockingQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"HTTP Worker#6131" tid=31959: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000003b63fa49> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  at java.util.concurrent.LinkedBlockingQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"HTTP Worker#6130" tid=31945: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000003b63fa49> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  at java.util.concurrent.LinkedBlockingQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Query Thread Pool" tid=31944: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000006b763d96> (java.util.concurrent.SynchronousQueue$TransferStack)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferStack.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Tick Thread Pool#1931" tid=31943: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000001ae6a01> (java.util.concurrent.SynchronousQueue$TransferStack)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferStack.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Tick Thread Pool#1930" tid=31942: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000001ae6a01> (java.util.concurrent.SynchronousQueue$TransferStack)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferStack.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Tick Thread Pool#1928" tid=31939: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000001ae6a01> (java.util.concurrent.SynchronousQueue$TransferStack)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferStack.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Tick Thread Pool#1927" tid=31936: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000001ae6a01> (java.util.concurrent.SynchronousQueue$TransferStack)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferStack.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Tick Thread Pool#1926" tid=31922: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000001ae6a01> (java.util.concurrent.SynchronousQueue$TransferStack)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferStack.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool" tid=31103: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000457f8a44> (java.util.concurrent.SynchronousQueue$TransferQueue)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferQueue.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferQueue.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool" tid=30555: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000457f8a44> (java.util.concurrent.SynchronousQueue$TransferQueue)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferQueue.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferQueue.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool" tid=30554: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000457f8a44> (java.util.concurrent.SynchronousQueue$TransferQueue)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferQueue.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferQueue.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool" tid=30553: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000457f8a44> (java.util.concurrent.SynchronousQueue$TransferQueue)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferQueue.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferQueue.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool > parse_dfs_panel" tid=30475: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000137662c5> (java.util.concurrent.FutureTask)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.FutureTask.awaitDone
+  at java.util.concurrent.FutureTask.get
+  at com.logpresso.query.engine.StreamQuery.awaitFutures (StreamQuery.java:160)
+  at com.logpresso.query.engine.StreamQuery.dispatchData (StreamQuery.java:150)
+  at com.logpresso.query.engine.StreamQueryServiceImpl.__M_onLogBatch (StreamQueryServiceImpl.java:405)
+  at com.logpresso.query.engine.StreamQueryServiceImpl.onLogBatch (StreamQueryServiceImpl.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__invokeLogCallbacks (LogStorageEngine.java:638)
+  at org.araqne.logstorage.engine.LogStorageEngine.invokeLogCallbacks (LogStorageEngine.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__tryWrite (LogStorageEngine.java:620)
+  at org.araqne.logstorage.engine.LogStorageEngine.tryWrite (LogStorageEngine.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__write (LogStorageEngine.java:1735)
+  at org.araqne.logstorage.engine.LogStorageEngine.write (LogStorageEngine.java)
+  at org.araqne.logdb.query.command.Import.onPush (Import.java:109)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rex.onPush (Rex.java:144)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Lookup.onPush (Lookup.java:75)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Lookup.onPush (Lookup.java:75)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Lookup.onPush (Lookup.java:75)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseMap.onPush (ParseMap.java:44)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.ParseXml.onPush (ParseXml.java:64)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at com.logpresso.query.engine.StreamQuery.onRowBatch (StreamQuery.java:342)
+  at com.logpresso.query.engine.StreamRunner.run (StreamRunner.java:34)
+  at java.util.concurrent.Executors$RunnableAdapter.call
+  at java.util.concurrent.FutureTask.run
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool > stream_dfs_unified" tid=30472: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000493677b0> (java.util.concurrent.FutureTask)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.FutureTask.awaitDone
+  at java.util.concurrent.FutureTask.get
+  at com.logpresso.query.engine.StreamQuery.awaitFutures (StreamQuery.java:160)
+  at com.logpresso.query.engine.StreamQuery.dispatchData (StreamQuery.java:150)
+  at com.logpresso.query.engine.StreamQueryServiceImpl.__M_onLogBatch (StreamQueryServiceImpl.java:405)
+  at com.logpresso.query.engine.StreamQueryServiceImpl.onLogBatch (StreamQueryServiceImpl.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__invokeLogCallbacks (LogStorageEngine.java:638)
+  at org.araqne.logstorage.engine.LogStorageEngine.invokeLogCallbacks (LogStorageEngine.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__tryWrite (LogStorageEngine.java:620)
+  at org.araqne.logstorage.engine.LogStorageEngine.tryWrite (LogStorageEngine.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__write (LogStorageEngine.java:1735)
+  at org.araqne.logstorage.engine.LogStorageEngine.write (LogStorageEngine.java)
+  at org.araqne.logdb.query.command.Import.onPush (Import.java:109)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Evalc.onPush (Evalc.java:75)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.cep.query.EvtCtxAddCommand.onPush (EvtCtxAddCommand.java:92)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Evalc.onPush (Evalc.java:75)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.cep.query.EvtCtxAddCommand.onPush (EvtCtxAddCommand.java:92)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Evalc.onPush (Evalc.java:75)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.cep.query.EvtCtxAddCommand.onPush (EvtCtxAddCommand.java:92)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Evalc.onPush (Evalc.java:75)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Evalc.onPush (Evalc.java:75)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.cep.query.EvtCtxAddCommand.onPush (EvtCtxAddCommand.java:92)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Evalc.onPush (Evalc.java:75)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.cep.query.EvtCtxAddCommand.onPush (EvtCtxAddCommand.java:92)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Evalc.onPush (Evalc.java:75)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.cep.query.EvtCtxAddCommand.onPush (EvtCtxAddCommand.java:92)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rex.onPush (Rex.java:144)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rex.onPush (Rex.java:144)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rex.onPush (Rex.java:144)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rex.onPush (Rex.java:144)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Rename.onPush (Rename.java:89)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Eval.onPush (Eval.java:132)
+  at com.logpresso.query.engine.StreamQuery.onRowBatch (StreamQuery.java:342)
+  at com.logpresso.query.engine.StreamRunner.run (StreamRunner.java:34)
+  at java.util.concurrent.Executors$RunnableAdapter.call
+  at java.util.concurrent.FutureTask.run
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool" tid=30471: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000457f8a44> (java.util.concurrent.SynchronousQueue$TransferQueue)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferQueue.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferQueue.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool" tid=30470: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000457f8a44> (java.util.concurrent.SynchronousQueue$TransferQueue)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferQueue.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferQueue.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool" tid=30469: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000457f8a44> (java.util.concurrent.SynchronousQueue$TransferQueue)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferQueue.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferQueue.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Tick Thread Pool#1913" tid=30315: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000001ae6a01> (java.util.concurrent.SynchronousQueue$TransferStack)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferStack.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool" tid=30183: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000457f8a44> (java.util.concurrent.SynchronousQueue$TransferQueue)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferQueue.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferQueue.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool > stream_dfs_panel" tid=30180: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000003b3af2f5> (java.util.concurrent.FutureTask)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.FutureTask.awaitDone
+  at java.util.concurrent.FutureTask.get
+  at com.logpresso.query.engine.StreamQuery.awaitFutures (StreamQuery.java:160)
+  at com.logpresso.query.engine.StreamQuery.dispatchData (StreamQuery.java:150)
+  at com.logpresso.query.engine.StreamQueryServiceImpl.__M_onLogBatch (StreamQueryServiceImpl.java:405)
+  at com.logpresso.query.engine.StreamQueryServiceImpl.onLogBatch (StreamQueryServiceImpl.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__invokeLogCallbacks (LogStorageEngine.java:638)
+  at org.araqne.logstorage.engine.LogStorageEngine.invokeLogCallbacks (LogStorageEngine.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__tryWrite (LogStorageEngine.java:620)
+  at org.araqne.logstorage.engine.LogStorageEngine.tryWrite (LogStorageEngine.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__write (LogStorageEngine.java:1735)
+  at org.araqne.logstorage.engine.LogStorageEngine.write (LogStorageEngine.java)
+  at org.araqne.logdb.query.command.Import.onPush (Import.java:109)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Fields.onPush (Fields.java:124)
+  at org.araqne.logdb.QueryCommandPipe.onRowBatch (QueryCommandPipe.java:39)
+  at org.araqne.logdb.QueryCommand.pushPipe (QueryCommand.java:203)
+  at org.araqne.logdb.query.command.Search.onPush (Search.java:307)
+  at com.logpresso.query.engine.StreamQuery.onRowBatch (StreamQuery.java:342)
+  at com.logpresso.query.engine.StreamRunner.run (StreamRunner.java:34)
+  at java.util.concurrent.Executors$RunnableAdapter.call
+  at java.util.concurrent.FutureTask.run
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool > DB_INT_TB_EDC_DEF_TFT_PNL" tid=30160: (state = RUNNABLE)
+  at java.net.SocketInputStream.socketRead0
+  at java.net.SocketInputStream.socketRead
+  at java.net.SocketInputStream.read
+  at java.net.SocketInputStream.read
+  at oracle.net.ns.Packet.receive (Packet.java:300)
+  at oracle.net.ns.DataPacket.receive (DataPacket.java:106)
+  at oracle.net.ns.NetInputStream.getNextPacket (NetInputStream.java:315)
+  at oracle.net.ns.NetInputStream.read (NetInputStream.java:260)
+  at oracle.net.ns.NetInputStream.read (NetInputStream.java:185)
+  at oracle.net.ns.NetInputStream.read (NetInputStream.java:102)
+  at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket (T4CSocketInputStreamWrapper.java:124)
+  at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read (T4CSocketInputStreamWrapper.java:80)
+  at oracle.jdbc.driver.T4CMAREngine.unmarshalUB1 (T4CMAREngine.java:1137)
+  at oracle.jdbc.driver.T4CTTIfun.receive (T4CTTIfun.java:290)
+  at oracle.jdbc.driver.T4CTTIfun.doRPC (T4CTTIfun.java:192)
+  at oracle.jdbc.driver.T4C8Oall.doOALL (T4C8Oall.java:531)
+  at oracle.jdbc.driver.T4CPreparedStatement.doOall8 (T4CPreparedStatement.java:207)
+  at oracle.jdbc.driver.T4CPreparedStatement.executeForRows (T4CPreparedStatement.java:1044)
+  at oracle.jdbc.driver.OraclePreparedStatement.executeForRowsWithTimeout (OraclePreparedStatement.java:10143)
+  at oracle.jdbc.driver.OraclePreparedStatement.executeBatch (OraclePreparedStatement.java:10289)
+  - locked <0x00000000026b8c06> (oracle.jdbc.driver.T4CConnection)
+  at oracle.jdbc.driver.OracleStatementWrapper.executeBatch (OracleStatementWrapper.java:230)
+  at org.logpresso.jdbc.impl.DbOutputCommand.insertOrUpdate (DbOutputCommand.java:190)
+  at org.logpresso.jdbc.impl.DbOutputCommand.onPush (DbOutputCommand.java:100)
+  at org.araqne.logdb.QueryCommand.onPush (QueryCommand.java:163)
+  at com.logpresso.query.engine.StreamQuery.onRowBatch (StreamQuery.java:345)
+  - locked <0x0000000002ae727c> (org.logpresso.jdbc.impl.DbOutputCommand)
+  at com.logpresso.query.engine.StreamRunner.run (StreamRunner.java:34)
+  at java.util.concurrent.Executors$RunnableAdapter.call
+  at java.util.concurrent.FutureTask.run
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Stream Thread Pool" tid=29950: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000457f8a44> (java.util.concurrent.SynchronousQueue$TransferQueue)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.SynchronousQueue$TransferQueue.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferQueue.transfer
+  at java.util.concurrent.SynchronousQueue.poll
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logger [local\raw_dfs]" tid=29944: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000226e48a6> (java.util.concurrent.FutureTask)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.FutureTask.awaitDone
+  at java.util.concurrent.FutureTask.get
+  at com.logpresso.query.engine.StreamQuery.awaitFutures (StreamQuery.java:160)
+  at com.logpresso.query.engine.StreamQuery.dispatchData (StreamQuery.java:150)
+  at com.logpresso.query.engine.StreamQueryServiceImpl.__M_onLogBatch (StreamQueryServiceImpl.java:405)
+  at com.logpresso.query.engine.StreamQueryServiceImpl.onLogBatch (StreamQueryServiceImpl.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__invokeLogCallbacks (LogStorageEngine.java:638)
+  at org.araqne.logstorage.engine.LogStorageEngine.invokeLogCallbacks (LogStorageEngine.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__tryWrite (LogStorageEngine.java:620)
+  at org.araqne.logstorage.engine.LogStorageEngine.tryWrite (LogStorageEngine.java)
+  at org.araqne.logstorage.engine.LogStorageEngine.__write (LogStorageEngine.java:1735)
+  at org.araqne.logstorage.engine.LogStorageEngine.write (LogStorageEngine.java)
+  at com.logpresso.core.engine.LogServerEngine.__M_onLogBatch (LogServerEngine.java:241)
+  at com.logpresso.core.engine.LogServerEngine.onLogBatch (LogServerEngine.java)
+  at org.araqne.log.api.AbstractLogger.writeBatch (AbstractLogger.java:640)
+  at org.araqne.log.api.nio.NioRecursiveDirectoryWatchLogger.access$700 (NioRecursiveDirectoryWatchLogger.java:57)
+  at org.araqne.log.api.nio.NioRecursiveDirectoryWatchLogger$Receiver.onLogBatch (NioRecursiveDirectoryWatchLogger.java:369)
+  at org.araqne.log.api.MultilineLogExtractor.extract (MultilineLogExtractor.java:281)
+  at org.araqne.log.api.nio.NioRecursiveDirectoryWatchLogger.processFile (NioRecursiveDirectoryWatchLogger.java:317)
+  at org.araqne.log.api.nio.NioRecursiveDirectoryWatchLogger$InitialRunner.visitFile (NioRecursiveDirectoryWatchLogger.java:420)
+  at org.araqne.log.api.nio.NioRecursiveDirectoryWatchLogger$InitialRunner.visitFile (NioRecursiveDirectoryWatchLogger.java:373)
+  at java.nio.file.Files.walkFileTree
+  at java.nio.file.Files.walkFileTree
+  at org.araqne.log.api.nio.NioRecursiveDirectoryWatchLogger.runOnce (NioRecursiveDirectoryWatchLogger.java:201)
+  at org.araqne.log.api.AbstractLogger$DefaultLoggerTask.run (AbstractLogger.java:542)
+  at java.lang.Thread.run
+
+"Thread-12" tid=29943: (state = RUNNABLE)
+  at sun.nio.fs.WindowsNativeDispatcher.GetQueuedCompletionStatus0
+  at sun.nio.fs.WindowsNativeDispatcher.GetQueuedCompletionStatus
+  at sun.nio.fs.WindowsWatchService$Poller.run
+  at java.lang.Thread.run
+
+"File Watcher [local\raw_dfs]" tid=29942: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000589f30ac> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  at java.util.concurrent.LinkedBlockingDeque.pollFirst
+  at java.util.concurrent.LinkedBlockingDeque.poll
+  at sun.nio.fs.AbstractWatchService.poll
+  at org.araqne.log.api.nio.FileEventWatcher.poll (FileEventWatcher.java:91)
+  at org.araqne.log.api.nio.NioRecursiveDirectoryWatchLogger$ChangeDetector.run (NioRecursiveDirectoryWatchLogger.java:487)
+
+"Redis Subscribers Starter" tid=165: (state = TIMED_WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x0000000034decc10> (java.lang.Object)
+  at org.logpresso.redis.cep.RedisEventContextStorage$1.run (RedisEventContextStorage.java:165)
+  at java.lang.Thread.run
+
+"OracleTimeoutPollingThread" tid=162: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at oracle.jdbc.driver.OracleTimeoutPollingThread.run (OracleTimeoutPollingThread.java:150)
+
+"Logpresso Performance Logger" tid=154: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at com.logpresso.core.monitor.PerformanceMonitorImpl$Collector.run (PerformanceMonitorImpl.java:193)
+
+"Logger HA Sync Scheduler" tid=148: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at com.logpresso.core.engine.LoggerHaServiceImpl$LoggerSyncScheduler.run (LoggerHaServiceImpl.java:750)
+
+"Logger [local\araqne_logs]" tid=145: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at org.araqne.log.api.AbstractLogger$DefaultLoggerTask.run (AbstractLogger.java:550)
+  at java.lang.Thread.run
+
+"Replication Worker Thread#0" tid=144: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000045127565> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Query Status Notifier" tid=126: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at org.araqne.logdb.query.engine.QueryStatusNotifier$Monitor.run (QueryStatusNotifier.java:66)
+
+"Abandoned connection cleanup thread" tid=124: (state = TIMED_WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x0000000015692e19> (java.lang.ref.ReferenceQueue$Lock)
+  at java.lang.ref.ReferenceQueue.remove
+  at com.mysql.jdbc.AbandonedConnectionCleanupThread.run (AbandonedConnectionCleanupThread.java:43)
+
+"NodeTableRegistry Worker" tid=123: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000034d26648> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Replication Connector Pool [1e515b4c-7659-412e-8f4a-1ec98ada6b59] Sweeper" tid=122: (state = TIMED_WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x00000000762e828e> (com.logpresso.replicator.impl.ReplicationConnectorPoolImpl$Sweeper)
+  at com.logpresso.replicator.impl.ReplicationConnectorPoolImpl$Sweeper.run (ReplicationConnectorPoolImpl.java:142)
+  at java.lang.Thread.run
+
+"HA Node Check Scheduler" tid=121: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at com.logpresso.federation.NodeRegistryImpl$NodeCheckScheduler.run (NodeRegistryImpl.java:758)
+
+"NodeRegistryImpl executor" tid=120: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000020417873> (java.util.concurrent.SynchronousQueue$TransferStack)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferStack.transfer
+  at java.util.concurrent.SynchronousQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"HA checker" tid=119: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000007c048384> (java.util.concurrent.SynchronousQueue$TransferStack)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill
+  at java.util.concurrent.SynchronousQueue$TransferStack.transfer
+  at java.util.concurrent.SynchronousQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Log Counter Reset Worker" tid=118: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at com.logpresso.index.engine.LogIndexerEngine$c.run (SourceFile:2772)
+  at java.lang.Thread.run
+
+"Logpresso Online Index Writer Shard 4#0" tid=117: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000005bc34a6a> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Online Index Writer Shard 3#0" tid=116: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000597b896e> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Online Index Writer Shard 2#0" tid=115: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000072d2f0d2> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Online Index Writer Shard 1#0" tid=114: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000002a9255af> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Online Index Writer Shard 0#0" tid=113: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000006b43ca8d> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"LogStorage IndexWriter Sweeper" tid=112: (state = TIMED_WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x000000006e761e72> (com.logpresso.index.engine.LogIndexerEngine$e)
+  at com.logpresso.index.engine.LogIndexerEngine$e.run (SourceFile:2587)
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Counter" tid=111: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at com.logpresso.logstorage.file.LogFileServiceV3$a.run (SourceFile:800)
+  at java.lang.Thread.run
+
+"Base Log Receiver" tid=110: (state = TIMED_WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x000000000b47370e> (java.util.concurrent.ArrayBlockingQueue)
+  at org.logpresso.base.impl.BaseRpcService$LogReceiver.run (BaseRpcService.java:550)
+
+"LogStorage LogWriter Sweeper" tid=109: (state = TIMED_WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x00000000334034e4> (org.araqne.logstorage.engine.LogStorageEngine$WriterSweeper)
+  at org.araqne.logstorage.engine.LogStorageEngine$WriterSweeper.run (LogStorageEngine.java:1159)
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Light Readers#5" tid=108: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000046a297a3> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Light Readers#4" tid=107: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000046a297a3> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Light Readers#3" tid=106: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000046a297a3> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Light Readers#2" tid=105: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000046a297a3> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Light Readers#1" tid=104: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000046a297a3> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Light Readers#0" tid=103: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000046a297a3> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Readers#5" tid=102: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001879948b> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Readers#4" tid=101: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001879948b> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Readers#3" tid=100: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001879948b> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Readers#2" tid=99: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001879948b> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Readers#1" tid=98: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001879948b> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Readers#0" tid=97: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001879948b> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Query Result Writer#0" tid=96: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000002a342fcd> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Writer Shard 4#0" tid=95: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001861c97b> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Writer Shard 3#0" tid=94: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000004a2c5a5b> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Writer Shard 2#0" tid=93: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001e254259> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Writer Shard 1#0" tid=92: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000015645c17> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Writer Shard 0#0" tid=91: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000035875d1> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Davids#5" tid=90: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000002b8e1963> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Davids#4" tid=89: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000002b8e1963> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Davids#3" tid=88: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000002b8e1963> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Davids#2" tid=87: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000002b8e1963> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Davids#1" tid=86: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000002b8e1963> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Davids#0" tid=85: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000002b8e1963> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Goliaths#5" tid=84: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001f0db1c1> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Goliaths#4" tid=83: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001f0db1c1> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Goliaths#3" tid=82: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001f0db1c1> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Goliaths#2" tid=81: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001f0db1c1> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Goliaths#1" tid=80: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001f0db1c1> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Logpresso Logstorage Goliaths#0" tid=79: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000001f0db1c1> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.ArrayBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"DefaultUDPTransportMapping_0.0.0.0/162" tid=78: (state = RUNNABLE)
+  at com.logpresso.udp.UdpServer.getPacketBufferedArray (UdpServer.java)
+  at com.logpresso.udp.UdpServer.recvPacket (UdpServer.java:130)
+  at com.logpresso.snmp.impl.NativeUdpTransportMapping$ListenThread.run (NativeUdpTransportMapping.java:340)
+  at java.lang.Thread.run
+
+"SNMP Trap [logpresso].0" tid=77: (state = WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x00000000283ed2d3> (org.snmp4j.util.ThreadPool$TaskManager)
+  at java.lang.Object.wait
+  at org.snmp4j.util.ThreadPool$TaskManager.run (ThreadPool.java:247)
+
+"Syslog UDP /0.0.0.0:514" tid=76: (state = RUNNABLE)
+  at com.logpresso.udp.UdpServer.getPacketBufferedArray (UdpServer.java)
+  at com.logpresso.udp.UdpServer.recvBufferedPackets (UdpServer.java:169)
+  at com.logpresso.syslog.impl.UdpSyslogReceiver.run (UdpSyslogReceiver.java:80)
+  at java.lang.Thread.run
+
+"Thread-2" tid=75: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000006888ccf8> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  at java.util.concurrent.ArrayBlockingQueue.poll
+  at org.logpresso.flowmon.impl.NetFlowCollectorService$FlowHandler.runOnce (NetFlowCollectorService.java:302)
+  at org.logpresso.flowmon.impl.NetFlowCollectorService$FlowHandler.run (NetFlowCollectorService.java:292)
+
+"Sentry Connection Watchdog" tid=74: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at org.logpresso.sentry.impl.ConnectionWatchdogImpl.__run (ConnectionWatchdogImpl.java:113)
+  at org.logpresso.sentry.impl.ConnectionWatchdogImpl.run (ConnectionWatchdogImpl.java)
+  at java.lang.Thread.run
+
+"Sentry Log Transport" tid=73: (state = TIMED_WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x000000003316958b> (java.util.concurrent.atomic.AtomicInteger)
+  at org.logpresso.sentry.impl.LogTransport$RpcTransport.run (LogTransport.java:273)
+
+"Araqne RPC Scheduler" tid=72: (state = TIMED_WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x0000000041e7a991> (java.lang.Object)
+  at org.araqne.rpc.impl.RpcHandler.run (RpcHandler.java:181)
+  at java.lang.Thread.run
+
+"Msgbus Push" tid=71: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at org.araqne.webconsole.servlet.MsgbusServlet.__run (MsgbusServlet.java:210)
+  at org.araqne.webconsole.servlet.MsgbusServlet.run (MsgbusServlet.java)
+  at java.lang.Thread.run
+
+"New I/O server boss #9" tid=61: (state = RUNNABLE)
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400
+  at sun.nio.ch.WindowsSelectorImpl.doSelect
+  at sun.nio.ch.SelectorImpl.lockAndDoSelect
+  - locked <0x000000001f114334> (sun.nio.ch.Util$2)
+  - locked <0x000000003150a322> (java.util.Collections$UnmodifiableSet)
+  - locked <0x00000000366dc24e> (sun.nio.ch.WindowsSelectorImpl)
+  at sun.nio.ch.SelectorImpl.select
+  at sun.nio.ch.SelectorImpl.select
+  at org.jboss.netty.channel.socket.nio.NioServerBoss.select (NioServerBoss.java:163)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run (AbstractNioSelector.java:212)
+  at org.jboss.netty.channel.socket.nio.NioServerBoss.run (NioServerBoss.java:42)
+  at org.jboss.netty.util.ThreadRenamingRunnable.run (ThreadRenamingRunnable.java:108)
+  at org.jboss.netty.util.internal.DeadLockProofWorker$1.run (DeadLockProofWorker.java:42)
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"New I/O worker #8" tid=60: (state = RUNNABLE)
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400
+  at sun.nio.ch.WindowsSelectorImpl.doSelect
+  at sun.nio.ch.SelectorImpl.lockAndDoSelect
+  - locked <0x000000004aba4e33> (sun.nio.ch.Util$2)
+  - locked <0x000000005f27acb3> (java.util.Collections$UnmodifiableSet)
+  - locked <0x000000006b5a4dc6> (sun.nio.ch.WindowsSelectorImpl)
+  at sun.nio.ch.SelectorImpl.select
+  at org.jboss.netty.channel.socket.nio.SelectorUtil.select (SelectorUtil.java:68)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.select (AbstractNioSelector.java:434)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run (AbstractNioSelector.java:212)
+  at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run (AbstractNioWorker.java:89)
+  at org.jboss.netty.channel.socket.nio.NioWorker.run (NioWorker.java:178)
+  at org.jboss.netty.util.ThreadRenamingRunnable.run (ThreadRenamingRunnable.java:108)
+  at org.jboss.netty.util.internal.DeadLockProofWorker$1.run (DeadLockProofWorker.java:42)
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"New I/O worker #7" tid=59: (state = RUNNABLE)
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400
+  at sun.nio.ch.WindowsSelectorImpl.doSelect
+  at sun.nio.ch.SelectorImpl.lockAndDoSelect
+  - locked <0x00000000337d9d51> (sun.nio.ch.Util$2)
+  - locked <0x000000002b2e96db> (java.util.Collections$UnmodifiableSet)
+  - locked <0x00000000498ee539> (sun.nio.ch.WindowsSelectorImpl)
+  at sun.nio.ch.SelectorImpl.select
+  at org.jboss.netty.channel.socket.nio.SelectorUtil.select (SelectorUtil.java:68)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.select (AbstractNioSelector.java:434)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run (AbstractNioSelector.java:212)
+  at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run (AbstractNioWorker.java:89)
+  at org.jboss.netty.channel.socket.nio.NioWorker.run (NioWorker.java:178)
+  at org.jboss.netty.util.ThreadRenamingRunnable.run (ThreadRenamingRunnable.java:108)
+  at org.jboss.netty.util.internal.DeadLockProofWorker$1.run (DeadLockProofWorker.java:42)
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"New I/O worker #6" tid=58: (state = RUNNABLE)
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400
+  at sun.nio.ch.WindowsSelectorImpl.doSelect
+  at sun.nio.ch.SelectorImpl.lockAndDoSelect
+  - locked <0x000000007083b5b3> (sun.nio.ch.Util$2)
+  - locked <0x000000002f4b29e7> (java.util.Collections$UnmodifiableSet)
+  - locked <0x00000000708cea9b> (sun.nio.ch.WindowsSelectorImpl)
+  at sun.nio.ch.SelectorImpl.select
+  at org.jboss.netty.channel.socket.nio.SelectorUtil.select (SelectorUtil.java:68)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.select (AbstractNioSelector.java:434)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run (AbstractNioSelector.java:212)
+  at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run (AbstractNioWorker.java:89)
+  at org.jboss.netty.channel.socket.nio.NioWorker.run (NioWorker.java:178)
+  at org.jboss.netty.util.ThreadRenamingRunnable.run (ThreadRenamingRunnable.java:108)
+  at org.jboss.netty.util.internal.DeadLockProofWorker$1.run (DeadLockProofWorker.java:42)
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"New I/O worker #5" tid=57: (state = RUNNABLE)
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400
+  at sun.nio.ch.WindowsSelectorImpl.doSelect
+  at sun.nio.ch.SelectorImpl.lockAndDoSelect
+  - locked <0x000000004e957e9e> (sun.nio.ch.Util$2)
+  - locked <0x00000000235674d2> (java.util.Collections$UnmodifiableSet)
+  - locked <0x0000000055a4754e> (sun.nio.ch.WindowsSelectorImpl)
+  at sun.nio.ch.SelectorImpl.select
+  at org.jboss.netty.channel.socket.nio.SelectorUtil.select (SelectorUtil.java:68)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.select (AbstractNioSelector.java:434)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run (AbstractNioSelector.java:212)
+  at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run (AbstractNioWorker.java:89)
+  at org.jboss.netty.channel.socket.nio.NioWorker.run (NioWorker.java:178)
+  at org.jboss.netty.util.ThreadRenamingRunnable.run (ThreadRenamingRunnable.java:108)
+  at org.jboss.netty.util.internal.DeadLockProofWorker$1.run (DeadLockProofWorker.java:42)
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"New I/O worker #4" tid=56: (state = RUNNABLE)
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400
+  at sun.nio.ch.WindowsSelectorImpl.doSelect
+  at sun.nio.ch.SelectorImpl.lockAndDoSelect
+  - locked <0x0000000042eb9553> (sun.nio.ch.Util$2)
+  - locked <0x00000000276f621e> (java.util.Collections$UnmodifiableSet)
+  - locked <0x00000000378f72c5> (sun.nio.ch.WindowsSelectorImpl)
+  at sun.nio.ch.SelectorImpl.select
+  at org.jboss.netty.channel.socket.nio.SelectorUtil.select (SelectorUtil.java:68)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.select (AbstractNioSelector.java:434)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run (AbstractNioSelector.java:212)
+  at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run (AbstractNioWorker.java:89)
+  at org.jboss.netty.channel.socket.nio.NioWorker.run (NioWorker.java:178)
+  at org.jboss.netty.util.ThreadRenamingRunnable.run (ThreadRenamingRunnable.java:108)
+  at org.jboss.netty.util.internal.DeadLockProofWorker$1.run (DeadLockProofWorker.java:42)
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"New I/O worker #3" tid=55: (state = RUNNABLE)
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400
+  at sun.nio.ch.WindowsSelectorImpl.doSelect
+  at sun.nio.ch.SelectorImpl.lockAndDoSelect
+  - locked <0x0000000041f77f7f> (sun.nio.ch.Util$2)
+  - locked <0x000000005f283b1f> (java.util.Collections$UnmodifiableSet)
+  - locked <0x00000000030bcd76> (sun.nio.ch.WindowsSelectorImpl)
+  at sun.nio.ch.SelectorImpl.select
+  at org.jboss.netty.channel.socket.nio.SelectorUtil.select (SelectorUtil.java:68)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.select (AbstractNioSelector.java:434)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run (AbstractNioSelector.java:212)
+  at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run (AbstractNioWorker.java:89)
+  at org.jboss.netty.channel.socket.nio.NioWorker.run (NioWorker.java:178)
+  at org.jboss.netty.util.ThreadRenamingRunnable.run (ThreadRenamingRunnable.java:108)
+  at org.jboss.netty.util.internal.DeadLockProofWorker$1.run (DeadLockProofWorker.java:42)
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"New I/O worker #2" tid=54: (state = RUNNABLE)
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400
+  at sun.nio.ch.WindowsSelectorImpl.doSelect
+  at sun.nio.ch.SelectorImpl.lockAndDoSelect
+  - locked <0x000000004f5e9e88> (sun.nio.ch.Util$2)
+  - locked <0x0000000035a80c9b> (java.util.Collections$UnmodifiableSet)
+  - locked <0x000000002bc639f2> (sun.nio.ch.WindowsSelectorImpl)
+  at sun.nio.ch.SelectorImpl.select
+  at org.jboss.netty.channel.socket.nio.SelectorUtil.select (SelectorUtil.java:68)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.select (AbstractNioSelector.java:434)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run (AbstractNioSelector.java:212)
+  at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run (AbstractNioWorker.java:89)
+  at org.jboss.netty.channel.socket.nio.NioWorker.run (NioWorker.java:178)
+  at org.jboss.netty.util.ThreadRenamingRunnable.run (ThreadRenamingRunnable.java:108)
+  at org.jboss.netty.util.internal.DeadLockProofWorker$1.run (DeadLockProofWorker.java:42)
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"New I/O worker #1" tid=53: (state = RUNNABLE)
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400
+  at sun.nio.ch.WindowsSelectorImpl.doSelect
+  at sun.nio.ch.SelectorImpl.lockAndDoSelect
+  - locked <0x00000000767b3181> (sun.nio.ch.Util$2)
+  - locked <0x000000004dea4b18> (java.util.Collections$UnmodifiableSet)
+  - locked <0x0000000038535aea> (sun.nio.ch.WindowsSelectorImpl)
+  at sun.nio.ch.SelectorImpl.select
+  at org.jboss.netty.channel.socket.nio.SelectorUtil.select (SelectorUtil.java:68)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.select (AbstractNioSelector.java:434)
+  at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run (AbstractNioSelector.java:212)
+  at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run (AbstractNioWorker.java:89)
+  at org.jboss.netty.channel.socket.nio.NioWorker.run (NioWorker.java:178)
+  at org.jboss.netty.util.ThreadRenamingRunnable.run (ThreadRenamingRunnable.java:108)
+  at org.jboss.netty.util.internal.DeadLockProofWorker$1.run (DeadLockProofWorker.java:42)
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"NTP Sync" tid=51: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at org.araqne.ntp.impl.NtpSyncServiceImpl$NtpRunner.run (NtpSyncServiceImpl.java:153)
+
+"Last State Sync" tid=49: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000022c0fdbb> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  at java.util.concurrent.ArrayBlockingQueue.poll
+  at org.araqne.log.api.impl.LastStateServiceImpl$FileSyncThread.run (LastStateServiceImpl.java:248)
+
+"[iPOJO] pool-3-thread-1" tid=48: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x000000000d98275b> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"FelixStartLevel" tid=44: (state = WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x0000000012351f7b> (java.util.ArrayList)
+  at java.lang.Object.wait
+  at org.apache.felix.framework.FrameworkStartLevelImpl.run (FrameworkStartLevelImpl.java:283)
+  at java.lang.Thread.run
+
+"FelixFrameworkWiring" tid=43: (state = WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x00000000301393dd> (java.util.ArrayList)
+  at java.lang.Object.wait
+  at org.apache.felix.framework.FrameworkWiringImpl.run (FrameworkWiringImpl.java:172)
+  at java.lang.Thread.run
+
+"Araqne Diagnosis" tid=42: (state = WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000159b8d41> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.park
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await
+  at java.util.concurrent.LinkedBlockingQueue.take
+  at org.slf4j.impl.AraqneLoggerFactory.getLog (AraqneLoggerFactory.java:212)
+  at org.araqne.logger.DiagnosisServiceImpl.run (DiagnosisServiceImpl.java:58)
+  at java.lang.Thread.run
+
+"sshd-SshServer[3e765dad]-timer-thread-1" tid=41: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x0000000059f5d256> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take
+  at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take
+  at java.util.concurrent.ThreadPoolExecutor.getTask
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Thread-0" tid=40: (state = RUNNABLE)
+  at sun.nio.ch.Iocp.getQueuedCompletionStatus
+  at sun.nio.ch.Iocp.access$300
+  at sun.nio.ch.Iocp$EventHandlerTask.run
+  at java.lang.Thread.run
+
+"NioSocketAcceptor-1" tid=39: (state = RUNNABLE)
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll
+  at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400
+  at sun.nio.ch.WindowsSelectorImpl.doSelect
+  at sun.nio.ch.SelectorImpl.lockAndDoSelect
+  - locked <0x000000006381c0d4> (sun.nio.ch.Util$2)
+  - locked <0x000000004f203a02> (java.util.Collections$UnmodifiableSet)
+  - locked <0x0000000006184722> (sun.nio.ch.WindowsSelectorImpl)
+  at sun.nio.ch.SelectorImpl.select
+  at sun.nio.ch.SelectorImpl.select
+  at org.apache.mina.transport.socket.nio.NioSocketAcceptor.select (NioSocketAcceptor.java:234)
+  at org.apache.mina.core.polling.AbstractPollingIoAcceptor$Acceptor.run (AbstractPollingIoAcceptor.java:417)
+  at org.apache.mina.util.NamePreservingRunnable.run (NamePreservingRunnable.java:64)
+  at java.util.concurrent.ThreadPoolExecutor.runWorker
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run
+  at java.lang.Thread.run
+
+"Ticker" tid=38: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at org.araqne.cron.impl.TickServiceImpl.__run (TickServiceImpl.java:115)
+  at org.araqne.cron.impl.TickServiceImpl.run (TickServiceImpl.java)
+  at java.lang.Thread.run
+
+"Cron Scheduler" tid=22: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at org.araqne.cron.impl.Scheduler$Loop.loop (Scheduler.java:160)
+  at org.araqne.cron.impl.Scheduler$Loop.run (Scheduler.java:151)
+  at java.lang.Thread.run
+
+"Araqne Log Monitor" tid=21: (state = TIMED_WAITING)
+  at sun.misc.Unsafe.park
+  - parking to wait for <0x00000000710852d5> (java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+  at java.util.concurrent.locks.LockSupport.parkNanos
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  at java.util.concurrent.LinkedBlockingQueue.poll
+  at org.slf4j.impl.AraqneLoggerFactory.run (AraqneLoggerFactory.java:82)
+  at java.lang.Thread.run
+
+"FelixDispatchQueue" tid=15: (state = WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x000000001ce2ab40> (java.util.ArrayList)
+  at java.lang.Object.wait
+  at org.apache.felix.framework.EventDispatcher.run (EventDispatcher.java:1122)
+  at org.apache.felix.framework.EventDispatcher.access$000 (EventDispatcher.java:54)
+  at org.apache.felix.framework.EventDispatcher$1.run (EventDispatcher.java:102)
+  at java.lang.Thread.run
+
+"DestroyJavaVM" tid=14: (state = RUNNABLE)
+
+"Araqne Log Cleaner" tid=13: (state = TIMED_WAITING)
+  at java.lang.Thread.sleep
+  at org.araqne.logger.LogCleaner.run (LogCleaner.java:80)
+
+"Windows Service Runner" tid=12: (state = WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x00000000525c62f4> (org.apache.felix.framework.util.ThreadGate)
+  at org.apache.felix.framework.util.ThreadGate.await (ThreadGate.java:79)
+  at org.apache.felix.framework.Felix.waitForStop (Felix.java:1075)
+  at org.araqne.main.Araqne$ServiceRunner.run (Araqne.java:251)
+
+"Attach Listener" tid=6: (state = RUNNABLE)
+
+"Signal Dispatcher" tid=5: (state = RUNNABLE)
+
+"Finalizer" tid=3: (state = WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x0000000016390eca> (java.lang.ref.ReferenceQueue$Lock)
+  at java.lang.ref.ReferenceQueue.remove
+  at java.lang.ref.ReferenceQueue.remove
+  at java.lang.ref.Finalizer$FinalizerThread.run
+
+"Reference Handler" tid=2: (state = WAITING)
+  at java.lang.Object.wait
+  - waiting on <0x0000000025147822> (java.lang.ref.Reference$Lock)
+  at java.lang.Object.wait
+  at java.lang.ref.Reference.tryHandlePending
+  at java.lang.ref.Reference$ReferenceHandler.run
+

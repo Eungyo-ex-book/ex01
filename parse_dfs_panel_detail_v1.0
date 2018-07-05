@@ -1,0 +1,2321 @@
+table raw_dfs_panel
+| eval PANEL=replace(PANEL, "\n", "", "re")
+| eval PANEL=trim(replace(PANEL, ">\\s+<", "><", "re"))
+
+| parsexml overlay=t field=PANEL
+| fields - PANEL
+
+| parsemap overlay=t field=HEADER
+| fields - HEADER
+| eval KEY_ID=if(len(KEY_ID)==0, null, concat(",","KEY_ID", "@#$", KEY_ID))
+| eval PNL_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_JUDGE", "@#$", JUDGE))
+| fields - JUDGE
+
+| parsemap overlay=t field=BODY
+| fields - BODY
+
+| parsemap overlay=t field=REVIEW_OP_ID
+| fields - REVIEW_OP_ID
+| parsemap overlay=t field=OP_IP
+| fields - OP_IP
+| eval PNL_REV_OP_IP_THIRD=if(len(THIRD)==0, null, concat(",","PNL_REV_OP_IP_THIRD", "@#$", THIRD))
+| eval PNL_REV_OP_IP_SECOND=if(len(SECOND)==0, null, concat(",","PNL_REV_OP_IP_SECOND", "@#$", SECOND))
+| eval PNL_REV_OP_IP_FOURTH=if(len(FOURTH)==0, null, concat(",","PNL_REV_OP_IP_FOURTH", "@#$", FOURTH))
+| eval PNL_REV_OP_IP_FIRST=if(len(FIRST)==0, null, concat(",","PNL_REV_OP_IP_FIRST", "@#$", FIRST))
+| eval PNL_REV_OP_IP_FIFTH=if(len(FIFTH)==0, null, concat(",","PNL_REV_OP_IP_FIFTH", "@#$", FIFTH))
+| fields
+- THIRD
+,SECOND
+,FOURTH
+,FIRST
+,FIFTH
+
+| parsemap overlay=t field=REP_INFO
+| fields - REP_INFO
+
+| parsemap overlay=t field=SUCCESS
+| fields - SUCCESS
+| eval PNL_REP_PR_REPAIR_SUCCESS_QTY=if(len(PR_REPAIR)==0, null, concat(",","PNL_REP_PR_REPAIR_SUCCESS_QTY", "@#$", PR_REPAIR))
+| eval PNL_REP_LASER_UV_CNT_SUCCESS_QTY=if(len(LASER_UV_CNT)==0, null, concat(",","PNL_REP_LASER_UV_CNT_SUCCESS_QTY", "@#$", LASER_UV_CNT))
+| eval PNL_REP_LASER_IR_CNT_SUCCESS_QTY=if(len(LASER_IR_CNT)==0, null, concat(",","PNL_REP_LASER_IR_CNT_SUCCESS_QTY", "@#$", LASER_IR_CNT))
+| eval PNL_REP_LASER_DUV_CNT_SUCCESS_QTY=if(len(LASER_DUV_CNT)==0, null, concat(",","PNL_REP_LASER_DUV_CNT_SUCCESS_QTY", "@#$", LASER_DUV_CNT))
+| eval PNL_REP_CVD_SUCCESS_QTY=if(len(CVD)==0, null, concat(",","PNL_REP_CVD_SUCCESS_QTY", "@#$", CVD))
+| eval PNL_REP_CRP_PAS_SUCCESS_QTY=if(len(CRP_PAS)==0, null, concat(",","PNL_REP_CRP_PAS_SUCCESS_QTY", "@#$", CRP_PAS))
+| eval PNL_REP_AUTO_LASER_SUCCESS_QTY=if(len(AUTO_LASER)==0, null, concat(",","PNL_REP_AUTO_LASER_SUCCESS_QTY", "@#$", AUTO_LASER))
+| eval PNL_REP_AUTO_CVD_SUCCESS_QTY=if(len(AUTO_CVD)==0, null, concat(",","PNL_REP_AUTO_CVD_SUCCESS_QTY", "@#$", AUTO_CVD))
+| fields
+- PR_REPAIR
+,LASER_UV_CNT
+,LASER_IR_CNT
+,LASER_DUV_CNT
+,CVD
+,CRP_PAS
+,MASK_ID
+,AUTO_CVD
+
+| parsemap overlay=t field=POINT
+| fields - POINT
+| eval PNL_REP_RPC1_REV_PNT_QTY=if(len(RPC1_REVIEW)==0, null, concat(",","PNL_REP_RPC1_REV_PNT_QTY", "@#$", RPC1_REVIEW))
+| eval PNL_REP_PR_REP_PNT_QTY=if(len(PR_REPAIR)==0, null, concat(",","PNL_REP_PR_REP_PNT_QTY", "@#$", PR_REPAIR))
+| eval PNL_REP_MPC_REV_PNT_QTY=if(len(MPC_REVIEW)==0, null, concat(",","PNL_REP_MPC_REV_PNT_QTY", "@#$", MPC_REVIEW))
+| eval PNL_REP_LASER_UV_CNT_PNT_QTY=if(len(LASER_UV_CNT)==0, null, concat(",","PNL_REP_LASER_UV_CNT_PNT_QTY", "@#$", LASER_UV_CNT))
+| eval PNL_REP_LASER_IR_CNT_PNT_QTY=if(len(LASER_IR_CNT)==0, null, concat(",","PNL_REP_LASER_IR_CNT_PNT_QTY", "@#$", LASER_IR_CNT))
+| eval PNL_REP_LASER_DUV_CNT_PNT_QTY=if(len(LASER_DUV_CNT)==0, null, concat(",","PNL_REP_LASER_DUV_CNT_PNT_QTY", "@#$", LASER_DUV_CNT))
+| eval PNL_REP_CRP_PAS_PNT_QTY=if(len(CRP_PAS)==0, null, concat(",","PNL_REP_CRP_PAS_PNT_QTY", "@#$", CRP_PAS))
+| eval PNL_REP_AUTO_LASER_PNT_QTY=if(len(AUTO_LASER)==0, null, concat(",","PNL_REP_AUTO_LASER_PNT_QTY", "@#$", AUTO_LASER))
+| eval PNL_REP_AUTO_CVD_PNT_QTY=if(len(AUTO_CVD)==0, null, concat(",","PNL_REP_AUTO_CVD_PNT_QTY", "@#$", AUTO_CVD))
+| fields
+- RPC1_REVIEW
+,PR_REPAIR
+,MPC_REVIEW
+,LASER_UV_CNT
+,LASER_IR_CNT
+,LASER_DUV_CNT
+,CRP_PAS
+,AUTO_LASER
+,AUTO_CVD
+
+| parsemap overlay=t field=MURA_INFO
+| fields - MURA_INFO
+| eval PNL_MURA_INFO_MURA_Y=if(len(MURA_Y)==0, null, concat(",","PNL_MURA_INFO_MURA_Y", "@#$", MURA_Y))
+| eval PNL_MURA_INFO_MURA_X=if(len(MURA_X)==0, null, concat(",","PNL_MURA_INFO_MURA_X", "@#$", MURA_X))
+| fields
+- MURA_Y
+,MURA_X
+
+
+| parsemap overlay=t field=JUDGE_INFO
+| fields - JUDGE_INFO
+
+| parsemap overlay=t field=PTN
+| fields - PTN
+| eval PNL_PTN_REASON=if(len(REASON)==0, null, concat(",","PNL_PTN_REASON", "@#$", REASON))
+| eval PNL_PTN_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_PTN_JUDGE", "@#$", JUDGE))
+| fields
+- REASON
+,JUDGE
+
+| parsemap overlay=t field=REP
+| fields - REP
+| eval PNL_REP_REASON=if(len(REASON)==0, null, concat(",","PNL_REP_REASON", "@#$", REASON))
+| eval PNL_REP_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_REP_JUDGE", "@#$", JUDGE))
+| fields
+- REASON
+,JUDGE
+
+| parsemap overlay=t field=QPC
+| fields - QPC
+| eval PNL_QPC_REASON=if(len(REASON)==0, null, concat(",","PNL_QPC_REASON", "@#$", REASON))
+| eval PNL_QPC_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_QPC_JUDGE", "@#$", JUDGE))
+| fields
+- REASON
+,JUDGE
+
+| parsemap overlay=t field=MMA
+| fields - MMA
+| eval PNL_MMA_REASON=if(len(REASON)==0, null, concat(",","PNL_MMA_REASON", "@#$", REASON))
+| eval PNL_MMA_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_MMA_JUDGE", "@#$", JUDGE))
+| fields
+- REASON
+,JUDGE
+
+| parsemap overlay=t field=LOS
+| fields - LOS
+| eval PNL_LOS_REASON=if(len(REASON)==0, null, concat(",","PNL_LOS_REASON", "@#$", REASON))
+| eval PNL_LOS_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_LOS_JUDGE", "@#$", JUDGE))
+| fields
+- REASON
+,JUDGE
+
+| parsemap overlay=t field=DGS
+| fields - DGS
+| eval PNL_GDS_REASON=if(len(REASON)==0, null, concat(",","PNL_GDS_REASON", "@#$", REASON))
+| eval PNL_GDS_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_GDS_JUDGE", "@#$", JUDGE))
+| fields
+- REASON
+,JUDGE
+
+| parsemap overlay=t field=CVD
+| fields - CVD
+| eval PNL_CRP_REASON=if(len(REASON)==0, null, concat(",","PNL_CRP_REASON", "@#$", REASON))
+| eval PNL_CRP_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_CRP_JUDGE", "@#$", JUDGE))
+| fields
+- REASON
+,JUDGE
+
+| parsemap overlay=t field=BPN
+| fields - BPN
+| eval PNL_BPN_REASON=if(len(REASON)==0, null, concat(",","PNL_BPN_REASON", "@#$", REASON))
+| eval PNL_BPN_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_BPN_JUDGE", "@#$", JUDGE))
+| fields
+- REASON
+,JUDGE
+
+| parsemap overlay=t field=ART_C
+| fields - ART_C
+| eval PNL_ART_C_REASON=if(len(REASON)==0, null, concat(",","PNL_ART_C_REASON", "@#$", REASON))
+| eval PNL_ART_C_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_ART_C_JUDGE", "@#$", JUDGE))
+| fields
+- REASON
+,JUDGE
+
+| parsemap overlay=t field=ART
+| fields - ART
+| eval PNL_ART_REASON=if(len(REASON)==0, null, concat(",","PNL_ART_REASON", "@#$", REASON))
+| eval PNL_ART_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_ART_JUDGE", "@#$", JUDGE))
+| fields
+- REASON
+,JUDGE
+
+| parsemap overlay=t field=AMA
+| fields - AMA
+| eval PNL_AMA_REASON=if(len(REASON)==0, null, concat(",","PNL_AMA_REASON", "@#$", REASON))
+| eval PNL_AMA_JUDGE=if(len(JUDGE)==0, null, concat(",","PNL_AMA_JUDGE", "@#$", JUDGE))
+| fields
+- REASON
+,JUDGE
+
+| parsemap overlay=t field=GDS_SHORT_MEASURE_DATA
+| fields - GDS_SHORT_MEASURE_DATA
+| parsemap overlay=t field=MEASURE_CHANNEL
+| fields - MEASURE_CHANNEL
+| eval PNL_GDS_SH_MEAS_CH_C9C16=if(len(C9C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C9C16", "@#$", C9C16))
+| eval PNL_GDS_SH_MEAS_CH_C9C15=if(len(C9C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C9C15", "@#$", C9C15))
+| eval PNL_GDS_SH_MEAS_CH_C9C14=if(len(C9C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C9C14", "@#$", C9C14))
+| eval PNL_GDS_SH_MEAS_CH_C9C13=if(len(C9C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C9C13", "@#$", C9C13))
+| eval PNL_GDS_SH_MEAS_CH_C9C12=if(len(C9C12)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C9C12", "@#$", C9C12))
+| eval PNL_GDS_SH_MEAS_CH_C9C11=if(len(C9C11)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C9C11", "@#$", C9C11))
+| eval PNL_GDS_SH_MEAS_CH_C9C10=if(len(C9C10)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C9C10", "@#$", C9C10))
+| eval PNL_GDS_SH_MEAS_CH_C8C9=if(len(C8C9)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C8C9", "@#$", C8C9))
+| eval PNL_GDS_SH_MEAS_CH_C8C16=if(len(C8C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C8C16", "@#$", C8C16))
+| eval PNL_GDS_SH_MEAS_CH_C8C15=if(len(C8C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C8C15", "@#$", C8C15))
+| eval PNL_GDS_SH_MEAS_CH_C8C14=if(len(C8C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C8C14", "@#$", C8C14))
+| eval PNL_GDS_SH_MEAS_CH_C8C13=if(len(C8C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C8C13", "@#$", C8C13))
+| eval PNL_GDS_SH_MEAS_CH_C8C12=if(len(C8C12)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C8C12", "@#$", C8C12))
+| eval PNL_GDS_SH_MEAS_CH_C8C11=if(len(C8C11)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C8C11", "@#$", C8C11))
+| eval PNL_GDS_SH_MEAS_CH_C8C10=if(len(C8C10)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C8C10", "@#$", C8C10))
+| eval PNL_GDS_SH_MEAS_CH_C7C9=if(len(C7C9)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C7C9", "@#$", C7C9))
+| eval PNL_GDS_SH_MEAS_CH_C7C8=if(len(C7C8)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C7C8", "@#$", C7C8))
+| eval PNL_GDS_SH_MEAS_CH_C7C16=if(len(C7C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C7C16", "@#$", C7C16))
+| eval PNL_GDS_SH_MEAS_CH_C7C15=if(len(C7C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C7C15", "@#$", C7C15))
+| eval PNL_GDS_SH_MEAS_CH_C7C14=if(len(C7C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C7C14", "@#$", C7C14))
+| eval PNL_GDS_SH_MEAS_CH_C7C13=if(len(C7C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C7C13", "@#$", C7C13))
+| eval PNL_GDS_SH_MEAS_CH_C7C12=if(len(C7C12)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C7C12", "@#$", C7C12))
+| eval PNL_GDS_SH_MEAS_CH_C7C11=if(len(C7C11)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C7C11", "@#$", C7C11))
+| eval PNL_GDS_SH_MEAS_CH_C7C10=if(len(C7C10)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C7C10", "@#$", C7C10))
+| eval PNL_GDS_SH_MEAS_CH_C6C9=if(len(C6C9)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C6C9", "@#$", C6C9))
+| eval PNL_GDS_SH_MEAS_CH_C6C8=if(len(C6C8)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C6C8", "@#$", C6C8))
+| eval PNL_GDS_SH_MEAS_CH_C6C7=if(len(C6C7)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C6C7", "@#$", C6C7))
+| eval PNL_GDS_SH_MEAS_CH_C6C16=if(len(C6C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C6C16", "@#$", C6C16))
+| eval PNL_GDS_SH_MEAS_CH_C6C15=if(len(C6C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C6C15", "@#$", C6C15))
+| eval PNL_GDS_SH_MEAS_CH_C6C14=if(len(C6C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C6C14", "@#$", C6C14))
+| eval PNL_GDS_SH_MEAS_CH_C6C13=if(len(C6C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C6C13", "@#$", C6C13))
+| eval PNL_GDS_SH_MEAS_CH_C6C12=if(len(C6C12)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C6C12", "@#$", C6C12))
+| eval PNL_GDS_SH_MEAS_CH_C6C11=if(len(C6C11)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C6C11", "@#$", C6C11))
+| eval PNL_GDS_SH_MEAS_CH_C6C10=if(len(C6C10)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C6C10", "@#$", C6C10))
+| eval PNL_GDS_SH_MEAS_CH_C5C9=if(len(C5C9)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C5C9", "@#$", C5C9))
+| eval PNL_GDS_SH_MEAS_CH_C5C8=if(len(C5C8)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C5C8", "@#$", C5C8))
+| eval PNL_GDS_SH_MEAS_CH_C5C7=if(len(C5C7)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C5C7", "@#$", C5C7))
+| eval PNL_GDS_SH_MEAS_CH_C5C6=if(len(C5C6)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C5C6", "@#$", C5C6))
+| eval PNL_GDS_SH_MEAS_CH_C5C16=if(len(C5C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C5C16", "@#$", C5C16))
+| eval PNL_GDS_SH_MEAS_CH_C5C15=if(len(C5C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C5C15", "@#$", C5C15))
+| eval PNL_GDS_SH_MEAS_CH_C5C14=if(len(C5C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C5C14", "@#$", C5C14))
+| eval PNL_GDS_SH_MEAS_CH_C5C13=if(len(C5C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C5C13", "@#$", C5C13))
+| eval PNL_GDS_SH_MEAS_CH_C5C12=if(len(C5C12)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C5C12", "@#$", C5C12))
+| eval PNL_GDS_SH_MEAS_CH_C5C11=if(len(C5C11)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C5C11", "@#$", C5C11))
+| eval PNL_GDS_SH_MEAS_CH_C5C10=if(len(C5C10)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C5C10", "@#$", C5C10))
+| eval PNL_GDS_SH_MEAS_CH_C4C9=if(len(C4C9)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C9", "@#$", C4C9))
+| eval PNL_GDS_SH_MEAS_CH_C4C8=if(len(C4C8)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C8", "@#$", C4C8))
+| eval PNL_GDS_SH_MEAS_CH_C4C7=if(len(C4C7)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C7", "@#$", C4C7))
+| eval PNL_GDS_SH_MEAS_CH_C4C6=if(len(C4C6)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C6", "@#$", C4C6))
+| eval PNL_GDS_SH_MEAS_CH_C4C5=if(len(C4C5)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C5", "@#$", C4C5))
+| eval PNL_GDS_SH_MEAS_CH_C4C16=if(len(C4C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C16", "@#$", C4C16))
+| eval PNL_GDS_SH_MEAS_CH_C4C15=if(len(C4C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C15", "@#$", C4C15))
+| eval PNL_GDS_SH_MEAS_CH_C4C14=if(len(C4C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C14", "@#$", C4C14))
+| eval PNL_GDS_SH_MEAS_CH_C4C13=if(len(C4C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C13", "@#$", C4C13))
+| eval PNL_GDS_SH_MEAS_CH_C4C12=if(len(C4C12)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C12", "@#$", C4C12))
+| eval PNL_GDS_SH_MEAS_CH_C4C11=if(len(C4C11)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C11", "@#$", C4C11))
+| eval PNL_GDS_SH_MEAS_CH_C4C10=if(len(C4C10)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C4C10", "@#$", C4C10))
+| eval PNL_GDS_SH_MEAS_CH_C3C9=if(len(C3C9)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C9", "@#$", C3C9))
+| eval PNL_GDS_SH_MEAS_CH_C3C8=if(len(C3C8)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C8", "@#$", C3C8))
+| eval PNL_GDS_SH_MEAS_CH_C3C7=if(len(C3C7)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C7", "@#$", C3C7))
+| eval PNL_GDS_SH_MEAS_CH_C3C6=if(len(C3C6)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C6", "@#$", C3C6))
+| eval PNL_GDS_SH_MEAS_CH_C3C5=if(len(C3C5)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C5", "@#$", C3C5))
+| eval PNL_GDS_SH_MEAS_CH_C3C4=if(len(C3C4)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C4", "@#$", C3C4))
+| eval PNL_GDS_SH_MEAS_CH_C3C16=if(len(C3C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C16", "@#$", C3C16))
+| eval PNL_GDS_SH_MEAS_CH_C3C15=if(len(C3C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C15", "@#$", C3C15))
+| eval PNL_GDS_SH_MEAS_CH_C3C14=if(len(C3C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C14", "@#$", C3C14))
+| eval PNL_GDS_SH_MEAS_CH_C3C13=if(len(C3C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C13", "@#$", C3C13))
+| eval PNL_GDS_SH_MEAS_CH_C3C12=if(len(C3C12)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C12", "@#$", C3C12))
+| eval PNL_GDS_SH_MEAS_CH_C3C11=if(len(C3C11)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C11", "@#$", C3C11))
+| eval PNL_GDS_SH_MEAS_CH_C3C10=if(len(C3C10)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C3C10", "@#$", C3C10))
+| eval PNL_GDS_SH_MEAS_CH_C2C9=if(len(C2C9)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C9", "@#$", C2C9))
+| eval PNL_GDS_SH_MEAS_CH_C2C8=if(len(C2C8)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C8", "@#$", C2C8))
+| eval PNL_GDS_SH_MEAS_CH_C2C7=if(len(C2C7)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C7", "@#$", C2C7))
+| eval PNL_GDS_SH_MEAS_CH_C2C6=if(len(C2C6)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C6", "@#$", C2C6))
+| eval PNL_GDS_SH_MEAS_CH_C2C5=if(len(C2C5)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C5", "@#$", C2C5))
+| eval PNL_GDS_SH_MEAS_CH_C2C4=if(len(C2C4)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C4", "@#$", C2C4))
+| eval PNL_GDS_SH_MEAS_CH_C2C3=if(len(C2C3)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C3", "@#$", C2C3))
+| eval PNL_GDS_SH_MEAS_CH_C2C16=if(len(C2C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C16", "@#$", C2C16))
+| eval PNL_GDS_SH_MEAS_CH_C2C15=if(len(C2C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C15", "@#$", C2C15))
+| eval PNL_GDS_SH_MEAS_CH_C2C14=if(len(C2C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C14", "@#$", C2C14))
+| eval PNL_GDS_SH_MEAS_CH_C2C13=if(len(C2C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C13", "@#$", C2C13))
+| eval PNL_GDS_SH_MEAS_CH_C2C12=if(len(C2C12)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C12", "@#$", C2C12))
+| eval PNL_GDS_SH_MEAS_CH_C2C11=if(len(C2C11)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C11", "@#$", C2C11))
+| eval PNL_GDS_SH_MEAS_CH_C2C10=if(len(C2C10)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C2C10", "@#$", C2C10))
+| eval PNL_GDS_SH_MEAS_CH_C1C9=if(len(C1C9)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C9", "@#$", C1C9))
+| eval PNL_GDS_SH_MEAS_CH_C1C8=if(len(C1C8)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C8", "@#$", C1C8))
+| eval PNL_GDS_SH_MEAS_CH_C1C7=if(len(C1C7)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C7", "@#$", C1C7))
+| eval PNL_GDS_SH_MEAS_CH_C1C6=if(len(C1C6)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C6", "@#$", C1C6))
+| eval PNL_GDS_SH_MEAS_CH_C1C5=if(len(C1C5)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C5", "@#$", C1C5))
+| eval PNL_GDS_SH_MEAS_CH_C1C4=if(len(C1C4)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C4", "@#$", C1C4))
+| eval PNL_GDS_SH_MEAS_CH_C1C3=if(len(C1C3)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C3", "@#$", C1C3))
+| eval PNL_GDS_SH_MEAS_CH_C1C2=if(len(C1C2)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C2", "@#$", C1C2))
+| eval PNL_GDS_SH_MEAS_CH_C1C16=if(len(C1C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C16", "@#$", C1C16))
+| eval PNL_GDS_SH_MEAS_CH_C1C15=if(len(C1C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C15", "@#$", C1C15))
+| eval PNL_GDS_SH_MEAS_CH_C1C14=if(len(C1C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C14", "@#$", C1C14))
+| eval PNL_GDS_SH_MEAS_CH_C1C13=if(len(C1C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C13", "@#$", C1C13))
+| eval PNL_GDS_SH_MEAS_CH_C1C12=if(len(C1C12)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C12", "@#$", C1C12))
+| eval PNL_GDS_SH_MEAS_CH_C1C11=if(len(C1C11)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C11", "@#$", C1C11))
+| eval PNL_GDS_SH_MEAS_CH_C1C10=if(len(C1C10)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C1C10", "@#$", C1C10))
+| eval PNL_GDS_SH_MEAS_CH_C15C16=if(len(C15C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C15C16", "@#$", C15C16))
+| eval PNL_GDS_SH_MEAS_CH_C14C16=if(len(C14C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C14C16", "@#$", C14C16))
+| eval PNL_GDS_SH_MEAS_CH_C14C15=if(len(C14C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C14C15", "@#$", C14C15))
+| eval PNL_GDS_SH_MEAS_CH_C13C16=if(len(C13C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C13C16", "@#$", C13C16))
+| eval PNL_GDS_SH_MEAS_CH_C13C15=if(len(C13C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C13C15", "@#$", C13C15))
+| eval PNL_GDS_SH_MEAS_CH_C13C14=if(len(C13C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C13C14", "@#$", C13C14))
+| eval PNL_GDS_SH_MEAS_CH_C12C16=if(len(C12C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C12C16", "@#$", C12C16))
+| eval PNL_GDS_SH_MEAS_CH_C12C15=if(len(C12C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C12C15", "@#$", C12C15))
+| eval PNL_GDS_SH_MEAS_CH_C12C14=if(len(C12C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C12C14", "@#$", C12C14))
+| eval PNL_GDS_SH_MEAS_CH_C12C13=if(len(C12C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C12C13", "@#$", C12C13))
+| eval PNL_GDS_SH_MEAS_CH_C11C16=if(len(C11C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C11C16", "@#$", C11C16))
+| eval PNL_GDS_SH_MEAS_CH_C11C15=if(len(C11C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C11C15", "@#$", C11C15))
+| eval PNL_GDS_SH_MEAS_CH_C11C14=if(len(C11C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C11C14", "@#$", C11C14))
+| eval PNL_GDS_SH_MEAS_CH_C11C13=if(len(C11C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C11C13", "@#$", C11C13))
+| eval PNL_GDS_SH_MEAS_CH_C11C12=if(len(C11C12)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C11C12", "@#$", C11C12))
+| eval PNL_GDS_SH_MEAS_CH_C10C16=if(len(C10C16)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C10C16", "@#$", C10C16))
+| eval PNL_GDS_SH_MEAS_CH_C10C15=if(len(C10C15)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C10C15", "@#$", C10C15))
+| eval PNL_GDS_SH_MEAS_CH_C10C14=if(len(C10C14)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C10C14", "@#$", C10C14))
+| eval PNL_GDS_SH_MEAS_CH_C10C13=if(len(C10C13)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C10C13", "@#$", C10C13))
+| eval PNL_GDS_SH_MEAS_CH_C10C12=if(len(C10C12)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C10C12", "@#$", C10C12))
+| eval PNL_GDS_SH_MEAS_CH_C10C11=if(len(C10C11)==0, null, concat(",","PNL_GDS_SH_MEAS_CH_C10C11", "@#$", C10C11))
+| fields
+- C9C16
+,C9C15
+,C9C14
+,C9C13
+,C9C12
+,C9C11
+,C9C10
+,C8C9
+,C8C16
+,C8C15
+,C8C14
+,C8C13
+,C8C12
+,C8C11
+,C8C10
+,C7C9
+,C7C8
+,C7C16
+,C7C15
+,C7C14
+,C7C13
+,C7C12
+,C7C11
+,C7C10
+,C6C9
+,C6C8
+,C6C7
+,C6C16
+,C6C15
+,C6C14
+,C6C13
+,C6C12
+,C6C11
+,C6C10
+,C5C9
+,C5C8
+,C5C7
+,C5C6
+,C5C16
+,C5C15
+,C5C14
+,C5C13
+,C5C12
+,C5C11
+,C5C10
+,C4C9
+,C4C8
+,C4C7
+,C4C6
+,C4C5
+,C4C16
+,C4C15
+,C4C14
+,C4C13
+,C4C12
+,C4C11
+,C4C10
+,C3C9
+,C3C8
+,C3C7
+,C3C6
+,C3C5
+,C3C4
+,C3C16
+,C3C15
+,C3C14
+,C3C13
+,C3C12
+,C3C11
+,C3C10
+,C2C9
+,C2C8
+,C2C7
+,C2C6
+,C2C5
+,C2C4
+,C2C3
+,C2C16
+,C2C15
+,C2C14
+,C2C13
+,C2C12
+,C2C11
+,C2C10
+,C1C9
+,C1C8
+,C1C7
+,C1C6
+,C1C5
+,C1C4
+,C1C3
+,C1C2
+,C1C16
+,C1C15
+,C1C14
+,C1C13
+,C1C12
+,C1C11
+,C1C10
+,C15C16
+,C14C16
+,C14C15
+,C13C16
+,C13C15
+,C13C14
+,C12C16
+,C12C15
+,C12C14
+,C12C13
+,C11C16
+,C11C15
+,C11C14
+,C11C13
+,C11C12
+,C10C16
+,C10C15
+,C10C14
+,C10C13
+,C10C12
+,C10C11
+
+| parsemap overlay=t field=GDS_INSP
+| fields - GDS_INSP
+| parsemap overlay=t field=REASON
+| fields - REASON
+| eval PNL_GDS_INSP_REASON_REASON2=if(len(REASON2)==0, null, concat(",","PNL_GDS_INSP_REASON_REASON2", "@#$", REASON2))
+| eval PNL_GDS_INSP_REASON_REASON1=if(len(REASON1)==0, null, concat(",","PNL_GDS_INSP_REASON_REASON1", "@#$", REASON1))
+| eval PNL_GDS_INSP_REASON_GD_MISS_STEP=if(len(GD_MISS_STEP)==0, null, concat(",","PNL_GDS_INSP_REASON_GD_MISS_STEP", "@#$", GD_MISS_STEP))
+| eval PNL_GDS_INSP_REASON_GC_MISS_STEP=if(len(GC_MISS_STEP)==0, null, concat(",","PNL_GDS_INSP_REASON_GC_MISS_STEP", "@#$", GC_MISS_STEP))
+| eval PNL_GDS_INSP_REASON_DC_MISS_STEP=if(len(DC_MISS_STEP)==0, null, concat(",","PNL_GDS_INSP_REASON_DC_MISS_STEP", "@#$", DC_MISS_STEP))
+| fields
+- REASON2
+,REASON1
+,GD_MISS_STEP
+,GC_MISS_STEP
+,DC_MISS_STEP
+
+| rename ADJ as ADJJJ |# 컬럼명 중복으로 임시대체
+| parsemap overlay=t field=DEFECT_NO
+| fields - DEFECT_NO
+| parsemap overlay=t field=TOTAL
+| fields - TOTAL
+| eval PNL_DEF_TOTAL_RPR_FILTERING_QTY=if(len(RPR_FILTERING)==0, null, concat(",","PNL_DEF_TOTAL_RPR_FILTERING_QTY", "@#$", RPR_FILTERING))
+| eval PNL_DEF_TOTAL_PTN_VC_QTY=if(len(PTN_VC)==0, null, concat(",","PNL_DEF_TOTAL_PTN_VC_QTY", "@#$", PTN_VC))
+| eval PNL_DEF_TOTAL_PTN_RTDC_QTY=if(len(PTN_RTDC)==0, null, concat(",","PNL_DEF_TOTAL_PTN_RTDC_QTY", "@#$", PTN_RTDC))
+| eval PNL_DEF_TOTAL_PTN_IMG_QTY=if(len(PTN_IMAGE)==0, null, concat(",","PNL_DEF_TOTAL_PTN_IMG_QTY", "@#$", PTN_IMAGE))
+| eval PNL_DEF_TOTAL_PTN_FILTERING_QTY=if(len(PTN_FILTERING)==0, null, concat(",","PNL_DEF_TOTAL_PTN_FILTERING_QTY", "@#$", PTN_FILTERING))
+| eval PNL_DEF_TOTAL_PTN_CDO_QTY=if(len(PTN_CDO)==0, null, concat(",","PNL_DEF_TOTAL_PTN_CDO_QTY", "@#$", PTN_CDO))
+| eval PNL_DEF_TOTAL_LOS_QTY=if(len(LOS)==0, null, concat(",","PNL_DEF_TOTAL_LOS_QTY", "@#$", LOS))
+| eval PNL_DEF_TOTAL_INTERSECTION_LOS_PTN_QTY=if(len(INTERSECTION_LOS_PTN)==0, null, concat(",","PNL_DEF_TOTAL_INTERSECTION_LOS_PTN_QTY", "@#$", INTERSECTION_LOS_PTN))
+| eval PNL_DEF_TOTAL_CUM_LOS_PTN_QTY=if(len(CUM_LOS_PTN)==0, null, concat(",","PNL_DEF_TOTAL_CUM_LOS_PTN_QTY", "@#$", CUM_LOS_PTN))
+| eval PNL_DEF_TOTAL_AMA_QTY=if(len(AMA)==0, null, concat(",","PNL_DEF_TOTAL_AMA_QTY", "@#$", AMA))
+| eval PNL_DEF_TOTAL_ADJ_QTY=if(len(ADJ)==0, null, concat(",","PNL_DEF_TOTAL_ADJ_QTY", "@#$", ADJ))
+| fields
+- ,RPR_FILTERING
+,PTN_VC
+,PTN_RTDC
+,PTN_IMAGE
+,PTN_FILTERING
+,PTN_CDO
+,LOS
+,INTERSECTION_LOS_PTN
+,CUM_LOS_PTN
+,AMA
+,ADJ
+
+| parsemap overlay=t field=REAL
+| fields - REAL
+| eval PNL_DEF_REAL_RPR_FILTERING_QTY=if(len(RPR_FILTERING)==0, null, concat(",","PNL_DEF_REAL_RPR_FILTERING_QTY", "@#$", RPR_FILTERING))
+| eval PNL_DEF_REAL_PTN_VC_QTY=if(len(PTN_VC)==0, null, concat(",","PNL_DEF_REAL_PTN_VC_QTY", "@#$", PTN_VC))
+| eval PNL_DEF_REAL_PTN_TOTAL_QTY=if(len(PTN_TOTAL)==0, null, concat(",","PNL_DEF_REAL_PTN_TOTAL_QTY", "@#$", PTN_TOTAL))
+| eval PNL_DEF_REAL_PTN_RTDC_QTY=if(len(PTN_RTDC)==0, null, concat(",","PNL_DEF_REAL_PTN_RTDC_QTY", "@#$", PTN_RTDC))
+| eval PNL_DEF_REAL_PTN_IMG_QTY=if(len(PTN_IMAGE)==0, null, concat(",","PNL_DEF_REAL_PTN_IMG_QTY", "@#$", PTN_IMAGE))
+| eval PNL_DEF_REAL_PTN_FILTERING_QTY=if(len(PTN_FILTERING)==0, null, concat(",","PNL_DEF_REAL_PTN_FILTERING_QTY", "@#$", PTN_FILTERING))
+| eval PNL_DEF_REAL_PTN_CDO_QTY=if(len(PTN_CDO)==0, null, concat(",","PNL_DEF_REAL_PTN_CDO_QTY", "@#$", PTN_CDO))
+| eval PNL_DEF_REAL_LOS_QTY=if(len(LOS)==0, null, concat(",","PNL_DEF_REAL_LOS_QTY", "@#$", LOS))
+| eval PNL_DEF_REAL_INTERSECTION_LOS_PTN_QTY=if(len(INTERSECTION_LOS_PTN)==0, null, concat(",","PNL_DEF_REAL_INTERSECTION_LOS_PTN_QTY", "@#$", INTERSECTION_LOS_PTN))
+| eval PNL_DEF_REAL_CUM_LOS_PTN_QTY=if(len(CUM_LOS_PTN)==0, null, concat(",","PNL_DEF_REAL_CUM_LOS_PTN_QTY", "@#$", CUM_LOS_PTN))
+| eval PNL_DEF_REAL_AMA_QTY=if(len(AMA)==0, null, concat(",","PNL_DEF_REAL_AMA_QTY", "@#$", AMA))
+| fields
+- RPR_FILTERING
+,PTN_VC
+,PTN_TOTAL
+,PTN_RTDC
+,PTN_IMAGE
+,PTN_FILTERING
+,PTN_CDO
+,LOS
+,INTERSECTION_LOS_PTN
+,CUM_LOS_PTN
+,AMA
+
+| parsemap overlay=t field=ART_ESS_MEASURE_DATA
+| fields - ART_ESS_MEASURE_DATA
+| eval PNL_ART_ESS_REASON=if(len(REASON)==0, null, concat(",","PNL_ART_ESS_REASON", "@#$", REASON))
+| fields - REASON
+
+| parsemap overlay=t field=MEASURE_CHANNEL
+| fields - MEASURE_CHANNEL
+| eval PNL_ART_ESS_C9C8=if(len(C9C8)==0, null, concat(",","PNL_ART_ESS_C9C8", "@#$", C9C8))
+| eval PNL_ART_ESS_C9C7=if(len(C9C7)==0, null, concat(",","PNL_ART_ESS_C9C7", "@#$", C9C7))
+| eval PNL_ART_ESS_C9C6=if(len(C9C6)==0, null, concat(",","PNL_ART_ESS_C9C6", "@#$", C9C6))
+| eval PNL_ART_ESS_C9C5=if(len(C9C5)==0, null, concat(",","PNL_ART_ESS_C9C5", "@#$", C9C5))
+| eval PNL_ART_ESS_C9C4=if(len(C9C4)==0, null, concat(",","PNL_ART_ESS_C9C4", "@#$", C9C4))
+| eval PNL_ART_ESS_C9C3=if(len(C9C3)==0, null, concat(",","PNL_ART_ESS_C9C3", "@#$", C9C3))
+| eval PNL_ART_ESS_C9C2=if(len(C9C2)==0, null, concat(",","PNL_ART_ESS_C9C2", "@#$", C9C2))
+| eval PNL_ART_ESS_C9C16=if(len(C9C16)==0, null, concat(",","PNL_ART_ESS_C9C16", "@#$", C9C16))
+| eval PNL_ART_ESS_C9C15=if(len(C9C15)==0, null, concat(",","PNL_ART_ESS_C9C15", "@#$", C9C15))
+| eval PNL_ART_ESS_C9C14=if(len(C9C14)==0, null, concat(",","PNL_ART_ESS_C9C14", "@#$", C9C14))
+| eval PNL_ART_ESS_C9C13=if(len(C9C13)==0, null, concat(",","PNL_ART_ESS_C9C13", "@#$", C9C13))
+| eval PNL_ART_ESS_C9C12=if(len(C9C12)==0, null, concat(",","PNL_ART_ESS_C9C12", "@#$", C9C12))
+| eval PNL_ART_ESS_C9C11=if(len(C9C11)==0, null, concat(",","PNL_ART_ESS_C9C11", "@#$", C9C11))
+| eval PNL_ART_ESS_C9C10=if(len(C9C10)==0, null, concat(",","PNL_ART_ESS_C9C10", "@#$", C9C10))
+| eval PNL_ART_ESS_C9C1=if(len(C9C1)==0, null, concat(",","PNL_ART_ESS_C9C1", "@#$", C9C1))
+| eval PNL_ART_ESS_C8C9=if(len(C8C9)==0, null, concat(",","PNL_ART_ESS_C8C9", "@#$", C8C9))
+| eval PNL_ART_ESS_C8C7=if(len(C8C7)==0, null, concat(",","PNL_ART_ESS_C8C7", "@#$", C8C7))
+| eval PNL_ART_ESS_C8C6=if(len(C8C6)==0, null, concat(",","PNL_ART_ESS_C8C6", "@#$", C8C6))
+| eval PNL_ART_ESS_C8C5=if(len(C8C5)==0, null, concat(",","PNL_ART_ESS_C8C5", "@#$", C8C5))
+| eval PNL_ART_ESS_C8C4=if(len(C8C4)==0, null, concat(",","PNL_ART_ESS_C8C4", "@#$", C8C4))
+| eval PNL_ART_ESS_C8C3=if(len(C8C3)==0, null, concat(",","PNL_ART_ESS_C8C3", "@#$", C8C3))
+| eval PNL_ART_ESS_C8C2=if(len(C8C2)==0, null, concat(",","PNL_ART_ESS_C8C2", "@#$", C8C2))
+| eval PNL_ART_ESS_C8C16=if(len(C8C16)==0, null, concat(",","PNL_ART_ESS_C8C16", "@#$", C8C16))
+| eval PNL_ART_ESS_C8C15=if(len(C8C15)==0, null, concat(",","PNL_ART_ESS_C8C15", "@#$", C8C15))
+| eval PNL_ART_ESS_C8C14=if(len(C8C14)==0, null, concat(",","PNL_ART_ESS_C8C14", "@#$", C8C14))
+| eval PNL_ART_ESS_C8C13=if(len(C8C13)==0, null, concat(",","PNL_ART_ESS_C8C13", "@#$", C8C13))
+| eval PNL_ART_ESS_C8C12=if(len(C8C12)==0, null, concat(",","PNL_ART_ESS_C8C12", "@#$", C8C12))
+| eval PNL_ART_ESS_C8C11=if(len(C8C11)==0, null, concat(",","PNL_ART_ESS_C8C11", "@#$", C8C11))
+| eval PNL_ART_ESS_C8C10=if(len(C8C10)==0, null, concat(",","PNL_ART_ESS_C8C10", "@#$", C8C10))
+| eval PNL_ART_ESS_C8C1=if(len(C8C1)==0, null, concat(",","PNL_ART_ESS_C8C1", "@#$", C8C1))
+| eval PNL_ART_ESS_C7C9=if(len(C7C9)==0, null, concat(",","PNL_ART_ESS_C7C9", "@#$", C7C9))
+| eval PNL_ART_ESS_C7C8=if(len(C7C8)==0, null, concat(",","PNL_ART_ESS_C7C8", "@#$", C7C8))
+| eval PNL_ART_ESS_C7C6=if(len(C7C6)==0, null, concat(",","PNL_ART_ESS_C7C6", "@#$", C7C6))
+| eval PNL_ART_ESS_C7C5=if(len(C7C5)==0, null, concat(",","PNL_ART_ESS_C7C5", "@#$", C7C5))
+| eval PNL_ART_ESS_C7C4=if(len(C7C4)==0, null, concat(",","PNL_ART_ESS_C7C4", "@#$", C7C4))
+| eval PNL_ART_ESS_C7C3=if(len(C7C3)==0, null, concat(",","PNL_ART_ESS_C7C3", "@#$", C7C3))
+| eval PNL_ART_ESS_C7C2=if(len(C7C2)==0, null, concat(",","PNL_ART_ESS_C7C2", "@#$", C7C2))
+| eval PNL_ART_ESS_C7C16=if(len(C7C16)==0, null, concat(",","PNL_ART_ESS_C7C16", "@#$", C7C16))
+| eval PNL_ART_ESS_C7C15=if(len(C7C15)==0, null, concat(",","PNL_ART_ESS_C7C15", "@#$", C7C15))
+| eval PNL_ART_ESS_C7C14=if(len(C7C14)==0, null, concat(",","PNL_ART_ESS_C7C14", "@#$", C7C14))
+| eval PNL_ART_ESS_C7C13=if(len(C7C13)==0, null, concat(",","PNL_ART_ESS_C7C13", "@#$", C7C13))
+| eval PNL_ART_ESS_C7C12=if(len(C7C12)==0, null, concat(",","PNL_ART_ESS_C7C12", "@#$", C7C12))
+| eval PNL_ART_ESS_C7C11=if(len(C7C11)==0, null, concat(",","PNL_ART_ESS_C7C11", "@#$", C7C11))
+| eval PNL_ART_ESS_C7C10=if(len(C7C10)==0, null, concat(",","PNL_ART_ESS_C7C10", "@#$", C7C10))
+| eval PNL_ART_ESS_C7C1=if(len(C7C1)==0, null, concat(",","PNL_ART_ESS_C7C1", "@#$", C7C1))
+| eval PNL_ART_ESS_C6C9=if(len(C6C9)==0, null, concat(",","PNL_ART_ESS_C6C9", "@#$", C6C9))
+| eval PNL_ART_ESS_C6C8=if(len(C6C8)==0, null, concat(",","PNL_ART_ESS_C6C8", "@#$", C6C8))
+| eval PNL_ART_ESS_C6C7=if(len(C6C7)==0, null, concat(",","PNL_ART_ESS_C6C7", "@#$", C6C7))
+| eval PNL_ART_ESS_C6C5=if(len(C6C5)==0, null, concat(",","PNL_ART_ESS_C6C5", "@#$", C6C5))
+| eval PNL_ART_ESS_C6C4=if(len(C6C4)==0, null, concat(",","PNL_ART_ESS_C6C4", "@#$", C6C4))
+| eval PNL_ART_ESS_C6C3=if(len(C6C3)==0, null, concat(",","PNL_ART_ESS_C6C3", "@#$", C6C3))
+| eval PNL_ART_ESS_C6C2=if(len(C6C2)==0, null, concat(",","PNL_ART_ESS_C6C2", "@#$", C6C2))
+| eval PNL_ART_ESS_C6C16=if(len(C6C16)==0, null, concat(",","PNL_ART_ESS_C6C16", "@#$", C6C16))
+| eval PNL_ART_ESS_C6C15=if(len(C6C15)==0, null, concat(",","PNL_ART_ESS_C6C15", "@#$", C6C15))
+| eval PNL_ART_ESS_C6C14=if(len(C6C14)==0, null, concat(",","PNL_ART_ESS_C6C14", "@#$", C6C14))
+| eval PNL_ART_ESS_C6C13=if(len(C6C13)==0, null, concat(",","PNL_ART_ESS_C6C13", "@#$", C6C13))
+| eval PNL_ART_ESS_C6C12=if(len(C6C12)==0, null, concat(",","PNL_ART_ESS_C6C12", "@#$", C6C12))
+| eval PNL_ART_ESS_C6C11=if(len(C6C11)==0, null, concat(",","PNL_ART_ESS_C6C11", "@#$", C6C11))
+| eval PNL_ART_ESS_C6C10=if(len(C6C10)==0, null, concat(",","PNL_ART_ESS_C6C10", "@#$", C6C10))
+| eval PNL_ART_ESS_C6C1=if(len(C6C1)==0, null, concat(",","PNL_ART_ESS_C6C1", "@#$", C6C1))
+| eval PNL_ART_ESS_C5C9=if(len(C5C9)==0, null, concat(",","PNL_ART_ESS_C5C9", "@#$", C5C9))
+| eval PNL_ART_ESS_C5C8=if(len(C5C8)==0, null, concat(",","PNL_ART_ESS_C5C8", "@#$", C5C8))
+| eval PNL_ART_ESS_C5C7=if(len(C5C7)==0, null, concat(",","PNL_ART_ESS_C5C7", "@#$", C5C7))
+| eval PNL_ART_ESS_C5C6=if(len(C5C6)==0, null, concat(",","PNL_ART_ESS_C5C6", "@#$", C5C6))
+| eval PNL_ART_ESS_C5C4=if(len(C5C4)==0, null, concat(",","PNL_ART_ESS_C5C4", "@#$", C5C4))
+| eval PNL_ART_ESS_C5C3=if(len(C5C3)==0, null, concat(",","PNL_ART_ESS_C5C3", "@#$", C5C3))
+| eval PNL_ART_ESS_C5C2=if(len(C5C2)==0, null, concat(",","PNL_ART_ESS_C5C2", "@#$", C5C2))
+| eval PNL_ART_ESS_C5C16=if(len(C5C16)==0, null, concat(",","PNL_ART_ESS_C5C16", "@#$", C5C16))
+| eval PNL_ART_ESS_C5C15=if(len(C5C15)==0, null, concat(",","PNL_ART_ESS_C5C15", "@#$", C5C15))
+| eval PNL_ART_ESS_C5C14=if(len(C5C14)==0, null, concat(",","PNL_ART_ESS_C5C14", "@#$", C5C14))
+| eval PNL_ART_ESS_C5C13=if(len(C5C13)==0, null, concat(",","PNL_ART_ESS_C5C13", "@#$", C5C13))
+| eval PNL_ART_ESS_C5C12=if(len(C5C12)==0, null, concat(",","PNL_ART_ESS_C5C12", "@#$", C5C12))
+| eval PNL_ART_ESS_C5C11=if(len(C5C11)==0, null, concat(",","PNL_ART_ESS_C5C11", "@#$", C5C11))
+| eval PNL_ART_ESS_C5C10=if(len(C5C10)==0, null, concat(",","PNL_ART_ESS_C5C10", "@#$", C5C10))
+| eval PNL_ART_ESS_C5C1=if(len(C5C1)==0, null, concat(",","PNL_ART_ESS_C5C1", "@#$", C5C1))
+| eval PNL_ART_ESS_C4C9=if(len(C4C9)==0, null, concat(",","PNL_ART_ESS_C4C9", "@#$", C4C9))
+| eval PNL_ART_ESS_C4C8=if(len(C4C8)==0, null, concat(",","PNL_ART_ESS_C4C8", "@#$", C4C8))
+| eval PNL_ART_ESS_C4C7=if(len(C4C7)==0, null, concat(",","PNL_ART_ESS_C4C7", "@#$", C4C7))
+| eval PNL_ART_ESS_C4C6=if(len(C4C6)==0, null, concat(",","PNL_ART_ESS_C4C6", "@#$", C4C6))
+| eval PNL_ART_ESS_C4C5=if(len(C4C5)==0, null, concat(",","PNL_ART_ESS_C4C5", "@#$", C4C5))
+| eval PNL_ART_ESS_C4C3=if(len(C4C3)==0, null, concat(",","PNL_ART_ESS_C4C3", "@#$", C4C3))
+| eval PNL_ART_ESS_C4C2=if(len(C4C2)==0, null, concat(",","PNL_ART_ESS_C4C2", "@#$", C4C2))
+| eval PNL_ART_ESS_C4C16=if(len(C4C16)==0, null, concat(",","PNL_ART_ESS_C4C16", "@#$", C4C16))
+| eval PNL_ART_ESS_C4C15=if(len(C4C15)==0, null, concat(",","PNL_ART_ESS_C4C15", "@#$", C4C15))
+| eval PNL_ART_ESS_C4C14=if(len(C4C14)==0, null, concat(",","PNL_ART_ESS_C4C14", "@#$", C4C14))
+| eval PNL_ART_ESS_C4C13=if(len(C4C13)==0, null, concat(",","PNL_ART_ESS_C4C13", "@#$", C4C13))
+| eval PNL_ART_ESS_C4C12=if(len(C4C12)==0, null, concat(",","PNL_ART_ESS_C4C12", "@#$", C4C12))
+| eval PNL_ART_ESS_C4C11=if(len(C4C11)==0, null, concat(",","PNL_ART_ESS_C4C11", "@#$", C4C11))
+| eval PNL_ART_ESS_C4C10=if(len(C4C10)==0, null, concat(",","PNL_ART_ESS_C4C10", "@#$", C4C10))
+| eval PNL_ART_ESS_C4C1=if(len(C4C1)==0, null, concat(",","PNL_ART_ESS_C4C1", "@#$", C4C1))
+| eval PNL_ART_ESS_C3C9=if(len(C3C9)==0, null, concat(",","PNL_ART_ESS_C3C9", "@#$", C3C9))
+| eval PNL_ART_ESS_C3C8=if(len(C3C8)==0, null, concat(",","PNL_ART_ESS_C3C8", "@#$", C3C8))
+| eval PNL_ART_ESS_C3C7=if(len(C3C7)==0, null, concat(",","PNL_ART_ESS_C3C7", "@#$", C3C7))
+| eval PNL_ART_ESS_C3C6=if(len(C3C6)==0, null, concat(",","PNL_ART_ESS_C3C6", "@#$", C3C6))
+| eval PNL_ART_ESS_C3C5=if(len(C3C5)==0, null, concat(",","PNL_ART_ESS_C3C5", "@#$", C3C5))
+| eval PNL_ART_ESS_C3C4=if(len(C3C4)==0, null, concat(",","PNL_ART_ESS_C3C4", "@#$", C3C4))
+| eval PNL_ART_ESS_C3C2=if(len(C3C2)==0, null, concat(",","PNL_ART_ESS_C3C2", "@#$", C3C2))
+| eval PNL_ART_ESS_C3C16=if(len(C3C16)==0, null, concat(",","PNL_ART_ESS_C3C16", "@#$", C3C16))
+| eval PNL_ART_ESS_C3C15=if(len(C3C15)==0, null, concat(",","PNL_ART_ESS_C3C15", "@#$", C3C15))
+| eval PNL_ART_ESS_C3C14=if(len(C3C14)==0, null, concat(",","PNL_ART_ESS_C3C14", "@#$", C3C14))
+| eval PNL_ART_ESS_C3C13=if(len(C3C13)==0, null, concat(",","PNL_ART_ESS_C3C13", "@#$", C3C13))
+| eval PNL_ART_ESS_C3C12=if(len(C3C12)==0, null, concat(",","PNL_ART_ESS_C3C12", "@#$", C3C12))
+| eval PNL_ART_ESS_C3C11=if(len(C3C11)==0, null, concat(",","PNL_ART_ESS_C3C11", "@#$", C3C11))
+| eval PNL_ART_ESS_C3C10=if(len(C3C10)==0, null, concat(",","PNL_ART_ESS_C3C10", "@#$", C3C10))
+| eval PNL_ART_ESS_C3C1=if(len(C3C1)==0, null, concat(",","PNL_ART_ESS_C3C1", "@#$", C3C1))
+| eval PNL_ART_ESS_C2C9=if(len(C2C9)==0, null, concat(",","PNL_ART_ESS_C2C9", "@#$", C2C9))
+| eval PNL_ART_ESS_C2C8=if(len(C2C8)==0, null, concat(",","PNL_ART_ESS_C2C8", "@#$", C2C8))
+| eval PNL_ART_ESS_C2C7=if(len(C2C7)==0, null, concat(",","PNL_ART_ESS_C2C7", "@#$", C2C7))
+| eval PNL_ART_ESS_C2C6=if(len(C2C6)==0, null, concat(",","PNL_ART_ESS_C2C6", "@#$", C2C6))
+| eval PNL_ART_ESS_C2C5=if(len(C2C5)==0, null, concat(",","PNL_ART_ESS_C2C5", "@#$", C2C5))
+| eval PNL_ART_ESS_C2C4=if(len(C2C4)==0, null, concat(",","PNL_ART_ESS_C2C4", "@#$", C2C4))
+| eval PNL_ART_ESS_C2C3=if(len(C2C3)==0, null, concat(",","PNL_ART_ESS_C2C3", "@#$", C2C3))
+| eval PNL_ART_ESS_C2C16=if(len(C2C16)==0, null, concat(",","PNL_ART_ESS_C2C16", "@#$", C2C16))
+| eval PNL_ART_ESS_C2C15=if(len(C2C15)==0, null, concat(",","PNL_ART_ESS_C2C15", "@#$", C2C15))
+| eval PNL_ART_ESS_C2C14=if(len(C2C14)==0, null, concat(",","PNL_ART_ESS_C2C14", "@#$", C2C14))
+| eval PNL_ART_ESS_C2C13=if(len(C2C13)==0, null, concat(",","PNL_ART_ESS_C2C13", "@#$", C2C13))
+| eval PNL_ART_ESS_C2C12=if(len(C2C12)==0, null, concat(",","PNL_ART_ESS_C2C12", "@#$", C2C12))
+| eval PNL_ART_ESS_C2C11=if(len(C2C11)==0, null, concat(",","PNL_ART_ESS_C2C11", "@#$", C2C11))
+| eval PNL_ART_ESS_C2C10=if(len(C2C10)==0, null, concat(",","PNL_ART_ESS_C2C10", "@#$", C2C10))
+| eval PNL_ART_ESS_C2C1=if(len(C2C1)==0, null, concat(",","PNL_ART_ESS_C2C1", "@#$", C2C1))
+| eval PNL_ART_ESS_C1C9=if(len(C1C9)==0, null, concat(",","PNL_ART_ESS_C1C9", "@#$", C1C9))
+| eval PNL_ART_ESS_C1C8=if(len(C1C8)==0, null, concat(",","PNL_ART_ESS_C1C8", "@#$", C1C8))
+| eval PNL_ART_ESS_C1C7=if(len(C1C7)==0, null, concat(",","PNL_ART_ESS_C1C7", "@#$", C1C7))
+| eval PNL_ART_ESS_C1C6=if(len(C1C6)==0, null, concat(",","PNL_ART_ESS_C1C6", "@#$", C1C6))
+| eval PNL_ART_ESS_C1C5=if(len(C1C5)==0, null, concat(",","PNL_ART_ESS_C1C5", "@#$", C1C5))
+| eval PNL_ART_ESS_C1C4=if(len(C1C4)==0, null, concat(",","PNL_ART_ESS_C1C4", "@#$", C1C4))
+| eval PNL_ART_ESS_C1C3=if(len(C1C3)==0, null, concat(",","PNL_ART_ESS_C1C3", "@#$", C1C3))
+| eval PNL_ART_ESS_C1C2=if(len(C1C2)==0, null, concat(",","PNL_ART_ESS_C1C2", "@#$", C1C2))
+| eval PNL_ART_ESS_C1C16=if(len(C1C16)==0, null, concat(",","PNL_ART_ESS_C1C16", "@#$", C1C16))
+| eval PNL_ART_ESS_C1C15=if(len(C1C15)==0, null, concat(",","PNL_ART_ESS_C1C15", "@#$", C1C15))
+| eval PNL_ART_ESS_C1C14=if(len(C1C14)==0, null, concat(",","PNL_ART_ESS_C1C14", "@#$", C1C14))
+| eval PNL_ART_ESS_C1C13=if(len(C1C13)==0, null, concat(",","PNL_ART_ESS_C1C13", "@#$", C1C13))
+| eval PNL_ART_ESS_C1C12=if(len(C1C12)==0, null, concat(",","PNL_ART_ESS_C1C12", "@#$", C1C12))
+| eval PNL_ART_ESS_C1C11=if(len(C1C11)==0, null, concat(",","PNL_ART_ESS_C1C11", "@#$", C1C11))
+| eval PNL_ART_ESS_C1C10=if(len(C1C10)==0, null, concat(",","PNL_ART_ESS_C1C10", "@#$", C1C10))
+| eval PNL_ART_ESS_C16C9=if(len(C16C9)==0, null, concat(",","PNL_ART_ESS_C16C9", "@#$", C16C9))
+| eval PNL_ART_ESS_C16C8=if(len(C16C8)==0, null, concat(",","PNL_ART_ESS_C16C8", "@#$", C16C8))
+| eval PNL_ART_ESS_C16C7=if(len(C16C7)==0, null, concat(",","PNL_ART_ESS_C16C7", "@#$", C16C7))
+| eval PNL_ART_ESS_C16C6=if(len(C16C6)==0, null, concat(",","PNL_ART_ESS_C16C6", "@#$", C16C6))
+| eval PNL_ART_ESS_C16C5=if(len(C16C5)==0, null, concat(",","PNL_ART_ESS_C16C5", "@#$", C16C5))
+| eval PNL_ART_ESS_C16C4=if(len(C16C4)==0, null, concat(",","PNL_ART_ESS_C16C4", "@#$", C16C4))
+| eval PNL_ART_ESS_C16C3=if(len(C16C3)==0, null, concat(",","PNL_ART_ESS_C16C3", "@#$", C16C3))
+| eval PNL_ART_ESS_C16C2=if(len(C16C2)==0, null, concat(",","PNL_ART_ESS_C16C2", "@#$", C16C2))
+| eval PNL_ART_ESS_C16C15=if(len(C16C15)==0, null, concat(",","PNL_ART_ESS_C16C15", "@#$", C16C15))
+| eval PNL_ART_ESS_C16C14=if(len(C16C14)==0, null, concat(",","PNL_ART_ESS_C16C14", "@#$", C16C14))
+| eval PNL_ART_ESS_C16C13=if(len(C16C13)==0, null, concat(",","PNL_ART_ESS_C16C13", "@#$", C16C13))
+| eval PNL_ART_ESS_C16C12=if(len(C16C12)==0, null, concat(",","PNL_ART_ESS_C16C12", "@#$", C16C12))
+| eval PNL_ART_ESS_C16C11=if(len(C16C11)==0, null, concat(",","PNL_ART_ESS_C16C11", "@#$", C16C11))
+| eval PNL_ART_ESS_C16C10=if(len(C16C10)==0, null, concat(",","PNL_ART_ESS_C16C10", "@#$", C16C10))
+| eval PNL_ART_ESS_C16C1=if(len(C16C1)==0, null, concat(",","PNL_ART_ESS_C16C1", "@#$", C16C1))
+| eval PNL_ART_ESS_C15C9=if(len(C15C9)==0, null, concat(",","PNL_ART_ESS_C15C9", "@#$", C15C9))
+| eval PNL_ART_ESS_C15C8=if(len(C15C8)==0, null, concat(",","PNL_ART_ESS_C15C8", "@#$", C15C8))
+| eval PNL_ART_ESS_C15C7=if(len(C15C7)==0, null, concat(",","PNL_ART_ESS_C15C7", "@#$", C15C7))
+| eval PNL_ART_ESS_C15C6=if(len(C15C6)==0, null, concat(",","PNL_ART_ESS_C15C6", "@#$", C15C6))
+| eval PNL_ART_ESS_C15C5=if(len(C15C5)==0, null, concat(",","PNL_ART_ESS_C15C5", "@#$", C15C5))
+| eval PNL_ART_ESS_C15C4=if(len(C15C4)==0, null, concat(",","PNL_ART_ESS_C15C4", "@#$", C15C4))
+| eval PNL_ART_ESS_C15C3=if(len(C15C3)==0, null, concat(",","PNL_ART_ESS_C15C3", "@#$", C15C3))
+| eval PNL_ART_ESS_C15C2=if(len(C15C2)==0, null, concat(",","PNL_ART_ESS_C15C2", "@#$", C15C2))
+| eval PNL_ART_ESS_C15C16=if(len(C15C16)==0, null, concat(",","PNL_ART_ESS_C15C16", "@#$", C15C16))
+| eval PNL_ART_ESS_C15C14=if(len(C15C14)==0, null, concat(",","PNL_ART_ESS_C15C14", "@#$", C15C14))
+| eval PNL_ART_ESS_C15C13=if(len(C15C13)==0, null, concat(",","PNL_ART_ESS_C15C13", "@#$", C15C13))
+| eval PNL_ART_ESS_C15C12=if(len(C15C12)==0, null, concat(",","PNL_ART_ESS_C15C12", "@#$", C15C12))
+| eval PNL_ART_ESS_C15C11=if(len(C15C11)==0, null, concat(",","PNL_ART_ESS_C15C11", "@#$", C15C11))
+| eval PNL_ART_ESS_C15C10=if(len(C15C10)==0, null, concat(",","PNL_ART_ESS_C15C10", "@#$", C15C10))
+| eval PNL_ART_ESS_C15C1=if(len(C15C1)==0, null, concat(",","PNL_ART_ESS_C15C1", "@#$", C15C1))
+| eval PNL_ART_ESS_C14C9=if(len(C14C9)==0, null, concat(",","PNL_ART_ESS_C14C9", "@#$", C14C9))
+| eval PNL_ART_ESS_C14C8=if(len(C14C8)==0, null, concat(",","PNL_ART_ESS_C14C8", "@#$", C14C8))
+| eval PNL_ART_ESS_C14C7=if(len(C14C7)==0, null, concat(",","PNL_ART_ESS_C14C7", "@#$", C14C7))
+| eval PNL_ART_ESS_C14C6=if(len(C14C6)==0, null, concat(",","PNL_ART_ESS_C14C6", "@#$", C14C6))
+| eval PNL_ART_ESS_C14C5=if(len(C14C5)==0, null, concat(",","PNL_ART_ESS_C14C5", "@#$", C14C5))
+| eval PNL_ART_ESS_C14C4=if(len(C14C4)==0, null, concat(",","PNL_ART_ESS_C14C4", "@#$", C14C4))
+| eval PNL_ART_ESS_C14C3=if(len(C14C3)==0, null, concat(",","PNL_ART_ESS_C14C3", "@#$", C14C3))
+| eval PNL_ART_ESS_C14C2=if(len(C14C2)==0, null, concat(",","PNL_ART_ESS_C14C2", "@#$", C14C2))
+| eval PNL_ART_ESS_C14C16=if(len(C14C16)==0, null, concat(",","PNL_ART_ESS_C14C16", "@#$", C14C16))
+| eval PNL_ART_ESS_C14C15=if(len(C14C15)==0, null, concat(",","PNL_ART_ESS_C14C15", "@#$", C14C15))
+| eval PNL_ART_ESS_C14C13=if(len(C14C13)==0, null, concat(",","PNL_ART_ESS_C14C13", "@#$", C14C13))
+| eval PNL_ART_ESS_C14C12=if(len(C14C12)==0, null, concat(",","PNL_ART_ESS_C14C12", "@#$", C14C12))
+| eval PNL_ART_ESS_C14C11=if(len(C14C11)==0, null, concat(",","PNL_ART_ESS_C14C11", "@#$", C14C11))
+| eval PNL_ART_ESS_C14C10=if(len(C14C10)==0, null, concat(",","PNL_ART_ESS_C14C10", "@#$", C14C10))
+| eval PNL_ART_ESS_C14C1=if(len(C14C1)==0, null, concat(",","PNL_ART_ESS_C14C1", "@#$", C14C1))
+| eval PNL_ART_ESS_C13C9=if(len(C13C9)==0, null, concat(",","PNL_ART_ESS_C13C9", "@#$", C13C9))
+| eval PNL_ART_ESS_C13C8=if(len(C13C8)==0, null, concat(",","PNL_ART_ESS_C13C8", "@#$", C13C8))
+| eval PNL_ART_ESS_C13C7=if(len(C13C7)==0, null, concat(",","PNL_ART_ESS_C13C7", "@#$", C13C7))
+| eval PNL_ART_ESS_C13C6=if(len(C13C6)==0, null, concat(",","PNL_ART_ESS_C13C6", "@#$", C13C6))
+| eval PNL_ART_ESS_C13C5=if(len(C13C5)==0, null, concat(",","PNL_ART_ESS_C13C5", "@#$", C13C5))
+| eval PNL_ART_ESS_C13C4=if(len(C13C4)==0, null, concat(",","PNL_ART_ESS_C13C4", "@#$", C13C4))
+| eval PNL_ART_ESS_C13C3=if(len(C13C3)==0, null, concat(",","PNL_ART_ESS_C13C3", "@#$", C13C3))
+| eval PNL_ART_ESS_C13C2=if(len(C13C2)==0, null, concat(",","PNL_ART_ESS_C13C2", "@#$", C13C2))
+| eval PNL_ART_ESS_C13C16=if(len(C13C16)==0, null, concat(",","PNL_ART_ESS_C13C16", "@#$", C13C16))
+| eval PNL_ART_ESS_C13C15=if(len(C13C15)==0, null, concat(",","PNL_ART_ESS_C13C15", "@#$", C13C15))
+| eval PNL_ART_ESS_C13C14=if(len(C13C14)==0, null, concat(",","PNL_ART_ESS_C13C14", "@#$", C13C14))
+| eval PNL_ART_ESS_C13C12=if(len(C13C12)==0, null, concat(",","PNL_ART_ESS_C13C12", "@#$", C13C12))
+| eval PNL_ART_ESS_C13C11=if(len(C13C11)==0, null, concat(",","PNL_ART_ESS_C13C11", "@#$", C13C11))
+| eval PNL_ART_ESS_C13C10=if(len(C13C10)==0, null, concat(",","PNL_ART_ESS_C13C10", "@#$", C13C10))
+| eval PNL_ART_ESS_C13C1=if(len(C13C1)==0, null, concat(",","PNL_ART_ESS_C13C1", "@#$", C13C1))
+| eval PNL_ART_ESS_C12C9=if(len(C12C9)==0, null, concat(",","PNL_ART_ESS_C12C9", "@#$", C12C9))
+| eval PNL_ART_ESS_C12C8=if(len(C12C8)==0, null, concat(",","PNL_ART_ESS_C12C8", "@#$", C12C8))
+| eval PNL_ART_ESS_C12C7=if(len(C12C7)==0, null, concat(",","PNL_ART_ESS_C12C7", "@#$", C12C7))
+| eval PNL_ART_ESS_C12C6=if(len(C12C6)==0, null, concat(",","PNL_ART_ESS_C12C6", "@#$", C12C6))
+| eval PNL_ART_ESS_C12C5=if(len(C12C5)==0, null, concat(",","PNL_ART_ESS_C12C5", "@#$", C12C5))
+| eval PNL_ART_ESS_C12C4=if(len(C12C4)==0, null, concat(",","PNL_ART_ESS_C12C4", "@#$", C12C4))
+| eval PNL_ART_ESS_C12C3=if(len(C12C3)==0, null, concat(",","PNL_ART_ESS_C12C3", "@#$", C12C3))
+| eval PNL_ART_ESS_C12C2=if(len(C12C2)==0, null, concat(",","PNL_ART_ESS_C12C2", "@#$", C12C2))
+| eval PNL_ART_ESS_C12C16=if(len(C12C16)==0, null, concat(",","PNL_ART_ESS_C12C16", "@#$", C12C16))
+| eval PNL_ART_ESS_C12C15=if(len(C12C15)==0, null, concat(",","PNL_ART_ESS_C12C15", "@#$", C12C15))
+| eval PNL_ART_ESS_C12C14=if(len(C12C14)==0, null, concat(",","PNL_ART_ESS_C12C14", "@#$", C12C14))
+| eval PNL_ART_ESS_C12C13=if(len(C12C13)==0, null, concat(",","PNL_ART_ESS_C12C13", "@#$", C12C13))
+| eval PNL_ART_ESS_C12C11=if(len(C12C11)==0, null, concat(",","PNL_ART_ESS_C12C11", "@#$", C12C11))
+| eval PNL_ART_ESS_C12C10=if(len(C12C10)==0, null, concat(",","PNL_ART_ESS_C12C10", "@#$", C12C10))
+| eval PNL_ART_ESS_C12C1=if(len(C12C1)==0, null, concat(",","PNL_ART_ESS_C12C1", "@#$", C12C1))
+| eval PNL_ART_ESS_C11C9=if(len(C11C9)==0, null, concat(",","PNL_ART_ESS_C11C9", "@#$", C11C9))
+| eval PNL_ART_ESS_C11C8=if(len(C11C8)==0, null, concat(",","PNL_ART_ESS_C11C8", "@#$", C11C8))
+| eval PNL_ART_ESS_C11C7=if(len(C11C7)==0, null, concat(",","PNL_ART_ESS_C11C7", "@#$", C11C7))
+| eval PNL_ART_ESS_C11C6=if(len(C11C6)==0, null, concat(",","PNL_ART_ESS_C11C6", "@#$", C11C6))
+| eval PNL_ART_ESS_C11C5=if(len(C11C5)==0, null, concat(",","PNL_ART_ESS_C11C5", "@#$", C11C5))
+| eval PNL_ART_ESS_C11C4=if(len(C11C4)==0, null, concat(",","PNL_ART_ESS_C11C4", "@#$", C11C4))
+| eval PNL_ART_ESS_C11C3=if(len(C11C3)==0, null, concat(",","PNL_ART_ESS_C11C3", "@#$", C11C3))
+| eval PNL_ART_ESS_C11C2=if(len(C11C2)==0, null, concat(",","PNL_ART_ESS_C11C2", "@#$", C11C2))
+| eval PNL_ART_ESS_C11C16=if(len(C11C16)==0, null, concat(",","PNL_ART_ESS_C11C16", "@#$", C11C16))
+| eval PNL_ART_ESS_C11C15=if(len(C11C15)==0, null, concat(",","PNL_ART_ESS_C11C15", "@#$", C11C15))
+| eval PNL_ART_ESS_C11C14=if(len(C11C14)==0, null, concat(",","PNL_ART_ESS_C11C14", "@#$", C11C14))
+| eval PNL_ART_ESS_C11C13=if(len(C11C13)==0, null, concat(",","PNL_ART_ESS_C11C13", "@#$", C11C13))
+| eval PNL_ART_ESS_C11C12=if(len(C11C12)==0, null, concat(",","PNL_ART_ESS_C11C12", "@#$", C11C12))
+| eval PNL_ART_ESS_C11C10=if(len(C11C10)==0, null, concat(",","PNL_ART_ESS_C11C10", "@#$", C11C10))
+| eval PNL_ART_ESS_C11C1=if(len(C11C1)==0, null, concat(",","PNL_ART_ESS_C11C1", "@#$", C11C1))
+| eval PNL_ART_ESS_C10C9=if(len(C10C9)==0, null, concat(",","PNL_ART_ESS_C10C9", "@#$", C10C9))
+| eval PNL_ART_ESS_C10C8=if(len(C10C8)==0, null, concat(",","PNL_ART_ESS_C10C8", "@#$", C10C8))
+| eval PNL_ART_ESS_C10C7=if(len(C10C7)==0, null, concat(",","PNL_ART_ESS_C10C7", "@#$", C10C7))
+| eval PNL_ART_ESS_C10C6=if(len(C10C6)==0, null, concat(",","PNL_ART_ESS_C10C6", "@#$", C10C6))
+| eval PNL_ART_ESS_C10C5=if(len(C10C5)==0, null, concat(",","PNL_ART_ESS_C10C5", "@#$", C10C5))
+| eval PNL_ART_ESS_C10C4=if(len(C10C4)==0, null, concat(",","PNL_ART_ESS_C10C4", "@#$", C10C4))
+| eval PNL_ART_ESS_C10C3=if(len(C10C3)==0, null, concat(",","PNL_ART_ESS_C10C3", "@#$", C10C3))
+| eval PNL_ART_ESS_C10C2=if(len(C10C2)==0, null, concat(",","PNL_ART_ESS_C10C2", "@#$", C10C2))
+| eval PNL_ART_ESS_C10C16=if(len(C10C16)==0, null, concat(",","PNL_ART_ESS_C10C16", "@#$", C10C16))
+| eval PNL_ART_ESS_C10C15=if(len(C10C15)==0, null, concat(",","PNL_ART_ESS_C10C15", "@#$", C10C15))
+| eval PNL_ART_ESS_C10C14=if(len(C10C14)==0, null, concat(",","PNL_ART_ESS_C10C14", "@#$", C10C14))
+| eval PNL_ART_ESS_C10C13=if(len(C10C13)==0, null, concat(",","PNL_ART_ESS_C10C13", "@#$", C10C13))
+| eval PNL_ART_ESS_C10C12=if(len(C10C12)==0, null, concat(",","PNL_ART_ESS_C10C12", "@#$", C10C12))
+| eval PNL_ART_ESS_C10C11=if(len(C10C11)==0, null, concat(",","PNL_ART_ESS_C10C11", "@#$", C10C11))
+| eval PNL_ART_ESS_C10C1=if(len(C10C1)==0, null, concat(",","PNL_ART_ESS_C10C1", "@#$", C10C1))
+| fields
+- C9C8
+,C9C7
+,C9C6
+,C9C5
+,C9C4
+,C9C3
+,C9C2
+,C9C16
+,C9C15
+,C9C14
+,C9C13
+,C9C12
+,C9C11
+,C9C10
+,C9C1
+,C8C9
+,C8C7
+,C8C6
+,C8C5
+,C8C4
+,C8C3
+,C8C2
+,C8C16
+,C8C15
+,C8C14
+,C8C13
+,C8C12
+,C8C11
+,C8C10
+,C8C1
+,C7C9
+,C7C8
+,C7C6
+,C7C5
+,C7C4
+,C7C3
+,C7C2
+,C7C16
+,C7C15
+,C7C14
+,C7C13
+,C7C12
+,C7C11
+,C7C10
+,C7C1
+,C6C9
+,C6C8
+,C6C7
+,C6C5
+,C6C4
+,C6C3
+,C6C2
+,C6C16
+,C6C15
+,C6C14
+,C6C13
+,C6C12
+,C6C11
+,C6C10
+,C6C1
+,C5C9
+,C5C8
+,C5C7
+,C5C6
+,C5C4
+,C5C3
+,C5C2
+,C5C16
+,C5C15
+,C5C14
+,C5C13
+,C5C12
+,C5C11
+,C5C10
+,C5C1
+,C4C9
+,C4C8
+,C4C7
+,C4C6
+,C4C5
+,C4C3
+,C4C2
+,C4C16
+,C4C15
+,C4C14
+,C4C13
+,C4C12
+,C4C11
+,C4C10
+,C4C1
+,C3C9
+,C3C8
+,C3C7
+,C3C6
+,C3C5
+,C3C4
+,C3C2
+,C3C16
+,C3C15
+,C3C14
+,C3C13
+,C3C12
+,C3C11
+,C3C10
+,C3C1
+,C2C9
+,C2C8
+,C2C7
+,C2C6
+,C2C5
+,C2C4
+,C2C3
+,C2C16
+,C2C15
+,C2C14
+,C2C13
+,C2C12
+,C2C11
+,C2C10
+,C2C1
+,C1C9
+,C1C8
+,C1C7
+,C1C6
+,C1C5
+,C1C4
+,C1C3
+,C1C2
+,C1C16
+,C1C15
+,C1C14
+,C1C13
+,C1C12
+,C1C11
+,C1C10
+,C16C9
+,C16C8
+,C16C7
+,C16C6
+,C16C5
+,C16C4
+,C16C3
+,C16C2
+,C16C15
+,C16C14
+,C16C13
+,C16C12
+,C16C11
+,C16C10
+,C16C1
+,C15C9
+,C15C8
+,C15C7
+,C15C6
+,C15C5
+,C15C4
+,C15C3
+,C15C2
+,C15C16
+,C15C14
+,C15C13
+,C15C12
+,C15C11
+,C15C10
+,C15C1
+,C14C9
+,C14C8
+,C14C7
+,C14C6
+,C14C5
+,C14C4
+,C14C3
+,C14C2
+,C14C16
+,C14C15
+,C14C13
+,C14C12
+,C14C11
+,C14C10
+,C14C1
+,C13C9
+,C13C8
+,C13C7
+,C13C6
+,C13C5
+,C13C4
+,C13C3
+,C13C2
+,C13C16
+,C13C15
+,C13C14
+,C13C12
+,C13C11
+,C13C10
+,C13C1
+,C12C9
+,C12C8
+,C12C7
+,C12C6
+,C12C5
+,C12C4
+,C12C3
+,C12C2
+,C12C16
+,C12C15
+,C12C14
+,C12C13
+,C12C11
+,C12C10
+,C12C1
+,C11C9
+,C11C8
+,C11C7
+,C11C6
+,C11C5
+,C11C4
+,C11C3
+,C11C2
+,C11C16
+,C11C15
+,C11C14
+,C11C13
+,C11C12
+,C11C10
+,C11C1
+,C10C9
+,C10C8
+,C10C7
+,C10C6
+,C10C5
+,C10C4
+,C10C3
+,C10C2
+,C10C16
+,C10C15
+,C10C14
+,C10C13
+,C10C12
+,C10C11
+,C10C1
+
+| eval PNL_ART_ESS_CURRENT=if(len(CURRENT)==0, null, concat(",","PNL_ART_ESS_CURRENT", "@#$", CURRENT))
+| fields - CURRENT
+
+| parsemap overlay=t field=ADR
+| fields - ADR
+| parsemap overlay=t field=TYPE_SUCCESS
+| fields - TYPE_SUCCESS
+| eval PNL_ADR_TYPE_SUCCESS_G0_QTY=if(len(G0)==0, null, concat(",","PNL_ADR_TYPE_SUCCESS_G0_QTY", "@#$", G0))
+| eval PNL_ADR_TYPE_SUCCESS_F0_QTY=if(len(F0)==0, null, concat(",","PNL_ADR_TYPE_SUCCESS_F0_QTY", "@#$", F0))
+| eval PNL_ADR_TYPE_SUCCESS_E0_QTY=if(len(E0)==0, null, concat(",","PNL_ADR_TYPE_SUCCESS_E0_QTY", "@#$", E0))
+| eval PNL_ADR_TYPE_SUCCESS_D1_QTY=if(len(D1)==0, null, concat(",","PNL_ADR_TYPE_SUCCESS_D1_QTY", "@#$", D1))
+| eval PNL_ADR_TYPE_SUCCESS_D0_QTY=if(len(D0)==0, null, concat(",","PNL_ADR_TYPE_SUCCESS_D0_QTY", "@#$", D0))
+| eval PNL_ADR_TYPE_SUCCESS_C1_QTY=if(len(C1)==0, null, concat(",","PNL_ADR_TYPE_SUCCESS_C1_QTY", "@#$", C1))
+| eval PNL_ADR_TYPE_SUCCESS_C0_QTY=if(len(C0)==0, null, concat(",","PNL_ADR_TYPE_SUCCESS_C0_QTY", "@#$", C0))
+| eval PNL_ADR_TYPE_SUCCESS_B1_QTY=if(len(B1)==0, null, concat(",","PNL_ADR_TYPE_SUCCESS_B1_QTY", "@#$", B1))
+| eval PNL_ADR_TYPE_SUCCESS_B0_QTY=if(len(B0)==0, null, concat(",","PNL_ADR_TYPE_SUCCESS_B0_QTY", "@#$", B0))
+| eval PNL_ADR_TYPE_SUCCESS_A1_QTY=if(len(A1)==0, null, concat(",","PNL_ADR_TYPE_SUCCESS_A1_QTY", "@#$", A1))
+| eval PNL_ADR_TYPE_SUCCESS_A0_QTY=if(len(A0)==0, null, concat(",","PNL_ADR_TYPE_SUCCESS_A0_QTY", "@#$", A0))
+| fields
+- G0
+,F0
+,E0
+,D1
+,D0
+,C1
+,C0
+,B1
+,B0
+,A1
+,A0
+
+| parsemap overlay=t field=TYPE
+| fields - TYPE
+| eval PNL_ADR_TYPE_G0_QTY=if(len(G0)==0, null, concat(",","PNL_ADR_TYPE_G0_QTY", "@#$", G0))
+| eval PNL_ADR_TYPE_F0_QTY=if(len(F0)==0, null, concat(",","PNL_ADR_TYPE_F0_QTY", "@#$", F0))
+| eval PNL_ADR_TYPE_E0_QTY=if(len(E0)==0, null, concat(",","PNL_ADR_TYPE_E0_QTY", "@#$", E0))
+| eval PNL_ADR_TYPE_D1_QTY=if(len(D1)==0, null, concat(",","PNL_ADR_TYPE_D1_QTY", "@#$", D1))
+| eval PNL_ADR_TYPE_D0_QTY=if(len(D0)==0, null, concat(",","PNL_ADR_TYPE_D0_QTY", "@#$", D0))
+| eval PNL_ADR_TYPE_C1_QTY=if(len(C1)==0, null, concat(",","PNL_ADR_TYPE_C1_QTY", "@#$", C1))
+| eval PNL_ADR_TYPE_C0_QTY=if(len(C0)==0, null, concat(",","PNL_ADR_TYPE_C0_QTY", "@#$", C0))
+| eval PNL_ADR_TYPE_B1_QTY=if(len(B1)==0, null, concat(",","PNL_ADR_TYPE_B1_QTY", "@#$", B1))
+| eval PNL_ADR_TYPE_B0_QTY=if(len(B0)==0, null, concat(",","PNL_ADR_TYPE_B0_QTY", "@#$", B0))
+| eval PNL_ADR_TYPE_A1_QTY=if(len(A1)==0, null, concat(",","PNL_ADR_TYPE_A1_QTY", "@#$", A1))
+| eval PNL_ADR_TYPE_A0_QTY=if(len(A0)==0, null, concat(",","PNL_ADR_TYPE_A0_QTY", "@#$", A0))
+| fields
+- G0
+,F0
+,E0
+,D1
+,D0
+,C1
+,C0
+,B1
+,B0
+,A1
+,A0
+
+| parsemap overlay=t field=DEFECT_DATA
+| fields - DEFECT_DATA
+| eval PNL_ADR_DEF_DATA_RPC2_U_PATH_NG_QTY=if(len(RPC2_U_PATH_NG)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC2_U_PATH_NG_QTY", "@#$", RPC2_U_PATH_NG))
+| eval PNL_ADR_DEF_DATA_RPC2_U_NOPATH_QTY=if(len(RPC2_U_NOPATH)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC2_U_NOPATH_QTY", "@#$", RPC2_U_NOPATH))
+| eval PNL_ADR_DEF_DATA_RPC2_U_9_TO_QTY=if(len(RPC2_U_9_TO)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC2_U_9_TO_QTY", "@#$", RPC2_U_9_TO))
+| eval PNL_ADR_DEF_DATA_RPC2_U_1_TO_QTY=if(len(RPC2_U_1_TO)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC2_U_1_TO_QTY", "@#$", RPC2_U_1_TO))
+| eval PNL_ADR_DEF_DATA_RPC2_U_QTY=if(len(RPC2_U)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC2_U_QTY", "@#$", RPC2_U))
+| eval PNL_ADR_DEF_DATA_RPC2_SKIP_QTY=if(len(RPC2_SKIP)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC2_SKIP_QTY", "@#$", RPC2_SKIP))
+| eval PNL_ADR_DEF_DATA_RPC2_N_QTY=if(len(RPC2_N)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC2_N_QTY", "@#$", RPC2_N))
+| eval PNL_ADR_DEF_DATA_RPC2_G_QTY=if(len(RPC2_G)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC2_G_QTY", "@#$", RPC2_G))
+| eval PNL_ADR_DEF_DATA_RPC2_C_QTY=if(len(RPC2_C)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC2_C_QTY", "@#$", RPC2_C))
+| eval PNL_ADR_DEF_DATA_RPC1_V_QTY=if(len(RPC1_V)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_V_QTY", "@#$", RPC1_V))
+| eval PNL_ADR_DEF_DATA_RPC1_U_QTY=if(len(RPC1_U)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_U_QTY", "@#$", RPC1_U))
+| eval PNL_ADR_DEF_DATA_RPC1_T_QTY=if(len(RPC1_T)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_T_QTY", "@#$", RPC1_T))
+| eval PNL_ADR_DEF_DATA_RPC1_S_QTY=if(len(RPC1_S)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_S_QTY", "@#$", RPC1_S))
+| eval PNL_ADR_DEF_DATA_RPC1_R_QTY=if(len(RPC1_R)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_R_QTY", "@#$", RPC1_R))
+| eval PNL_ADR_DEF_DATA_RPC1_Q_QTY=if(len(RPC1_Q)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_Q_QTY", "@#$", RPC1_Q))
+| eval PNL_ADR_DEF_DATA_RPC1_P_QTY=if(len(RPC1_P)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_P_QTY", "@#$", RPC1_P))
+| eval PNL_ADR_DEF_DATA_RPC1_N_QTY=if(len(RPC1_N)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_N_QTY", "@#$", RPC1_N))
+| eval PNL_ADR_DEF_DATA_RPC1_L_QTY=if(len(RPC1_L)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_L_QTY", "@#$", RPC1_L))
+| eval PNL_ADR_DEF_DATA_RPC1_G_QTY=if(len(RPC1_G)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_G_QTY", "@#$", RPC1_G))
+| eval PNL_ADR_DEF_DATA_RPC1_C_QTY=if(len(RPC1_C)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_C_QTY", "@#$", RPC1_C))
+| eval PNL_ADR_DEF_DATA_RPC1_B_QTY=if(len(RPC1_B)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_B_QTY", "@#$", RPC1_B))
+| eval PNL_ADR_DEF_DATA_RPC1_A_QTY=if(len(RPC1_A)==0, null, concat(",","PNL_ADR_DEF_DATA_RPC1_A_QTY", "@#$", RPC1_A))
+| fields
+- RPC2_U_PATH_NG
+,RPC2_U_NOPATH
+,RPC2_U_9_TO
+,RPC2_U_1_TO
+,RPC2_U
+,RPC2_SKIP
+,RPC2_N
+,RPC2_G
+,RPC2_C
+,RPC1_V
+,RPC1_U
+,RPC1_T
+,RPC1_S
+,RPC1_R
+,RPC1_Q
+,RPC1_P
+,RPC1_N
+,RPC1_L
+,RPC1_G
+,RPC1_C
+,RPC1_B
+,RPC1_A
+
+| eval PNL_ADR_AUTO_JUDGE_CHECK=if(len(AUTO_JUDGE_CHECK)==0, null, concat(",","PNL_ADR_AUTO_JUDGE_CHECK", "@#$", AUTO_JUDGE_CHECK))
+| fields - AUTO_JUDGE_CHECK
+
+| rename ADJJJ as ADJ
+| parsemap overlay=t field=ADJ
+| fields - ADJ
+| parsemap overlay=t field=DEFECT_DATA
+| fields - DEFECT_DATA
+| eval PNL_ADJ_DEF_DATA_CAPTURE_MODE_4=if(len(CAPTURE_MODE_4)==0, null, concat(",","PNL_ADJ_DEF_DATA_CAPTURE_MODE_4", "@#$", CAPTURE_MODE_4))
+| eval PNL_ADJ_DEF_DATA_CAPTURE_MODE_3=if(len(CAPTURE_MODE_3)==0, null, concat(",","PNL_ADJ_DEF_DATA_CAPTURE_MODE_3", "@#$", CAPTURE_MODE_3))
+| eval PNL_ADJ_DEF_DATA_CAPTURE_MODE_2=if(len(CAPTURE_MODE_2)==0, null, concat(",","PNL_ADJ_DEF_DATA_CAPTURE_MODE_2", "@#$", CAPTURE_MODE_2))
+| eval PNL_ADJ_DEF_DATA_CAPTURE_MODE_1=if(len(CAPTURE_MODE_1)==0, null, concat(",","PNL_ADJ_DEF_DATA_CAPTURE_MODE_1", "@#$", CAPTURE_MODE_1))
+| eval PNL_ADJ_DEF_DATA_ADJ_V=if(len(ADJ_V)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_V", "@#$", ADJ_V))
+| eval PNL_ADJ_DEF_DATA_ADJ_U=if(len(ADJ_U)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_U", "@#$", ADJ_U))
+| eval PNL_ADJ_DEF_DATA_ADJ_TOTAL_DEF=if(len(ADJ_TOTAL_DEF)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_TOTAL_DEF", "@#$", ADJ_TOTAL_DEF))
+| eval PNL_ADJ_DEF_DATA_ADJ_TIMEOUT=if(len(ADJ_TIMEOUT)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_TIMEOUT", "@#$", ADJ_TIMEOUT))
+| eval PNL_ADJ_DEF_DATA_ADJ_T=if(len(ADJ_T)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_T", "@#$", ADJ_T))
+| eval PNL_ADJ_DEF_DATA_ADJ_SKIP=if(len(ADJ_SKIP)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_SKIP", "@#$", ADJ_SKIP))
+| eval PNL_ADJ_DEF_DATA_ADJ_S=if(len(ADJ_S)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_S", "@#$", ADJ_S))
+| eval PNL_ADJ_DEF_DATA_ADJ_ROTATION=if(len(ADJ_ROTATION)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_ROTATION", "@#$", ADJ_ROTATION))
+| eval PNL_ADJ_DEF_DATA_ADJ_R=if(len(ADJ_R)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_R", "@#$", ADJ_R))
+| eval PNL_ADJ_DEF_DATA_ADJ_Q=if(len(ADJ_Q)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_Q", "@#$", ADJ_Q))
+| eval PNL_ADJ_DEF_DATA_ADJ_PTN_FD=if(len(ADJ_PTN_FD)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PTN_FD", "@#$", ADJ_PTN_FD))
+| eval PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OVERKILL_R=if(len(ADJ_PTNMNT_OVERKILL_R)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OVERKILL_R", "@#$", ADJ_PTNMNT_OVERKILL_R))
+| eval PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OVERKILL_M=if(len(ADJ_PTNMNT_OVERKILL_M)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OVERKILL_M", "@#$", ADJ_PTNMNT_OVERKILL_M))
+| eval PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_G=if(len(ADJ_PTNMNT_OK_G)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_G", "@#$", ADJ_PTNMNT_OK_G))
+| eval PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_ETC=if(len(ADJ_PTNMNT_OK_ETC)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_ETC", "@#$", ADJ_PTNMNT_OK_ETC))
+| eval PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_B=if(len(ADJ_PTNMNT_OK_B)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_B", "@#$", ADJ_PTNMNT_OK_B))
+| eval PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_A=if(len(ADJ_PTNMNT_OK_A)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_A", "@#$", ADJ_PTNMNT_OK_A))
+| eval PNL_ADJ_DEF_DATA_ADJ_PTNMNT_LEAKAGE=if(len(ADJ_PTNMNT_LEAKAGE)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PTNMNT_LEAKAGE", "@#$", ADJ_PTNMNT_LEAKAGE))
+| eval PNL_ADJ_DEF_DATA_ADJ_PTNMNT_HOLD=if(len(ADJ_PTNMNT_HOLD)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PTNMNT_HOLD", "@#$", ADJ_PTNMNT_HOLD))
+| eval PNL_ADJ_DEF_DATA_ADJ_PTNMNT_ETC=if(len(ADJ_PTNMNT_ETC)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PTNMNT_ETC", "@#$", ADJ_PTNMNT_ETC))
+| eval PNL_ADJ_DEF_DATA_ADJ_PTNMNT_DEF=if(len(ADJ_PTNMNT_DEF)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PTNMNT_DEF", "@#$", ADJ_PTNMNT_DEF))
+| eval PNL_ADJ_DEF_DATA_ADJ_PAD=if(len(ADJ_PAD)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_PAD", "@#$", ADJ_PAD))
+| eval PNL_ADJ_DEF_DATA_ADJ_P=if(len(ADJ_P)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_P", "@#$", ADJ_P))
+| eval PNL_ADJ_DEF_DATA_ADJ_OVERKILL=if(len(ADJ_OVERKILL)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_OVERKILL", "@#$", ADJ_OVERKILL))
+| eval PNL_ADJ_DEF_DATA_ADJ_OK=if(len(ADJ_OK)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_OK", "@#$", ADJ_OK))
+| eval PNL_ADJ_DEF_DATA_ADJ_NULL=if(len(ADJ_NULL)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_NULL", "@#$", ADJ_NULL))
+| eval PNL_ADJ_DEF_DATA_ADJ_N=if(len(ADJ_N)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_N", "@#$", ADJ_N))
+| eval PNL_ADJ_DEF_DATA_ADJ_MODE=if(len(ADJ_MODE)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_MODE", "@#$", ADJ_MODE))
+| eval PNL_ADJ_DEF_DATA_ADJ_LOS_FD=if(len(ADJ_LOS_FD)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_LOS_FD", "@#$", ADJ_LOS_FD))
+| eval PNL_ADJ_DEF_DATA_ADJ_LEAKAGE=if(len(ADJ_LEAKAGE)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_LEAKAGE", "@#$", ADJ_LEAKAGE))
+| eval PNL_ADJ_DEF_DATA_ADJ_L=if(len(ADJ_L)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_L", "@#$", ADJ_L))
+| eval PNL_ADJ_DEF_DATA_ADJ_HOLD_A2=if(len(ADJ_HOLD_A2)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_HOLD_A2", "@#$", ADJ_HOLD_A2))
+| eval PNL_ADJ_DEF_DATA_ADJ_HOLD_A1=if(len(ADJ_HOLD_A1)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_HOLD_A1", "@#$", ADJ_HOLD_A1))
+| eval PNL_ADJ_DEF_DATA_ADJ_HOLD_A=if(len(ADJ_HOLD_A)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_HOLD_A", "@#$", ADJ_HOLD_A))
+| eval PNL_ADJ_DEF_DATA_ADJ_HOLD=if(len(ADJ_HOLD)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_HOLD", "@#$", ADJ_HOLD))
+| eval PNL_ADJ_DEF_DATA_ADJ_G=if(len(ADJ_G)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_G", "@#$", ADJ_G))
+| eval PNL_ADJ_DEF_DATA_ADJ_FOCUS_INDEX=if(len(ADJ_FOCUS_INDEX)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_FOCUS_INDEX", "@#$", ADJ_FOCUS_INDEX))
+| eval PNL_ADJ_DEF_DATA_ADJ_ETC=if(len(ADJ_ETC)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_ETC", "@#$", ADJ_ETC))
+| eval PNL_ADJ_DEF_DATA_ADJ_DETECT_OVERKILL_R=if(len(ADJ_DETECT_OVERKILL_R)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_DETECT_OVERKILL_R", "@#$", ADJ_DETECT_OVERKILL_R))
+| eval PNL_ADJ_DEF_DATA_ADJ_DETECT_OVERKILL_M=if(len(ADJ_DETECT_OVERKILL_M)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_DETECT_OVERKILL_M", "@#$", ADJ_DETECT_OVERKILL_M))
+| eval PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_G=if(len(ADJ_DETECT_OK_G)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_G", "@#$", ADJ_DETECT_OK_G))
+| eval PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_ETC=if(len(ADJ_DETECT_OK_ETC)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_ETC", "@#$", ADJ_DETECT_OK_ETC))
+| eval PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_B=if(len(ADJ_DETECT_OK_B)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_B", "@#$", ADJ_DETECT_OK_B))
+| eval PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_A=if(len(ADJ_DETECT_OK_A)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_A", "@#$", ADJ_DETECT_OK_A))
+| eval PNL_ADJ_DEF_DATA_ADJ_DETECT_LEAKAGE=if(len(ADJ_DETECT_LEAKAGE)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_DETECT_LEAKAGE", "@#$", ADJ_DETECT_LEAKAGE))
+| eval PNL_ADJ_DEF_DATA_ADJ_DETECT_HOLD=if(len(ADJ_DETECT_HOLD)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_DETECT_HOLD", "@#$", ADJ_DETECT_HOLD))
+| eval PNL_ADJ_DEF_DATA_ADJ_DETECT_ETC=if(len(ADJ_DETECT_ETC)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_DETECT_ETC", "@#$", ADJ_DETECT_ETC))
+| eval PNL_ADJ_DEF_DATA_ADJ_DETECT_DEF=if(len(ADJ_DETECT_DEF)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_DETECT_DEF", "@#$", ADJ_DETECT_DEF))
+| eval PNL_ADJ_DEF_DATA_ADJ_CAPTURE=if(len(ADJ_CAPTURE)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_CAPTURE", "@#$", ADJ_CAPTURE))
+| eval PNL_ADJ_DEF_DATA_ADJ_C=if(len(ADJ_C)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_C", "@#$", ADJ_C))
+| eval PNL_ADJ_DEF_DATA_ADJ_B=if(len(ADJ_B)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_B", "@#$", ADJ_B))
+| eval PNL_ADJ_DEF_DATA_ADJ_ART_FD=if(len(ADJ_ART_FD)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_ART_FD", "@#$", ADJ_ART_FD))
+| eval PNL_ADJ_DEF_DATA_ADJ_A=if(len(ADJ_A)==0, null, concat(",","PNL_ADJ_DEF_DATA_ADJ_A", "@#$", ADJ_A))
+| fields
+- CAPTURE_MODE_4
+,CAPTURE_MODE_3
+,CAPTURE_MODE_2
+,CAPTURE_MODE_1
+,ADJ_V
+,ADJ_U
+,ADJ_TOTAL_DEF
+,ADJ_TIMEOUT
+,ADJ_T
+,ADJ_SKIP
+,ADJ_S
+,ADJ_ROTATION
+,ADJ_R
+,ADJ_Q
+,ADJ_PTN_FD
+,ADJ_PTNMNT_OVERKILL_R
+,ADJ_PTNMNT_OVERKILL_M
+,ADJ_PTNMNT_OK_G
+,ADJ_PTNMNT_OK_ETC
+,ADJ_PTNMNT_OK_B
+,ADJ_PTNMNT_OK_A
+,ADJ_PTNMNT_LEAKAGE
+,ADJ_PTNMNT_HOLD
+,ADJ_PTNMNT_ETC
+,ADJ_PTNMNT_DEF
+,ADJ_PAD
+,ADJ_P
+,ADJ_OVERKILL
+,ADJ_OK
+,ADJ_NULL
+,ADJ_N
+,ADJ_MODE
+,ADJ_LOS_FD
+,ADJ_LEAKAGE
+,ADJ_L
+,ADJ_HOLD_A2
+,ADJ_HOLD_A1
+,ADJ_HOLD_A
+,ADJ_HOLD
+,ADJ_G
+,ADJ_FOCUS_INDEX
+,ADJ_ETC
+,ADJ_DETECT_OVERKILL_R
+,ADJ_DETECT_OVERKILL_M
+,ADJ_DETECT_OK_G
+,ADJ_DETECT_OK_ETC
+,ADJ_DETECT_OK_B
+,ADJ_DETECT_OK_A
+,ADJ_DETECT_LEAKAGE
+,ADJ_DETECT_HOLD
+,ADJ_DETECT_ETC
+,ADJ_DETECT_DEF
+,ADJ_CAPTURE
+,ADJ_C
+,ADJ_B
+,ADJ_ART_FD
+,ADJ_A
+
+
+|# ########################################################################################################
+
+
+result 1420
+| eval exp=concat(
+KEY_ID
+,PNL_JUDGE
+,PNL_REV_OP_IP_THIRD
+,PNL_REV_OP_IP_SECOND
+,PNL_REV_OP_IP_FOURTH
+,PNL_REV_OP_IP_FIRST
+,PNL_REV_OP_IP_FIFTH
+,PNL_REP_PR_REPAIR_SUCCESS_QTY
+,PNL_REP_LASER_UV_CNT_SUCCESS_QTY
+,PNL_REP_LASER_IR_CNT_SUCCESS_QTY
+,PNL_REP_LASER_DUV_CNT_SUCCESS_QTY
+,PNL_REP_CVD_SUCCESS_QTY
+,PNL_REP_CRP_PAS_SUCCESS_QTY
+,PNL_REP_AUTO_LASER_SUCCESS_QTY
+,PNL_REP_AUTO_CVD_SUCCESS_QTY
+,PNL_REP_RPC1_REV_PNT_QTY
+,PNL_REP_PR_REP_PNT_QTY
+,PNL_REP_MPC_REV_PNT_QTY
+,PNL_REP_LASER_UV_CNT_PNT_QTY
+,PNL_REP_LASER_IR_CNT_PNT_QTY
+,PNL_REP_LASER_DUV_CNT_PNT_QTY
+,PNL_REP_CRP_PAS_PNT_QTY
+,PNL_REP_AUTO_LASER_PNT_QTY
+,PNL_REP_AUTO_CVD_PNT_QTY
+,PNL_MURA_INFO_MURA_Y
+,PNL_MURA_INFO_MURA_X
+,PNL_REP_REASON
+,PNL_REP_JUDGE
+,PNL_QPC_REASON
+,PNL_QPC_JUDGE
+,PNL_PTN_REASON
+,PNL_PTN_JUDGE
+,PNL_MMA_REASON
+,PNL_MMA_JUDGE
+,PNL_LOS_REASON
+,PNL_LOS_JUDGE
+,PNL_GDS_REASON
+,PNL_GDS_JUDGE
+,PNL_CRP_REASON
+,PNL_CRP_JUDGE
+,PNL_BPN_REASON
+,PNL_BPN_JUDGE
+,PNL_ART_C_REASON
+,PNL_ART_C_JUDGE
+,PNL_ART_REASON
+,PNL_ART_JUDGE
+,PNL_AMA_REASON
+,PNL_AMA_JUDGE
+,PNL_GDS_SH_MEAS_CH_C9C16
+,PNL_GDS_SH_MEAS_CH_C9C15
+,PNL_GDS_SH_MEAS_CH_C9C14
+,PNL_GDS_SH_MEAS_CH_C9C13
+,PNL_GDS_SH_MEAS_CH_C9C12
+,PNL_GDS_SH_MEAS_CH_C9C11
+,PNL_GDS_SH_MEAS_CH_C9C10
+,PNL_GDS_SH_MEAS_CH_C8C9
+,PNL_GDS_SH_MEAS_CH_C8C16
+,PNL_GDS_SH_MEAS_CH_C8C15
+,PNL_GDS_SH_MEAS_CH_C8C14
+,PNL_GDS_SH_MEAS_CH_C8C13
+,PNL_GDS_SH_MEAS_CH_C8C12
+,PNL_GDS_SH_MEAS_CH_C8C11
+,PNL_GDS_SH_MEAS_CH_C8C10
+,PNL_GDS_SH_MEAS_CH_C7C9
+,PNL_GDS_SH_MEAS_CH_C7C8
+,PNL_GDS_SH_MEAS_CH_C7C16
+,PNL_GDS_SH_MEAS_CH_C7C15
+,PNL_GDS_SH_MEAS_CH_C7C14
+,PNL_GDS_SH_MEAS_CH_C7C13
+,PNL_GDS_SH_MEAS_CH_C7C12
+,PNL_GDS_SH_MEAS_CH_C7C11
+,PNL_GDS_SH_MEAS_CH_C7C10
+,PNL_GDS_SH_MEAS_CH_C6C9
+,PNL_GDS_SH_MEAS_CH_C6C8
+,PNL_GDS_SH_MEAS_CH_C6C7
+,PNL_GDS_SH_MEAS_CH_C6C16
+,PNL_GDS_SH_MEAS_CH_C6C15
+,PNL_GDS_SH_MEAS_CH_C6C14
+,PNL_GDS_SH_MEAS_CH_C6C13
+,PNL_GDS_SH_MEAS_CH_C6C12
+,PNL_GDS_SH_MEAS_CH_C6C11
+,PNL_GDS_SH_MEAS_CH_C6C10
+,PNL_GDS_SH_MEAS_CH_C5C9
+,PNL_GDS_SH_MEAS_CH_C5C8
+,PNL_GDS_SH_MEAS_CH_C5C7
+,PNL_GDS_SH_MEAS_CH_C5C6
+,PNL_GDS_SH_MEAS_CH_C5C16
+,PNL_GDS_SH_MEAS_CH_C5C15
+,PNL_GDS_SH_MEAS_CH_C5C14
+,PNL_GDS_SH_MEAS_CH_C5C13
+,PNL_GDS_SH_MEAS_CH_C5C12
+,PNL_GDS_SH_MEAS_CH_C5C11
+,PNL_GDS_SH_MEAS_CH_C5C10
+,PNL_GDS_SH_MEAS_CH_C4C9
+,PNL_GDS_SH_MEAS_CH_C4C8
+,PNL_GDS_SH_MEAS_CH_C4C7
+,PNL_GDS_SH_MEAS_CH_C4C6
+,PNL_GDS_SH_MEAS_CH_C4C5
+,PNL_GDS_SH_MEAS_CH_C4C16
+,PNL_GDS_SH_MEAS_CH_C4C15
+,PNL_GDS_SH_MEAS_CH_C4C14
+,PNL_GDS_SH_MEAS_CH_C4C13
+,PNL_GDS_SH_MEAS_CH_C4C12
+,PNL_GDS_SH_MEAS_CH_C4C11
+,PNL_GDS_SH_MEAS_CH_C4C10
+,PNL_GDS_SH_MEAS_CH_C3C9
+,PNL_GDS_SH_MEAS_CH_C3C8
+,PNL_GDS_SH_MEAS_CH_C3C7
+,PNL_GDS_SH_MEAS_CH_C3C6
+,PNL_GDS_SH_MEAS_CH_C3C5
+,PNL_GDS_SH_MEAS_CH_C3C4
+,PNL_GDS_SH_MEAS_CH_C3C16
+,PNL_GDS_SH_MEAS_CH_C3C15
+,PNL_GDS_SH_MEAS_CH_C3C14
+,PNL_GDS_SH_MEAS_CH_C3C13
+,PNL_GDS_SH_MEAS_CH_C3C12
+,PNL_GDS_SH_MEAS_CH_C3C11
+,PNL_GDS_SH_MEAS_CH_C3C10
+,PNL_GDS_SH_MEAS_CH_C2C9
+,PNL_GDS_SH_MEAS_CH_C2C8
+,PNL_GDS_SH_MEAS_CH_C2C7
+,PNL_GDS_SH_MEAS_CH_C2C6
+,PNL_GDS_SH_MEAS_CH_C2C5
+,PNL_GDS_SH_MEAS_CH_C2C4
+,PNL_GDS_SH_MEAS_CH_C2C3
+,PNL_GDS_SH_MEAS_CH_C2C16
+,PNL_GDS_SH_MEAS_CH_C2C15
+,PNL_GDS_SH_MEAS_CH_C2C14
+,PNL_GDS_SH_MEAS_CH_C2C13
+,PNL_GDS_SH_MEAS_CH_C2C12
+,PNL_GDS_SH_MEAS_CH_C2C11
+,PNL_GDS_SH_MEAS_CH_C2C10
+,PNL_GDS_SH_MEAS_CH_C1C9
+,PNL_GDS_SH_MEAS_CH_C1C8
+,PNL_GDS_SH_MEAS_CH_C1C7
+,PNL_GDS_SH_MEAS_CH_C1C6
+,PNL_GDS_SH_MEAS_CH_C1C5
+,PNL_GDS_SH_MEAS_CH_C1C4
+,PNL_GDS_SH_MEAS_CH_C1C3
+,PNL_GDS_SH_MEAS_CH_C1C2
+,PNL_GDS_SH_MEAS_CH_C1C16
+,PNL_GDS_SH_MEAS_CH_C1C15
+,PNL_GDS_SH_MEAS_CH_C1C14
+,PNL_GDS_SH_MEAS_CH_C1C13
+,PNL_GDS_SH_MEAS_CH_C1C12
+,PNL_GDS_SH_MEAS_CH_C1C11
+,PNL_GDS_SH_MEAS_CH_C1C10
+,PNL_GDS_SH_MEAS_CH_C15C16
+,PNL_GDS_SH_MEAS_CH_C14C16
+,PNL_GDS_SH_MEAS_CH_C14C15
+,PNL_GDS_SH_MEAS_CH_C13C16
+,PNL_GDS_SH_MEAS_CH_C13C15
+,PNL_GDS_SH_MEAS_CH_C13C14
+,PNL_GDS_SH_MEAS_CH_C12C16
+,PNL_GDS_SH_MEAS_CH_C12C15
+,PNL_GDS_SH_MEAS_CH_C12C14
+,PNL_GDS_SH_MEAS_CH_C12C13
+,PNL_GDS_SH_MEAS_CH_C11C16
+,PNL_GDS_SH_MEAS_CH_C11C15
+,PNL_GDS_SH_MEAS_CH_C11C14
+,PNL_GDS_SH_MEAS_CH_C11C13
+,PNL_GDS_SH_MEAS_CH_C11C12
+,PNL_GDS_SH_MEAS_CH_C10C16
+,PNL_GDS_SH_MEAS_CH_C10C15
+,PNL_GDS_SH_MEAS_CH_C10C14
+,PNL_GDS_SH_MEAS_CH_C10C13
+,PNL_GDS_SH_MEAS_CH_C10C12
+,PNL_GDS_SH_MEAS_CH_C10C11
+,PNL_GDS_INSP_REASON_REASON2
+,PNL_GDS_INSP_REASON_REASON1
+,PNL_GDS_INSP_REASON_GD_MISS_STEP
+,PNL_GDS_INSP_REASON_GC_MISS_STEP
+,PNL_GDS_INSP_REASON_DC_MISS_STEP
+,PNL_DEF_TOTAL_RPR_FILTERING_QTY
+,PNL_DEF_TOTAL_PTN_VC_QTY
+,PNL_DEF_TOTAL_PTN_RTDC_QTY
+,PNL_DEF_TOTAL_PTN_IMG_QTY
+,PNL_DEF_TOTAL_PTN_FILTERING_QTY
+,PNL_DEF_TOTAL_PTN_CDO_QTY
+,PNL_DEF_TOTAL_LOS_QTY
+,PNL_DEF_TOTAL_INTERSECTION_LOS_PTN_QTY
+,PNL_DEF_TOTAL_CUM_LOS_PTN_QTY
+,PNL_DEF_TOTAL_AMA_QTY
+,PNL_DEF_TOTAL_ADJ_QTY
+,PNL_DEF_REAL_RPR_FILTERING_QTY
+,PNL_DEF_REAL_PTN_VC_QTY
+,PNL_DEF_REAL_PTN_TOTAL_QTY
+,PNL_DEF_REAL_PTN_RTDC_QTY
+,PNL_DEF_REAL_PTN_IMG_QTY
+,PNL_DEF_REAL_PTN_FILTERING_QTY
+,PNL_DEF_REAL_PTN_CDO_QTY
+,PNL_DEF_REAL_LOS_QTY
+,PNL_DEF_REAL_INTERSECTION_LOS_PTN_QTY
+,PNL_DEF_REAL_CUM_LOS_PTN_QTY
+,PNL_DEF_REAL_AMA_QTY
+,PNL_ART_ESS_REASON
+,PNL_ART_ESS_C9C8
+,PNL_ART_ESS_C9C7
+,PNL_ART_ESS_C9C6
+,PNL_ART_ESS_C9C5
+,PNL_ART_ESS_C9C4
+,PNL_ART_ESS_C9C3
+,PNL_ART_ESS_C9C2
+,PNL_ART_ESS_C9C16
+,PNL_ART_ESS_C9C15
+,PNL_ART_ESS_C9C14
+,PNL_ART_ESS_C9C13
+,PNL_ART_ESS_C9C12
+,PNL_ART_ESS_C9C11
+,PNL_ART_ESS_C9C10
+,PNL_ART_ESS_C9C1
+,PNL_ART_ESS_C8C9
+,PNL_ART_ESS_C8C7
+,PNL_ART_ESS_C8C6
+,PNL_ART_ESS_C8C5
+,PNL_ART_ESS_C8C4
+,PNL_ART_ESS_C8C3
+,PNL_ART_ESS_C8C2
+,PNL_ART_ESS_C8C16
+,PNL_ART_ESS_C8C15
+,PNL_ART_ESS_C8C14
+,PNL_ART_ESS_C8C13
+,PNL_ART_ESS_C8C12
+,PNL_ART_ESS_C8C11
+,PNL_ART_ESS_C8C10
+,PNL_ART_ESS_C8C1
+,PNL_ART_ESS_C7C9
+,PNL_ART_ESS_C7C8
+,PNL_ART_ESS_C7C6
+,PNL_ART_ESS_C7C5
+,PNL_ART_ESS_C7C4
+,PNL_ART_ESS_C7C3
+,PNL_ART_ESS_C7C2
+,PNL_ART_ESS_C7C16
+,PNL_ART_ESS_C7C15
+,PNL_ART_ESS_C7C14
+,PNL_ART_ESS_C7C13
+,PNL_ART_ESS_C7C12
+,PNL_ART_ESS_C7C11
+,PNL_ART_ESS_C7C10
+,PNL_ART_ESS_C7C1
+,PNL_ART_ESS_C6C9
+,PNL_ART_ESS_C6C8
+,PNL_ART_ESS_C6C7
+,PNL_ART_ESS_C6C5
+,PNL_ART_ESS_C6C4
+,PNL_ART_ESS_C6C3
+,PNL_ART_ESS_C6C2
+,PNL_ART_ESS_C6C16
+,PNL_ART_ESS_C6C15
+,PNL_ART_ESS_C6C14
+,PNL_ART_ESS_C6C13
+,PNL_ART_ESS_C6C12
+,PNL_ART_ESS_C6C11
+,PNL_ART_ESS_C6C10
+,PNL_ART_ESS_C6C1
+,PNL_ART_ESS_C5C9
+,PNL_ART_ESS_C5C8
+,PNL_ART_ESS_C5C7
+,PNL_ART_ESS_C5C6
+,PNL_ART_ESS_C5C4
+,PNL_ART_ESS_C5C3
+,PNL_ART_ESS_C5C2
+,PNL_ART_ESS_C5C16
+,PNL_ART_ESS_C5C15
+,PNL_ART_ESS_C5C14
+,PNL_ART_ESS_C5C13
+,PNL_ART_ESS_C5C12
+,PNL_ART_ESS_C5C11
+,PNL_ART_ESS_C5C10
+,PNL_ART_ESS_C5C1
+,PNL_ART_ESS_C4C9
+,PNL_ART_ESS_C4C8
+,PNL_ART_ESS_C4C7
+,PNL_ART_ESS_C4C6
+,PNL_ART_ESS_C4C5
+,PNL_ART_ESS_C4C3
+,PNL_ART_ESS_C4C2
+,PNL_ART_ESS_C4C16
+,PNL_ART_ESS_C4C15
+,PNL_ART_ESS_C4C14
+,PNL_ART_ESS_C4C13
+,PNL_ART_ESS_C4C12
+,PNL_ART_ESS_C4C11
+,PNL_ART_ESS_C4C10
+,PNL_ART_ESS_C4C1
+,PNL_ART_ESS_C3C9
+,PNL_ART_ESS_C3C8
+,PNL_ART_ESS_C3C7
+,PNL_ART_ESS_C3C6
+,PNL_ART_ESS_C3C5
+,PNL_ART_ESS_C3C4
+,PNL_ART_ESS_C3C2
+,PNL_ART_ESS_C3C16
+,PNL_ART_ESS_C3C15
+,PNL_ART_ESS_C3C14
+,PNL_ART_ESS_C3C13
+,PNL_ART_ESS_C3C12
+,PNL_ART_ESS_C3C11
+,PNL_ART_ESS_C3C10
+,PNL_ART_ESS_C3C1
+,PNL_ART_ESS_C2C9
+,PNL_ART_ESS_C2C8
+,PNL_ART_ESS_C2C7
+,PNL_ART_ESS_C2C6
+,PNL_ART_ESS_C2C5
+,PNL_ART_ESS_C2C4
+,PNL_ART_ESS_C2C3
+,PNL_ART_ESS_C2C16
+,PNL_ART_ESS_C2C15
+,PNL_ART_ESS_C2C14
+,PNL_ART_ESS_C2C13
+,PNL_ART_ESS_C2C12
+,PNL_ART_ESS_C2C11
+,PNL_ART_ESS_C2C10
+,PNL_ART_ESS_C2C1
+,PNL_ART_ESS_C1C9
+,PNL_ART_ESS_C1C8
+,PNL_ART_ESS_C1C7
+,PNL_ART_ESS_C1C6
+,PNL_ART_ESS_C1C5
+,PNL_ART_ESS_C1C4
+,PNL_ART_ESS_C1C3
+,PNL_ART_ESS_C1C2
+,PNL_ART_ESS_C1C16
+,PNL_ART_ESS_C1C15
+,PNL_ART_ESS_C1C14
+,PNL_ART_ESS_C1C13
+,PNL_ART_ESS_C1C12
+,PNL_ART_ESS_C1C11
+,PNL_ART_ESS_C1C10
+,PNL_ART_ESS_C16C9
+,PNL_ART_ESS_C16C8
+,PNL_ART_ESS_C16C7
+,PNL_ART_ESS_C16C6
+,PNL_ART_ESS_C16C5
+,PNL_ART_ESS_C16C4
+,PNL_ART_ESS_C16C3
+,PNL_ART_ESS_C16C2
+,PNL_ART_ESS_C16C15
+,PNL_ART_ESS_C16C14
+,PNL_ART_ESS_C16C13
+,PNL_ART_ESS_C16C12
+,PNL_ART_ESS_C16C11
+,PNL_ART_ESS_C16C10
+,PNL_ART_ESS_C16C1
+,PNL_ART_ESS_C15C9
+,PNL_ART_ESS_C15C8
+,PNL_ART_ESS_C15C7
+,PNL_ART_ESS_C15C6
+,PNL_ART_ESS_C15C5
+,PNL_ART_ESS_C15C4
+,PNL_ART_ESS_C15C3
+,PNL_ART_ESS_C15C2
+,PNL_ART_ESS_C15C16
+,PNL_ART_ESS_C15C14
+,PNL_ART_ESS_C15C13
+,PNL_ART_ESS_C15C12
+,PNL_ART_ESS_C15C11
+,PNL_ART_ESS_C15C10
+,PNL_ART_ESS_C15C1
+,PNL_ART_ESS_C14C9
+,PNL_ART_ESS_C14C8
+,PNL_ART_ESS_C14C7
+,PNL_ART_ESS_C14C6
+,PNL_ART_ESS_C14C5
+,PNL_ART_ESS_C14C4
+,PNL_ART_ESS_C14C3
+,PNL_ART_ESS_C14C2
+,PNL_ART_ESS_C14C16
+,PNL_ART_ESS_C14C15
+,PNL_ART_ESS_C14C13
+,PNL_ART_ESS_C14C12
+,PNL_ART_ESS_C14C11
+,PNL_ART_ESS_C14C10
+,PNL_ART_ESS_C14C1
+,PNL_ART_ESS_C13C9
+,PNL_ART_ESS_C13C8
+,PNL_ART_ESS_C13C7
+,PNL_ART_ESS_C13C6
+,PNL_ART_ESS_C13C5
+,PNL_ART_ESS_C13C4
+,PNL_ART_ESS_C13C3
+,PNL_ART_ESS_C13C2
+,PNL_ART_ESS_C13C16
+,PNL_ART_ESS_C13C15
+,PNL_ART_ESS_C13C14
+,PNL_ART_ESS_C13C12
+,PNL_ART_ESS_C13C11
+,PNL_ART_ESS_C13C10
+,PNL_ART_ESS_C13C1
+,PNL_ART_ESS_C12C9
+,PNL_ART_ESS_C12C8
+,PNL_ART_ESS_C12C7
+,PNL_ART_ESS_C12C6
+,PNL_ART_ESS_C12C5
+,PNL_ART_ESS_C12C4
+,PNL_ART_ESS_C12C3
+,PNL_ART_ESS_C12C2
+,PNL_ART_ESS_C12C16
+,PNL_ART_ESS_C12C15
+,PNL_ART_ESS_C12C14
+,PNL_ART_ESS_C12C13
+,PNL_ART_ESS_C12C11
+,PNL_ART_ESS_C12C10
+,PNL_ART_ESS_C12C1
+,PNL_ART_ESS_C11C9
+,PNL_ART_ESS_C11C8
+,PNL_ART_ESS_C11C7
+,PNL_ART_ESS_C11C6
+,PNL_ART_ESS_C11C5
+,PNL_ART_ESS_C11C4
+,PNL_ART_ESS_C11C3
+,PNL_ART_ESS_C11C2
+,PNL_ART_ESS_C11C16
+,PNL_ART_ESS_C11C15
+,PNL_ART_ESS_C11C14
+,PNL_ART_ESS_C11C13
+,PNL_ART_ESS_C11C12
+,PNL_ART_ESS_C11C10
+,PNL_ART_ESS_C11C1
+,PNL_ART_ESS_C10C9
+,PNL_ART_ESS_C10C8
+,PNL_ART_ESS_C10C7
+,PNL_ART_ESS_C10C6
+,PNL_ART_ESS_C10C5
+,PNL_ART_ESS_C10C4
+,PNL_ART_ESS_C10C3
+,PNL_ART_ESS_C10C2
+,PNL_ART_ESS_C10C16
+,PNL_ART_ESS_C10C15
+,PNL_ART_ESS_C10C14
+,PNL_ART_ESS_C10C13
+,PNL_ART_ESS_C10C12
+,PNL_ART_ESS_C10C11
+,PNL_ART_ESS_C10C1
+,PNL_ART_ESS_CURRENT
+,PNL_ADR_TYPE_SUCCESS_G0_QTY
+,PNL_ADR_TYPE_SUCCESS_F0_QTY
+,PNL_ADR_TYPE_SUCCESS_E0_QTY
+,PNL_ADR_TYPE_SUCCESS_D1_QTY
+,PNL_ADR_TYPE_SUCCESS_D0_QTY
+,PNL_ADR_TYPE_SUCCESS_C1_QTY
+,PNL_ADR_TYPE_SUCCESS_C0_QTY
+,PNL_ADR_TYPE_SUCCESS_B1_QTY
+,PNL_ADR_TYPE_SUCCESS_B0_QTY
+,PNL_ADR_TYPE_SUCCESS_A1_QTY
+,PNL_ADR_TYPE_SUCCESS_A0_QTY
+,PNL_ADR_TYPE_G0_QTY
+,PNL_ADR_TYPE_F0_QTY
+,PNL_ADR_TYPE_E0_QTY
+,PNL_ADR_TYPE_D1_QTY
+,PNL_ADR_TYPE_D0_QTY
+,PNL_ADR_TYPE_C1_QTY
+,PNL_ADR_TYPE_C0_QTY
+,PNL_ADR_TYPE_B1_QTY
+,PNL_ADR_TYPE_B0_QTY
+,PNL_ADR_TYPE_A1_QTY
+,PNL_ADR_TYPE_A0_QTY
+,PNL_ADR_DEF_DATA_RPC2_U_PATH_NG_QTY
+,PNL_ADR_DEF_DATA_RPC2_U_NOPATH_QTY
+,PNL_ADR_DEF_DATA_RPC2_U_9_TO_QTY
+,PNL_ADR_DEF_DATA_RPC2_U_1_TO_QTY
+,PNL_ADR_DEF_DATA_RPC2_U_QTY
+,PNL_ADR_DEF_DATA_RPC2_SKIP_QTY
+,PNL_ADR_DEF_DATA_RPC2_N_QTY
+,PNL_ADR_DEF_DATA_RPC2_G_QTY
+,PNL_ADR_DEF_DATA_RPC2_C_QTY
+,PNL_ADR_DEF_DATA_RPC1_V_QTY
+,PNL_ADR_DEF_DATA_RPC1_U_QTY
+,PNL_ADR_DEF_DATA_RPC1_T_QTY
+,PNL_ADR_DEF_DATA_RPC1_S_QTY
+,PNL_ADR_DEF_DATA_RPC1_R_QTY
+,PNL_ADR_DEF_DATA_RPC1_Q_QTY
+,PNL_ADR_DEF_DATA_RPC1_P_QTY
+,PNL_ADR_DEF_DATA_RPC1_N_QTY
+,PNL_ADR_DEF_DATA_RPC1_L_QTY
+,PNL_ADR_DEF_DATA_RPC1_G_QTY
+,PNL_ADR_DEF_DATA_RPC1_C_QTY
+,PNL_ADR_DEF_DATA_RPC1_B_QTY
+,PNL_ADR_DEF_DATA_RPC1_A_QTY
+,PNL_ADR_AUTO_JUDGE_CHECK
+,PNL_ADJ_DEF_DATA_CAPTURE_MODE_4
+,PNL_ADJ_DEF_DATA_CAPTURE_MODE_3
+,PNL_ADJ_DEF_DATA_CAPTURE_MODE_2
+,PNL_ADJ_DEF_DATA_CAPTURE_MODE_1
+,PNL_ADJ_DEF_DATA_ADJ_V
+,PNL_ADJ_DEF_DATA_ADJ_U
+,PNL_ADJ_DEF_DATA_ADJ_TOTAL_DEF
+,PNL_ADJ_DEF_DATA_ADJ_TIMEOUT
+,PNL_ADJ_DEF_DATA_ADJ_T
+,PNL_ADJ_DEF_DATA_ADJ_SKIP
+,PNL_ADJ_DEF_DATA_ADJ_S
+,PNL_ADJ_DEF_DATA_ADJ_ROTATION
+,PNL_ADJ_DEF_DATA_ADJ_R
+,PNL_ADJ_DEF_DATA_ADJ_Q
+,PNL_ADJ_DEF_DATA_ADJ_PTN_FD
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OVERKILL_R
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OVERKILL_M
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_G
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_ETC
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_B
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_A
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_LEAKAGE
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_HOLD
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_ETC
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_DEF
+,PNL_ADJ_DEF_DATA_ADJ_PAD
+,PNL_ADJ_DEF_DATA_ADJ_P
+,PNL_ADJ_DEF_DATA_ADJ_OVERKILL
+,PNL_ADJ_DEF_DATA_ADJ_OK
+,PNL_ADJ_DEF_DATA_ADJ_NULL
+,PNL_ADJ_DEF_DATA_ADJ_N
+,PNL_ADJ_DEF_DATA_ADJ_MODE
+,PNL_ADJ_DEF_DATA_ADJ_LOS_FD
+,PNL_ADJ_DEF_DATA_ADJ_LEAKAGE
+,PNL_ADJ_DEF_DATA_ADJ_L
+,PNL_ADJ_DEF_DATA_ADJ_HOLD_A2
+,PNL_ADJ_DEF_DATA_ADJ_HOLD_A1
+,PNL_ADJ_DEF_DATA_ADJ_HOLD_A
+,PNL_ADJ_DEF_DATA_ADJ_HOLD
+,PNL_ADJ_DEF_DATA_ADJ_G
+,PNL_ADJ_DEF_DATA_ADJ_FOCUS_INDEX
+,PNL_ADJ_DEF_DATA_ADJ_ETC
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OVERKILL_R
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OVERKILL_M
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_G
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_ETC
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_B
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_A
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_LEAKAGE
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_HOLD
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_ETC
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_DEF
+,PNL_ADJ_DEF_DATA_ADJ_CAPTURE
+,PNL_ADJ_DEF_DATA_ADJ_C
+,PNL_ADJ_DEF_DATA_ADJ_B
+,PNL_ADJ_DEF_DATA_ADJ_ART_FD
+,PNL_ADJ_DEF_DATA_ADJ_A
+)
+| fields
+- KEY_ID
+,PNL_JUDGE
+,PNL_REV_OP_IP_THIRD
+,PNL_REV_OP_IP_SECOND
+,PNL_REV_OP_IP_FOURTH
+,PNL_REV_OP_IP_FIRST
+,PNL_REV_OP_IP_FIFTH
+,PNL_REP_PR_REPAIR_SUCCESS_QTY
+,PNL_REP_LASER_UV_CNT_SUCCESS_QTY
+,PNL_REP_LASER_IR_CNT_SUCCESS_QTY
+,PNL_REP_LASER_DUV_CNT_SUCCESS_QTY
+,PNL_REP_CVD_SUCCESS_QTY
+,PNL_REP_CRP_PAS_SUCCESS_QTY
+,PNL_REP_AUTO_LASER_SUCCESS_QTY
+,PNL_REP_AUTO_CVD_SUCCESS_QTY
+,PNL_REP_RPC1_REV_PNT_QTY
+,PNL_REP_PR_REP_PNT_QTY
+,PNL_REP_MPC_REV_PNT_QTY
+,PNL_REP_LASER_UV_CNT_PNT_QTY
+,PNL_REP_LASER_IR_CNT_PNT_QTY
+,PNL_REP_LASER_DUV_CNT_PNT_QTY
+,PNL_REP_CRP_PAS_PNT_QTY
+,PNL_REP_AUTO_LASER_PNT_QTY
+,PNL_REP_AUTO_CVD_PNT_QTY
+,PNL_MURA_INFO_MURA_Y
+,PNL_MURA_INFO_MURA_X
+,PNL_REP_REASON
+,PNL_REP_JUDGE
+,PNL_QPC_REASON
+,PNL_QPC_JUDGE
+,PNL_PTN_REASON
+,PNL_PTN_JUDGE
+,PNL_MMA_REASON
+,PNL_MMA_JUDGE
+,PNL_LOS_REASON
+,PNL_LOS_JUDGE
+,PNL_GDS_REASON
+,PNL_GDS_JUDGE
+,PNL_CRP_REASON
+,PNL_CRP_JUDGE
+,PNL_BPN_REASON
+,PNL_BPN_JUDGE
+,PNL_ART_C_REASON
+,PNL_ART_C_JUDGE
+,PNL_ART_REASON
+,PNL_ART_JUDGE
+,PNL_AMA_REASON
+,PNL_AMA_JUDGE
+,PNL_GDS_SH_MEAS_CH_C9C16
+,PNL_GDS_SH_MEAS_CH_C9C15
+,PNL_GDS_SH_MEAS_CH_C9C14
+,PNL_GDS_SH_MEAS_CH_C9C13
+,PNL_GDS_SH_MEAS_CH_C9C12
+,PNL_GDS_SH_MEAS_CH_C9C11
+,PNL_GDS_SH_MEAS_CH_C9C10
+,PNL_GDS_SH_MEAS_CH_C8C9
+,PNL_GDS_SH_MEAS_CH_C8C16
+,PNL_GDS_SH_MEAS_CH_C8C15
+,PNL_GDS_SH_MEAS_CH_C8C14
+,PNL_GDS_SH_MEAS_CH_C8C13
+,PNL_GDS_SH_MEAS_CH_C8C12
+,PNL_GDS_SH_MEAS_CH_C8C11
+,PNL_GDS_SH_MEAS_CH_C8C10
+,PNL_GDS_SH_MEAS_CH_C7C9
+,PNL_GDS_SH_MEAS_CH_C7C8
+,PNL_GDS_SH_MEAS_CH_C7C16
+,PNL_GDS_SH_MEAS_CH_C7C15
+,PNL_GDS_SH_MEAS_CH_C7C14
+,PNL_GDS_SH_MEAS_CH_C7C13
+,PNL_GDS_SH_MEAS_CH_C7C12
+,PNL_GDS_SH_MEAS_CH_C7C11
+,PNL_GDS_SH_MEAS_CH_C7C10
+,PNL_GDS_SH_MEAS_CH_C6C9
+,PNL_GDS_SH_MEAS_CH_C6C8
+,PNL_GDS_SH_MEAS_CH_C6C7
+,PNL_GDS_SH_MEAS_CH_C6C16
+,PNL_GDS_SH_MEAS_CH_C6C15
+,PNL_GDS_SH_MEAS_CH_C6C14
+,PNL_GDS_SH_MEAS_CH_C6C13
+,PNL_GDS_SH_MEAS_CH_C6C12
+,PNL_GDS_SH_MEAS_CH_C6C11
+,PNL_GDS_SH_MEAS_CH_C6C10
+,PNL_GDS_SH_MEAS_CH_C5C9
+,PNL_GDS_SH_MEAS_CH_C5C8
+,PNL_GDS_SH_MEAS_CH_C5C7
+,PNL_GDS_SH_MEAS_CH_C5C6
+,PNL_GDS_SH_MEAS_CH_C5C16
+,PNL_GDS_SH_MEAS_CH_C5C15
+,PNL_GDS_SH_MEAS_CH_C5C14
+,PNL_GDS_SH_MEAS_CH_C5C13
+,PNL_GDS_SH_MEAS_CH_C5C12
+,PNL_GDS_SH_MEAS_CH_C5C11
+,PNL_GDS_SH_MEAS_CH_C5C10
+,PNL_GDS_SH_MEAS_CH_C4C9
+,PNL_GDS_SH_MEAS_CH_C4C8
+,PNL_GDS_SH_MEAS_CH_C4C7
+,PNL_GDS_SH_MEAS_CH_C4C6
+,PNL_GDS_SH_MEAS_CH_C4C5
+,PNL_GDS_SH_MEAS_CH_C4C16
+,PNL_GDS_SH_MEAS_CH_C4C15
+,PNL_GDS_SH_MEAS_CH_C4C14
+,PNL_GDS_SH_MEAS_CH_C4C13
+,PNL_GDS_SH_MEAS_CH_C4C12
+,PNL_GDS_SH_MEAS_CH_C4C11
+,PNL_GDS_SH_MEAS_CH_C4C10
+,PNL_GDS_SH_MEAS_CH_C3C9
+,PNL_GDS_SH_MEAS_CH_C3C8
+,PNL_GDS_SH_MEAS_CH_C3C7
+,PNL_GDS_SH_MEAS_CH_C3C6
+,PNL_GDS_SH_MEAS_CH_C3C5
+,PNL_GDS_SH_MEAS_CH_C3C4
+,PNL_GDS_SH_MEAS_CH_C3C16
+,PNL_GDS_SH_MEAS_CH_C3C15
+,PNL_GDS_SH_MEAS_CH_C3C14
+,PNL_GDS_SH_MEAS_CH_C3C13
+,PNL_GDS_SH_MEAS_CH_C3C12
+,PNL_GDS_SH_MEAS_CH_C3C11
+,PNL_GDS_SH_MEAS_CH_C3C10
+,PNL_GDS_SH_MEAS_CH_C2C9
+,PNL_GDS_SH_MEAS_CH_C2C8
+,PNL_GDS_SH_MEAS_CH_C2C7
+,PNL_GDS_SH_MEAS_CH_C2C6
+,PNL_GDS_SH_MEAS_CH_C2C5
+,PNL_GDS_SH_MEAS_CH_C2C4
+,PNL_GDS_SH_MEAS_CH_C2C3
+,PNL_GDS_SH_MEAS_CH_C2C16
+,PNL_GDS_SH_MEAS_CH_C2C15
+,PNL_GDS_SH_MEAS_CH_C2C14
+,PNL_GDS_SH_MEAS_CH_C2C13
+,PNL_GDS_SH_MEAS_CH_C2C12
+,PNL_GDS_SH_MEAS_CH_C2C11
+,PNL_GDS_SH_MEAS_CH_C2C10
+,PNL_GDS_SH_MEAS_CH_C1C9
+,PNL_GDS_SH_MEAS_CH_C1C8
+,PNL_GDS_SH_MEAS_CH_C1C7
+,PNL_GDS_SH_MEAS_CH_C1C6
+,PNL_GDS_SH_MEAS_CH_C1C5
+,PNL_GDS_SH_MEAS_CH_C1C4
+,PNL_GDS_SH_MEAS_CH_C1C3
+,PNL_GDS_SH_MEAS_CH_C1C2
+,PNL_GDS_SH_MEAS_CH_C1C16
+,PNL_GDS_SH_MEAS_CH_C1C15
+,PNL_GDS_SH_MEAS_CH_C1C14
+,PNL_GDS_SH_MEAS_CH_C1C13
+,PNL_GDS_SH_MEAS_CH_C1C12
+,PNL_GDS_SH_MEAS_CH_C1C11
+,PNL_GDS_SH_MEAS_CH_C1C10
+,PNL_GDS_SH_MEAS_CH_C15C16
+,PNL_GDS_SH_MEAS_CH_C14C16
+,PNL_GDS_SH_MEAS_CH_C14C15
+,PNL_GDS_SH_MEAS_CH_C13C16
+,PNL_GDS_SH_MEAS_CH_C13C15
+,PNL_GDS_SH_MEAS_CH_C13C14
+,PNL_GDS_SH_MEAS_CH_C12C16
+,PNL_GDS_SH_MEAS_CH_C12C15
+,PNL_GDS_SH_MEAS_CH_C12C14
+,PNL_GDS_SH_MEAS_CH_C12C13
+,PNL_GDS_SH_MEAS_CH_C11C16
+,PNL_GDS_SH_MEAS_CH_C11C15
+,PNL_GDS_SH_MEAS_CH_C11C14
+,PNL_GDS_SH_MEAS_CH_C11C13
+,PNL_GDS_SH_MEAS_CH_C11C12
+,PNL_GDS_SH_MEAS_CH_C10C16
+,PNL_GDS_SH_MEAS_CH_C10C15
+,PNL_GDS_SH_MEAS_CH_C10C14
+,PNL_GDS_SH_MEAS_CH_C10C13
+,PNL_GDS_SH_MEAS_CH_C10C12
+,PNL_GDS_SH_MEAS_CH_C10C11
+,PNL_GDS_INSP_REASON_REASON2
+,PNL_GDS_INSP_REASON_REASON1
+,PNL_GDS_INSP_REASON_GD_MISS_STEP
+,PNL_GDS_INSP_REASON_GC_MISS_STEP
+,PNL_GDS_INSP_REASON_DC_MISS_STEP
+,PNL_DEF_TOTAL_RPR_FILTERING_QTY
+,PNL_DEF_TOTAL_PTN_VC_QTY
+,PNL_DEF_TOTAL_PTN_RTDC_QTY
+,PNL_DEF_TOTAL_PTN_IMG_QTY
+,PNL_DEF_TOTAL_PTN_FILTERING_QTY
+,PNL_DEF_TOTAL_PTN_CDO_QTY
+,PNL_DEF_TOTAL_LOS_QTY
+,PNL_DEF_TOTAL_INTERSECTION_LOS_PTN_QTY
+,PNL_DEF_TOTAL_CUM_LOS_PTN_QTY
+,PNL_DEF_TOTAL_AMA_QTY
+,PNL_DEF_TOTAL_ADJ_QTY
+,PNL_DEF_REAL_RPR_FILTERING_QTY
+,PNL_DEF_REAL_PTN_VC_QTY
+,PNL_DEF_REAL_PTN_TOTAL_QTY
+,PNL_DEF_REAL_PTN_RTDC_QTY
+,PNL_DEF_REAL_PTN_IMG_QTY
+,PNL_DEF_REAL_PTN_FILTERING_QTY
+,PNL_DEF_REAL_PTN_CDO_QTY
+,PNL_DEF_REAL_LOS_QTY
+,PNL_DEF_REAL_INTERSECTION_LOS_PTN_QTY
+,PNL_DEF_REAL_CUM_LOS_PTN_QTY
+,PNL_DEF_REAL_AMA_QTY
+,PNL_ART_ESS_REASON
+,PNL_ART_ESS_C9C8
+,PNL_ART_ESS_C9C7
+,PNL_ART_ESS_C9C6
+,PNL_ART_ESS_C9C5
+,PNL_ART_ESS_C9C4
+,PNL_ART_ESS_C9C3
+,PNL_ART_ESS_C9C2
+,PNL_ART_ESS_C9C16
+,PNL_ART_ESS_C9C15
+,PNL_ART_ESS_C9C14
+,PNL_ART_ESS_C9C13
+,PNL_ART_ESS_C9C12
+,PNL_ART_ESS_C9C11
+,PNL_ART_ESS_C9C10
+,PNL_ART_ESS_C9C1
+,PNL_ART_ESS_C8C9
+,PNL_ART_ESS_C8C7
+,PNL_ART_ESS_C8C6
+,PNL_ART_ESS_C8C5
+,PNL_ART_ESS_C8C4
+,PNL_ART_ESS_C8C3
+,PNL_ART_ESS_C8C2
+,PNL_ART_ESS_C8C16
+,PNL_ART_ESS_C8C15
+,PNL_ART_ESS_C8C14
+,PNL_ART_ESS_C8C13
+,PNL_ART_ESS_C8C12
+,PNL_ART_ESS_C8C11
+,PNL_ART_ESS_C8C10
+,PNL_ART_ESS_C8C1
+,PNL_ART_ESS_C7C9
+,PNL_ART_ESS_C7C8
+,PNL_ART_ESS_C7C6
+,PNL_ART_ESS_C7C5
+,PNL_ART_ESS_C7C4
+,PNL_ART_ESS_C7C3
+,PNL_ART_ESS_C7C2
+,PNL_ART_ESS_C7C16
+,PNL_ART_ESS_C7C15
+,PNL_ART_ESS_C7C14
+,PNL_ART_ESS_C7C13
+,PNL_ART_ESS_C7C12
+,PNL_ART_ESS_C7C11
+,PNL_ART_ESS_C7C10
+,PNL_ART_ESS_C7C1
+,PNL_ART_ESS_C6C9
+,PNL_ART_ESS_C6C8
+,PNL_ART_ESS_C6C7
+,PNL_ART_ESS_C6C5
+,PNL_ART_ESS_C6C4
+,PNL_ART_ESS_C6C3
+,PNL_ART_ESS_C6C2
+,PNL_ART_ESS_C6C16
+,PNL_ART_ESS_C6C15
+,PNL_ART_ESS_C6C14
+,PNL_ART_ESS_C6C13
+,PNL_ART_ESS_C6C12
+,PNL_ART_ESS_C6C11
+,PNL_ART_ESS_C6C10
+,PNL_ART_ESS_C6C1
+,PNL_ART_ESS_C5C9
+,PNL_ART_ESS_C5C8
+,PNL_ART_ESS_C5C7
+,PNL_ART_ESS_C5C6
+,PNL_ART_ESS_C5C4
+,PNL_ART_ESS_C5C3
+,PNL_ART_ESS_C5C2
+,PNL_ART_ESS_C5C16
+,PNL_ART_ESS_C5C15
+,PNL_ART_ESS_C5C14
+,PNL_ART_ESS_C5C13
+,PNL_ART_ESS_C5C12
+,PNL_ART_ESS_C5C11
+,PNL_ART_ESS_C5C10
+,PNL_ART_ESS_C5C1
+,PNL_ART_ESS_C4C9
+,PNL_ART_ESS_C4C8
+,PNL_ART_ESS_C4C7
+,PNL_ART_ESS_C4C6
+,PNL_ART_ESS_C4C5
+,PNL_ART_ESS_C4C3
+,PNL_ART_ESS_C4C2
+,PNL_ART_ESS_C4C16
+,PNL_ART_ESS_C4C15
+,PNL_ART_ESS_C4C14
+,PNL_ART_ESS_C4C13
+,PNL_ART_ESS_C4C12
+,PNL_ART_ESS_C4C11
+,PNL_ART_ESS_C4C10
+,PNL_ART_ESS_C4C1
+,PNL_ART_ESS_C3C9
+,PNL_ART_ESS_C3C8
+,PNL_ART_ESS_C3C7
+,PNL_ART_ESS_C3C6
+,PNL_ART_ESS_C3C5
+,PNL_ART_ESS_C3C4
+,PNL_ART_ESS_C3C2
+,PNL_ART_ESS_C3C16
+,PNL_ART_ESS_C3C15
+,PNL_ART_ESS_C3C14
+,PNL_ART_ESS_C3C13
+,PNL_ART_ESS_C3C12
+,PNL_ART_ESS_C3C11
+,PNL_ART_ESS_C3C10
+,PNL_ART_ESS_C3C1
+,PNL_ART_ESS_C2C9
+,PNL_ART_ESS_C2C8
+,PNL_ART_ESS_C2C7
+,PNL_ART_ESS_C2C6
+,PNL_ART_ESS_C2C5
+,PNL_ART_ESS_C2C4
+,PNL_ART_ESS_C2C3
+,PNL_ART_ESS_C2C16
+,PNL_ART_ESS_C2C15
+,PNL_ART_ESS_C2C14
+,PNL_ART_ESS_C2C13
+,PNL_ART_ESS_C2C12
+,PNL_ART_ESS_C2C11
+,PNL_ART_ESS_C2C10
+,PNL_ART_ESS_C2C1
+,PNL_ART_ESS_C1C9
+,PNL_ART_ESS_C1C8
+,PNL_ART_ESS_C1C7
+,PNL_ART_ESS_C1C6
+,PNL_ART_ESS_C1C5
+,PNL_ART_ESS_C1C4
+,PNL_ART_ESS_C1C3
+,PNL_ART_ESS_C1C2
+,PNL_ART_ESS_C1C16
+,PNL_ART_ESS_C1C15
+,PNL_ART_ESS_C1C14
+,PNL_ART_ESS_C1C13
+,PNL_ART_ESS_C1C12
+,PNL_ART_ESS_C1C11
+,PNL_ART_ESS_C1C10
+,PNL_ART_ESS_C16C9
+,PNL_ART_ESS_C16C8
+,PNL_ART_ESS_C16C7
+,PNL_ART_ESS_C16C6
+,PNL_ART_ESS_C16C5
+,PNL_ART_ESS_C16C4
+,PNL_ART_ESS_C16C3
+,PNL_ART_ESS_C16C2
+,PNL_ART_ESS_C16C15
+,PNL_ART_ESS_C16C14
+,PNL_ART_ESS_C16C13
+,PNL_ART_ESS_C16C12
+,PNL_ART_ESS_C16C11
+,PNL_ART_ESS_C16C10
+,PNL_ART_ESS_C16C1
+,PNL_ART_ESS_C15C9
+,PNL_ART_ESS_C15C8
+,PNL_ART_ESS_C15C7
+,PNL_ART_ESS_C15C6
+,PNL_ART_ESS_C15C5
+,PNL_ART_ESS_C15C4
+,PNL_ART_ESS_C15C3
+,PNL_ART_ESS_C15C2
+,PNL_ART_ESS_C15C16
+,PNL_ART_ESS_C15C14
+,PNL_ART_ESS_C15C13
+,PNL_ART_ESS_C15C12
+,PNL_ART_ESS_C15C11
+,PNL_ART_ESS_C15C10
+,PNL_ART_ESS_C15C1
+,PNL_ART_ESS_C14C9
+,PNL_ART_ESS_C14C8
+,PNL_ART_ESS_C14C7
+,PNL_ART_ESS_C14C6
+,PNL_ART_ESS_C14C5
+,PNL_ART_ESS_C14C4
+,PNL_ART_ESS_C14C3
+,PNL_ART_ESS_C14C2
+,PNL_ART_ESS_C14C16
+,PNL_ART_ESS_C14C15
+,PNL_ART_ESS_C14C13
+,PNL_ART_ESS_C14C12
+,PNL_ART_ESS_C14C11
+,PNL_ART_ESS_C14C10
+,PNL_ART_ESS_C14C1
+,PNL_ART_ESS_C13C9
+,PNL_ART_ESS_C13C8
+,PNL_ART_ESS_C13C7
+,PNL_ART_ESS_C13C6
+,PNL_ART_ESS_C13C5
+,PNL_ART_ESS_C13C4
+,PNL_ART_ESS_C13C3
+,PNL_ART_ESS_C13C2
+,PNL_ART_ESS_C13C16
+,PNL_ART_ESS_C13C15
+,PNL_ART_ESS_C13C14
+,PNL_ART_ESS_C13C12
+,PNL_ART_ESS_C13C11
+,PNL_ART_ESS_C13C10
+,PNL_ART_ESS_C13C1
+,PNL_ART_ESS_C12C9
+,PNL_ART_ESS_C12C8
+,PNL_ART_ESS_C12C7
+,PNL_ART_ESS_C12C6
+,PNL_ART_ESS_C12C5
+,PNL_ART_ESS_C12C4
+,PNL_ART_ESS_C12C3
+,PNL_ART_ESS_C12C2
+,PNL_ART_ESS_C12C16
+,PNL_ART_ESS_C12C15
+,PNL_ART_ESS_C12C14
+,PNL_ART_ESS_C12C13
+,PNL_ART_ESS_C12C11
+,PNL_ART_ESS_C12C10
+,PNL_ART_ESS_C12C1
+,PNL_ART_ESS_C11C9
+,PNL_ART_ESS_C11C8
+,PNL_ART_ESS_C11C7
+,PNL_ART_ESS_C11C6
+,PNL_ART_ESS_C11C5
+,PNL_ART_ESS_C11C4
+,PNL_ART_ESS_C11C3
+,PNL_ART_ESS_C11C2
+,PNL_ART_ESS_C11C16
+,PNL_ART_ESS_C11C15
+,PNL_ART_ESS_C11C14
+,PNL_ART_ESS_C11C13
+,PNL_ART_ESS_C11C12
+,PNL_ART_ESS_C11C10
+,PNL_ART_ESS_C11C1
+,PNL_ART_ESS_C10C9
+,PNL_ART_ESS_C10C8
+,PNL_ART_ESS_C10C7
+,PNL_ART_ESS_C10C6
+,PNL_ART_ESS_C10C5
+,PNL_ART_ESS_C10C4
+,PNL_ART_ESS_C10C3
+,PNL_ART_ESS_C10C2
+,PNL_ART_ESS_C10C16
+,PNL_ART_ESS_C10C15
+,PNL_ART_ESS_C10C14
+,PNL_ART_ESS_C10C13
+,PNL_ART_ESS_C10C12
+,PNL_ART_ESS_C10C11
+,PNL_ART_ESS_C10C1
+,PNL_ART_ESS_CURRENT
+,PNL_ADR_TYPE_SUCCESS_G0_QTY
+,PNL_ADR_TYPE_SUCCESS_F0_QTY
+,PNL_ADR_TYPE_SUCCESS_E0_QTY
+,PNL_ADR_TYPE_SUCCESS_D1_QTY
+,PNL_ADR_TYPE_SUCCESS_D0_QTY
+,PNL_ADR_TYPE_SUCCESS_C1_QTY
+,PNL_ADR_TYPE_SUCCESS_C0_QTY
+,PNL_ADR_TYPE_SUCCESS_B1_QTY
+,PNL_ADR_TYPE_SUCCESS_B0_QTY
+,PNL_ADR_TYPE_SUCCESS_A1_QTY
+,PNL_ADR_TYPE_SUCCESS_A0_QTY
+,PNL_ADR_TYPE_G0_QTY
+,PNL_ADR_TYPE_F0_QTY
+,PNL_ADR_TYPE_E0_QTY
+,PNL_ADR_TYPE_D1_QTY
+,PNL_ADR_TYPE_D0_QTY
+,PNL_ADR_TYPE_C1_QTY
+,PNL_ADR_TYPE_C0_QTY
+,PNL_ADR_TYPE_B1_QTY
+,PNL_ADR_TYPE_B0_QTY
+,PNL_ADR_TYPE_A1_QTY
+,PNL_ADR_TYPE_A0_QTY
+,PNL_ADR_DEF_DATA_RPC2_U_PATH_NG_QTY
+,PNL_ADR_DEF_DATA_RPC2_U_NOPATH_QTY
+,PNL_ADR_DEF_DATA_RPC2_U_9_TO_QTY
+,PNL_ADR_DEF_DATA_RPC2_U_1_TO_QTY
+,PNL_ADR_DEF_DATA_RPC2_U_QTY
+,PNL_ADR_DEF_DATA_RPC2_SKIP_QTY
+,PNL_ADR_DEF_DATA_RPC2_N_QTY
+,PNL_ADR_DEF_DATA_RPC2_G_QTY
+,PNL_ADR_DEF_DATA_RPC2_C_QTY
+,PNL_ADR_DEF_DATA_RPC1_V_QTY
+,PNL_ADR_DEF_DATA_RPC1_U_QTY
+,PNL_ADR_DEF_DATA_RPC1_T_QTY
+,PNL_ADR_DEF_DATA_RPC1_S_QTY
+,PNL_ADR_DEF_DATA_RPC1_R_QTY
+,PNL_ADR_DEF_DATA_RPC1_Q_QTY
+,PNL_ADR_DEF_DATA_RPC1_P_QTY
+,PNL_ADR_DEF_DATA_RPC1_N_QTY
+,PNL_ADR_DEF_DATA_RPC1_L_QTY
+,PNL_ADR_DEF_DATA_RPC1_G_QTY
+,PNL_ADR_DEF_DATA_RPC1_C_QTY
+,PNL_ADR_DEF_DATA_RPC1_B_QTY
+,PNL_ADR_DEF_DATA_RPC1_A_QTY
+,PNL_ADR_AUTO_JUDGE_CHECK
+,PNL_ADJ_DEF_DATA_CAPTURE_MODE_4
+,PNL_ADJ_DEF_DATA_CAPTURE_MODE_3
+,PNL_ADJ_DEF_DATA_CAPTURE_MODE_2
+,PNL_ADJ_DEF_DATA_CAPTURE_MODE_1
+,PNL_ADJ_DEF_DATA_ADJ_V
+,PNL_ADJ_DEF_DATA_ADJ_U
+,PNL_ADJ_DEF_DATA_ADJ_TOTAL_DEF
+,PNL_ADJ_DEF_DATA_ADJ_TIMEOUT
+,PNL_ADJ_DEF_DATA_ADJ_T
+,PNL_ADJ_DEF_DATA_ADJ_SKIP
+,PNL_ADJ_DEF_DATA_ADJ_S
+,PNL_ADJ_DEF_DATA_ADJ_ROTATION
+,PNL_ADJ_DEF_DATA_ADJ_R
+,PNL_ADJ_DEF_DATA_ADJ_Q
+,PNL_ADJ_DEF_DATA_ADJ_PTN_FD
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OVERKILL_R
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OVERKILL_M
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_G
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_ETC
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_B
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_OK_A
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_LEAKAGE
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_HOLD
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_ETC
+,PNL_ADJ_DEF_DATA_ADJ_PTNMNT_DEF
+,PNL_ADJ_DEF_DATA_ADJ_PAD
+,PNL_ADJ_DEF_DATA_ADJ_P
+,PNL_ADJ_DEF_DATA_ADJ_OVERKILL
+,PNL_ADJ_DEF_DATA_ADJ_OK
+,PNL_ADJ_DEF_DATA_ADJ_NULL
+,PNL_ADJ_DEF_DATA_ADJ_N
+,PNL_ADJ_DEF_DATA_ADJ_MODE
+,PNL_ADJ_DEF_DATA_ADJ_LOS_FD
+,PNL_ADJ_DEF_DATA_ADJ_LEAKAGE
+,PNL_ADJ_DEF_DATA_ADJ_L
+,PNL_ADJ_DEF_DATA_ADJ_HOLD_A2
+,PNL_ADJ_DEF_DATA_ADJ_HOLD_A1
+,PNL_ADJ_DEF_DATA_ADJ_HOLD_A
+,PNL_ADJ_DEF_DATA_ADJ_HOLD
+,PNL_ADJ_DEF_DATA_ADJ_G
+,PNL_ADJ_DEF_DATA_ADJ_FOCUS_INDEX
+,PNL_ADJ_DEF_DATA_ADJ_ETC
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OVERKILL_R
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OVERKILL_M
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_G
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_ETC
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_B
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_OK_A
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_LEAKAGE
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_HOLD
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_ETC
+,PNL_ADJ_DEF_DATA_ADJ_DETECT_DEF
+,PNL_ADJ_DEF_DATA_ADJ_CAPTURE
+,PNL_ADJ_DEF_DATA_ADJ_C
+,PNL_ADJ_DEF_DATA_ADJ_B
+,PNL_ADJ_DEF_DATA_ADJ_ART_FD
+,PNL_ADJ_DEF_DATA_ADJ_A
+
+| eval exp=split(exp, ",")
+| explode exp
+| rex field=exp "(?<INSPECTION_DATA_ID>.*)\@\#\$(?<DATA_VALUE>.*)"
+| fields - exp
+| lookup TB_EDC_DEF_INSP_DATA_M INSPECTION_DATA_ID output DATA_TYPE_CODE
+| eval DATA_TYPE_CODE=if(isnull(DATA_TYPE_CODE), "C", DATA_TYPE_CODE)
+| eval CHARACTER_DATA_VALUE=if(DATA_TYPE_CODE=="C", str(DATA_VALUE), null)
+| eval NUMBER_DATA_VALUE=if(DATA_TYPE_CODE=="N", double(DATA_VALUE), null)
+| fields - DATA_VALUE, DATA_TYPE_CODE
+| rename INSPECTION_DATA_ID as PANEL_INSPECTION_DATA_ID
+
+| fields _host, _time, FILENAME, PATH
+,GLASS_INSPECTION_END_YMDHMS
+,GLASS_SEQ_NO
+,PANEL_ID
+,PANEL_INSPECTION_DATA_ID
+,CHARACTER_DATA_VALUE
+,NUMBER_DATA_VALUE
+
+| search isnotnull(PANEL_INSPECTION_DATA_ID)
+
+| import data_dfs_panel_detail
